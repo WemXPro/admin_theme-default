@@ -342,6 +342,12 @@
                             <span>Articles</span></a>
                     </li>
 
+                    <li>
+                        <a class="nav-link {{ nav_active('updates.index') }}"
+                           href="{{ route('updates.index') }}"><i class="fas fa-cloud-download-alt"></i>
+                            <span>Updates</span></a>
+                    </li>
+
                     <li class="menu-header">{!!  __('admin.store', ['default' => 'Store']) !!}</li>
                     <li class="dropdown {{ nav_active(['categories.index', 'packages.index', 'coupons.index']) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
