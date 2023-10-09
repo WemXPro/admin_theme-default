@@ -490,7 +490,7 @@
                 </div>
             @endif
 
-            @if(config('app.debug') AND config('app.env') == 'production')
+            @if(config('app.debug') AND config('app.version') != 'dev')
                 <div class="alert alert-warning" role="alert">
                     Disable <strong>debug mode</strong> immediately if your application is in production for security
                     reasons! To disable, edit file {{ base_path('.env') }} and set <code>APP_DEBUG</code> to
