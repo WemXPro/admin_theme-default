@@ -2,7 +2,6 @@
 @section('css_libraries')
     <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/summernote/summernote-bs4.css')) }}"/>
     <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/select2/dist/css/select2.min.css')) }}">
-
 @endsection
 
 @section('js_libraries')
