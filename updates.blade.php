@@ -27,7 +27,7 @@
           <p class="lead">
            You are running an outdated version of WemX
           </p>
-          <a href="{{ route('updates.install', ['version' => $latest_version->version, 'type' => 'dev']) }}" class="btn btn-success mt-4">Install v{{ $latest_version->version }}</a>
+          <a href="{{ route('updates.install', ['version' => $latest_version->version, 'type' => 'stable']) }}" class="btn btn-success mt-4">Install v{{ $latest_version->version }}</a>
           <a href="https://wemx.net/news" target="_blank" class="mt-4 bb">View Changelog</a>
         </div>
     </div>
