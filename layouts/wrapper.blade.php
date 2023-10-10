@@ -484,6 +484,12 @@
                 </div>
             @endif
 
+            @if(!Cache::has('cron_active'))
+            <div class="alert alert-danger" role="alert">
+                Cronjobs are not running! Add <code>* * * * * php {{base_path()}}/artisan schedule:run >> /dev/null 2>&1</code> to your cron list
+            </div>
+            @endif
+
             @if(config('app.debug') AND config('app.version') != 'dev')
                 <div class="alert alert-warning" role="alert">
                     Disable <strong>debug mode</strong> immediately if your application is in production for security
