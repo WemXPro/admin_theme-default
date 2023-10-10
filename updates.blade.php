@@ -8,7 +8,7 @@
           <div class="empty-state-icon" style="background-color: #059669; display: flex; justify-content: center; align-items: center">
             <img src="/assets/src/spinners/blocks.svg" style="width: 50px;">
           </div>
-          <h2>Installing {{ Cache::get('app_updating')['type'] }} v{{ Cache::get('app_updating')['version'] }}</h2>
+          <h2>Installing {{ Cache::get('app_updating')['type'] }} {{ Cache::get('app_updating')['version'] }}</h2>
           <p class="lead">
             <span id="progress">{{ Cache::get('app_updating')['progress'] }}</span><span id="loading">...</span>
           </p>
@@ -42,7 +42,7 @@
             progressElement.innerHTML = error;
             console.error("There was an error fetching the data:", error);
         }
-    }, 5000);
+    }, 1500);
   </script>
     @else
     @if(config('app.version') >= $latest_version->version)
@@ -56,6 +56,9 @@
               Your WemX application is up-to-date! New updates will appear here.
             </p>
             <a href="https://wemx.net/news" target="_blank" class="btn btn-success mt-4">Latest News</a>
+            @if(config('app.version') == 'dev')
+              <a href="{{ route('updates.install', ['version' => 'latest', 'type' => 'dev']) }}" class="btn btn-success mt-4">Install Dev version</a>
+            @endif
             <a href="{{ route('updates.index') }}" class="mt-4 bb">Refresh</a>
           </div>
     </div>
