@@ -36,16 +36,10 @@
         }
 
     </style>
-    @php($css_mode = 'custom.css')
-    @auth
-        @if(\Cache::get('theme_mode_' . auth()->user()->id, 'light') == 'dark')
-            @php($css_mode = 'dark.css')
-        @endif
-    @endauth
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/style.css')) }}"/>
-    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/'.$css_mode)) }}"/>
+    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/custom.css')) }}"/>
     <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/components.css')) }}"/>
 
     <!-- Start GA -->
