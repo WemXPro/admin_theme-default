@@ -38,7 +38,12 @@
     </style>
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/style.css')) }}"/>
+    @if(true)
+        <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/dark-style.css')) }}"/>
+    @else 
+        <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/style.css')) }}"/>
+    @endif
+
     <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/custom.css')) }}"/>
     <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/components.css')) }}"/>
 
