@@ -226,11 +226,11 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a class="nav-link {{ nav_active('admin.bans.index') }}"
-                                   href="{{ route('admin.bans.index') }}">Bans</a>
+                                   href="{{ route('admin.bans.index') }}">{{ __('admin.bans') }}</a>
                             </li>
                             <li>
                                 <a class="nav-link {{ nav_active('admin.warnings.index') }}"
-                                   href="{{ route('admin.warnings.index') }}">Warnings</a>
+                                   href="{{ route('admin.warnings.index') }}">{{ __('admin.warnings') }}</a>
                             </li>
                         </ul>
                     </li>
@@ -268,7 +268,7 @@
                             </li>
                             <li>
                                 <a class="nav-link {{ nav_active('admin.taxes') }}"
-                                   href="{{ route('admin.taxes') }}">Taxes</a>
+                                   href="{{ route('admin.taxes') }}">{{ __('admin.taxes') }}</a>
                             </li>
                             <li>
                                 <a class="nav-link {{ nav_active('admin.registrations') }}"
@@ -333,13 +333,13 @@
                     <li>
                         <a class="nav-link {{ nav_active('articles.index') }}" href="{{ route('articles.index') }}"><i
                                 class="fas fa-solid fa-newspaper"></i>
-                            <span>Articles</span></a>
+                            <span>{{ __('admin.articles') }}</span></a>
                     </li>
 
                     <li>
                         <a class="nav-link {{ nav_active('updates.index') }}"
                            href="{{ route('updates.index') }}"><i class="fas fa-cloud-download-alt"></i>
-                            <span>Updates</span></a>
+                            <span>{{ __('admin.updates') }}</span></a>
                     </li>
 
                     <li class="menu-header">{!!  __('admin.store', ['default' => 'Store']) !!}</li>
@@ -416,7 +416,9 @@
                                             @foreach($menu['items'] as $item)
                                                 <li>
                                                     <a class="nav-link {{ nav_active($item['href'], href: true) }}"
-                                                       href="{{ $item['href'] }}">{{ __($item['name']) }}</a>
+                                                       href="{{ $item['href'] }}">
+                                                            {{ __($item['name']) }}
+                                                    </a>
                                                 </li>
                                             @endforeach
                                         </ul>
