@@ -128,6 +128,63 @@
             }
         });
 
+        var subscription_chart = document.getElementById("subscription-chart").getContext('2d');
+
+        var subscription_chart_bg_color = subscription_chart.createLinearGradient(0, 0, 0, 70);
+        subscription_chart_bg_color.addColorStop(0, 'rgba(63,82,227,.2)');
+        subscription_chart_bg_color.addColorStop(1, 'rgba(63,82,227,0)');
+
+        var myChart = new Chart(subscription_chart, {
+            type: 'line',
+            data: {
+                labels: @json($paid_dates_sub),
+                datasets: [{
+                    label: 'Subscriptions',
+                    data: @json($paid_amounts_sub),
+                    backgroundColor: subscription_chart_bg_color,
+                    borderWidth: 3,
+                    borderColor: 'rgba(63,82,227,1)',
+                    pointBorderWidth: 0,
+                    pointBorderColor: 'transparent',
+                    pointRadius: 3,
+                    pointBackgroundColor: 'transparent',
+                    pointHoverBackgroundColor: 'rgba(63,82,227,1)',
+                }]
+            },
+            options: {
+                layout: {
+                    padding: {
+                        bottom: -1,
+                        left: -1
+                    }
+                },
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            display: false,
+                            drawBorder: false,
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            display: false
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            drawBorder: false,
+                            display: false,
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    }]
+                },
+            }
+        });
+
         var sales_chart = document.getElementById("sales-chart").getContext('2d');
 
         var sales_chart_bg_color = sales_chart.createLinearGradient(0, 0, 0, 80);
@@ -291,7 +348,7 @@
                                 <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
                             </div>
                         </div>
-                        <canvas id="balance-chart" height="80" width="339"
+                        <canvas id="subscription-chart" height="80" width="339"
                                 style="display: block; width: 339px; height: 80px;"
                                 class="chartjs-render-monitor"></canvas>
                     </div>
