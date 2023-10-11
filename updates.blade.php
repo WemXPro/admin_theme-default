@@ -91,7 +91,7 @@
               <p class="mb-0">
                 {!! $version->changelog ?? __('admin.no_changelog_provided') !!}
               </p>
-              <small>{{ Carbon::parse($version->created_at)->diffForHumans() }} ({{ Carbon::parse($version->created_at)->format('d M Y') }})</small>
+              <small>{{ Carbon::parse($version->created_at)->diffForHumans() }} ({{ Carbon::parse($version->created_at)->translatedFormat('d M Y') }})</small>
             </div>
             @if(config('app.version') == $version->version)
               <a href="#" class="btn btn-success mt-4 disabled">{{ __('admin.installed') }}</a>
