@@ -23,7 +23,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <div class="control-label">{!! __('Group Permissions') !!}</div>
+                            <div class="control-label">{!! __('admin.group_permissions') !!}</div>
 
 
                             @php
