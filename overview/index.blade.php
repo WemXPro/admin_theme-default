@@ -303,7 +303,7 @@
                             <h4>{!! __('client.subscription') !!}</h4>
                         </div>
                         <div class="card-body">
-                            {{ currency('symbol') }}{{ $averageSubscription }}/{!! __('admin.monthly') !!}
+                            {{ currency('symbol') }}{{ $incomeSubscriptions }}/{!! __('admin.monthly') !!}
                         </div>
                     </div>
                 </div>
