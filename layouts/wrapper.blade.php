@@ -89,7 +89,9 @@
                     @foreach (Module::allEnabled() as $module)
                         @includeIf(AdminTheme::moduleView($module->getLowerName(), 'elements.navbar-dropdown-right'))
                     @endforeach
-
+                    <li>
+                        <a href="{{ route('admin.toggle-mode') }}" class="nav-link nav-link-lg"><i class="fas fa-adjust"></i></a>
+                    </li>
                     <li class="dropdown dropdown-list-toggle">
                         <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle">
                             <i class="far fa-envelope"></i></a>
