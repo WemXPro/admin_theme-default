@@ -38,7 +38,7 @@
     </style>
 
     <!-- Template CSS -->
-    @if(Cache::get('admin_theme_mode', 'light') == 'dark')
+    @if(Cache::get('admin_theme_mode_'.auth()->user()->id, 'light') == 'dark')
         <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/dark-style.css')) }}"/>
     @else
         <link rel="stylesheet" href="{{ asset(AdminTheme::assets('css/style.css')) }}"/>
