@@ -7,7 +7,7 @@
                 <div class="card-header">{!!  __('admin.pages') !!}</div>
 
                 <div class="card-body">
-                    <a href="{{ route('pages.create') }}" class="btn btn-primary">{!! __('admin.create_page') !!}</a>
+                    <a href="{{ route('pages.translation.edit', $id) }}" class="btn btn-primary">{{ __('admin.create_translation') }}</a>
                     <hr>
 
                     <table class="table">
@@ -15,30 +15,21 @@
                             <tr>
                                 <th>{!! __('admin.id') !!}</th>
                                 <th>{!! __('admin.name') !!}</th>
-                                <th>{!! __('admin.url', ['default' => 'URL']) !!}</th>
-                                <th>{!! __('admin.status') !!}</th>
+                                <th>{!! __('admin.locations') !!}</th>
                                 <th class="text-right">{!! __('admin.actions') !!}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pages as $page)
+                            @foreach ($translations as $translation)
                                 <tr>
-                                    <td>{{ $page->id }}</td>
-                                    <td>{{ $page->title }}</td>
-                                    <td>{{ route('page', $page->path) }}</td>
-                                    <td>@if($page->is_enabled)
-                                            <i class="fas fa-solid fa-circle text-success " style="font-size: 11px;"></i> {!! __('admin.active') !!}
-                                        @else
-                                            <i class="fas fa-solid fa-circle text-danger " style="font-size: 11px;"></i> {!! __('admin.inactive') !!}
-                                        @endif
-                                    </td>
+                                    <td>{{ $translation->id }}</td>
+                                    <td>{{ $translation->title }}</td>
+                                    <td>{{ $translation->locale }}</td>
                                     <td class="text-right">
-                                        <a href="{{ route('pages.translation', $page->id) }}"
-                                           class="btn btn-warning">{{ __('admin.translations') }}</a>
-                                        <a href="{{ route('pages.edit', $page->id) }}"
+                                        <a href="{{ route('pages.translation.edit', ['id' => $id, 'locale' => $translation->locale]) }}"
                                             class="btn btn-primary">{!! __('admin.edit') !!}</a>
 
-                                        <form action="{{ route('pages.destroy', $page->id) }}" method="POST"
+                                        <form action="{{ route('pages.translation.destroy', ['translation' => $translation]) }}" method="POST"
                                             style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
