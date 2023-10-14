@@ -33,6 +33,8 @@
                                         @endif
                                     </td>
                                     <td class="text-right">
+                                        <a href="{{ route('articles.translation', $article->id) }}"
+                                           class="btn btn-warning">{{ __('admin.translations') }}</a>
                                         <a href="{{ route('articles.edit', $article->id) }}"
                                             class="btn btn-primary">{!! __('admin.edit') !!}</a>
 
