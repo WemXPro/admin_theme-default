@@ -45,7 +45,7 @@
                                         <td>
                                             {{ $theme->author }}
                                         </td>
-                                        <td>v{{ $theme->version }}</td>
+                                        <td>{{ $theme->version }}</td>
 
 
                                         <td>

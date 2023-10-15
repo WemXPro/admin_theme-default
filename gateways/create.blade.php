@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <label for="name">{!! __('admin.name') !!}</label>
                     <input type="text" name="name" id="name"
-                        class="form-control" placeholder="Credit Card"
+                        class="form-control" placeholder="{{ __('admin.credit_card') }}"
                         required>
                     <small class="form-text text-muted">
                         {!!  __('admin.gateway_display_name_desc', ['default' => 'This is the name of the gateway displayed to users']) !!}

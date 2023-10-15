@@ -45,7 +45,7 @@
                                         <td>
                                             <a href="{{ route('users.edit', ['user' => $punishment->user->id]) }}"
                                                style="display: flex; color: #6c757d">
-                                                <img alt="image" src="{{ $punishment->user->avatar() }}"
+                                                <img alt="{!! __('image') !!}" src="{{ $punishment->user->avatar() }}"
                                                      class="rounded-circle mr-1 mt-1" width="32px" height="32px"
                                                      data-toggle="tooltip" title=""
                                                      data-original-title="{{ $punishment->user->first_name }} {{ $punishment->user->last_name }}">
@@ -59,7 +59,7 @@
                                             @isset($punishment->staff)
                                             <a href="{{ route('users.edit', ['user' => $punishment->staff->id]) }}"
                                                style="display: flex; color: #6c757d">
-                                                <img alt="image" src="{{ $punishment->staff->avatar() }}"
+                                                <img alt="{!! __('image') !!}" src="{{ $punishment->staff->avatar() }}"
                                                      class="rounded-circle mr-1 mt-1" width="32px" height="32px"
                                                      data-toggle="tooltip" title=""
                                                      data-original-title="{{ $punishment->staff->first_name }} {{ $punishment->staff->last_name }}">

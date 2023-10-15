@@ -29,7 +29,7 @@
                                 @if($ip->hasDuplicateIp($user->id) !== NULL)
                                     <tr>
                                         <td class="text-left">
-                                            <img alt="image" src="{{ $ip->hasDuplicateIp($user->id)->avatar() }}"
+                                            <img alt="{{__('Image')}}" src="{{ $ip->hasDuplicateIp($user->id)->avatar() }}"
                                                  class="rounded-circle mr-2" width="35" data-toggle="tooltip" title=""
                                                  data-original-title="{{ $ip->hasDuplicateIp($user->id)->first_name }} {{ $ip->hasDuplicateIp($user->id)->last_name }}">
                                             {{ $ip->hasDuplicateIp($user->id)->username }}
@@ -60,7 +60,7 @@
                         <thead>
                         <tr>
                             <th scope="col">{!! __('admin.ip_address', ['default' => 'IP Address']) !!}</th>
-                            <th scope="col">Times Used</th>
+                            <th scope="col">{{ __('admin.times_used') }}</th>
                             <th class="text-right" scope="col">{!! __('admin.data') !!}</th>
                         </tr>
                         </thead>
