@@ -219,7 +219,7 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title"
                                                 id="IconModalLabel">{{ __('admin.select_icon') }}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -545,7 +545,7 @@
                                 You can configure them <a target="_blank"
                                                           href="/admin/emails/messages"><strong>here</strong></a>
                                 - This page provides you more customibility to send package specific emails.
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="{{ __('admin.close') }}">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -563,8 +563,8 @@
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="createEmailLabel">Email Event</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <h5 class="modal-title" id="createEmailLabel">{{ __('admin.email_event') }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -573,39 +573,39 @@
                                             <div class="modal-body">
                                                 @csrf
                                                 <div class="mb-4">
-                                                    <label for="event">Event</label>
+                                                    <label for="event">{{ __('admin.event') }}</label>
                                                     <select class="form-control select2 select2-hidden-accessible"
                                                             name="event"
                                                             tabindex="-1" aria-hidden="true">
                                                         <option value="creation">
-                                                            Creation
+                                                            {{ __('admin.creation') }}
                                                         </option>
                                                         <option value="renewal">
-                                                            Renewal
+                                                            {{ __('admin.renewal') }}
                                                         </option>
                                                         <option value="suspension">
-                                                            Suspension
+                                                            {{ __('admin.suspension') }}
                                                         </option>
                                                         <option value="unsuspension">
-                                                            Unsuspension
+                                                            {{ __('admin.unsuspension') }}
                                                         </option>
                                                         <option value="cancellation">
-                                                            Cancellation
+                                                            {{ __('admin.cancellation') }}
                                                         </option>
                                                         <option value="termination">
-                                                            Termination
+                                                            {{ __('admin.termination') }}
                                                         </option>
                                                     </select>
                                                 </div>
 
                                                 <div class="mb-4">
-                                                    <label for="title">Email Title</label>
-                                                    <input type="text" name="title" id="title" placeholder="Subject"
+                                                    <label for="title">{{ __('admin.email_title') }}</label>
+                                                    <input type="text" name="title" id="title" placeholder="{{ __('admin.subject') }}"
                                                            class="form-control" required=""/>
                                                 </div>
 
                                                 <div class="">
-                                                    <label for="body">Email Body</label>
+                                                    <label for="body">{{ __('admin.email_body') }}</label>
                                                     <textarea class="summernote form-control" name="body" id="body"
                                                               style="display: none;">
                                                 </textarea>
@@ -613,15 +613,15 @@
                                                 </div>
 
                                                 <div class="form-group" style="display: flex;flex-direction: column;">
-                                                    <label for="myfile">Select a file: (Optional)</label>
+                                                    <label for="myfile">{{ __('admin.select_a_file_optional') }}</label>
                                                     <input class="" type="file" id="myfile" name="attachment">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Close
+                                                    {{ __('admin.close') }}
                                                 </button>
-                                                <button type="submit" class="btn btn-primary">Create</button>
+                                                <button type="submit" class="btn btn-primary">{{ __('admin.create') }}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -634,10 +634,10 @@
                                         <tbody>
                                         @if($package->emails->count() > 0)
                                             <tr>
-                                                <th>Event</th>
-                                                <th>Title</th>
-                                                <th class="text-right">Last Updated</th>
-                                                <th class="text-right">Action</th>
+                                                <th>{{ __('admin.event') }}</th>
+                                                <th>{{ __('admin.title') }}</th>
+                                                <th class="text-right">{{ __('admin.last_updated') }}</th>
+                                                <th class="text-right">{{ __('admin.action') }}</th>
                                             </tr>
                                         @endif
                                         @foreach($package->emails->all() as $email)
@@ -649,7 +649,7 @@
                                                     <a href="{{ route('packages.emails.delete', ['email' => $email->id]) }}"
                                                        class="btn btn-icon btn-danger"><i class="fas fa-trash-alt"></i></a>
                                                     <button data-toggle="modal" data-target="#editEmail{{$email->id}}"
-                                                            class="btn btn-primary">Manage
+                                                            class="btn btn-primary">{{ __('admin.manage') }}
                                                     </button>
                                                 </td>
                                             </tr>
@@ -662,9 +662,9 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="editEmail{{$email->id}}Label">
-                                                                Email Event</h5>
+                                                                {{ __('admin.email_event') }}</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                    aria-label="{{ __('admin.close') }}">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
@@ -674,48 +674,48 @@
                                                             <div class="modal-body">
                                                                 @csrf
                                                                 <div class="mb-4">
-                                                                    <label for="event">Event</label>
+                                                                    <label for="event">{{ __('admin.event') }}</label>
                                                                     <select
                                                                         class="form-control select2 select2-hidden-accessible"
                                                                         name="event"
                                                                         tabindex="-1" aria-hidden="true">
                                                                         <option value="creation"
                                                                                 @if($email->event == 'creation') selected @endif>
-                                                                            Creation
+                                                                            {{ __('admin.creation') }}
                                                                         </option>
                                                                         <option value="renewal"
                                                                                 @if($email->event == 'renewal') selected @endif>
-                                                                            Renewal
+                                                                            {{ __('admin.renewal') }}
                                                                         </option>
                                                                         <option value="suspension"
                                                                                 @if($email->event == 'suspension') selected @endif>
-                                                                            Suspension
+                                                                            {{ __('admin.suspension') }}
                                                                         </option>
                                                                         <option value="unsuspension"
                                                                                 @if($email->event == 'unsuspension') selected @endif>
-                                                                            Unsuspension
+                                                                            {{ __('admin.unsuspension') }}
                                                                         </option>
                                                                         <option value="cancellation"
                                                                                 @if($email->event == 'cancellation') selected @endif>
-                                                                            Cancellation
+                                                                            {{ __('admin.cancellation') }}
                                                                         </option>
                                                                         <option value="termination"
                                                                                 @if($email->event == 'termination') selected @endif>
-                                                                            Termination
+                                                                            {{ __('admin.termination') }}
                                                                         </option>
                                                                     </select>
                                                                 </div>
 
                                                                 <div class="mb-4">
-                                                                    <label for="title">Email Title</label>
+                                                                    <label for="title">{{ __('admin.email_title') }}</label>
                                                                     <input type="text" name="title" id="title"
                                                                            value="{{ $email->title }}"
-                                                                           placeholder="Subject"
+                                                                           placeholder="{{ __('admin.subject') }}"
                                                                            class="form-control" required=""/>
                                                                 </div>
 
                                                                 <div class="">
-                                                                    <label for="body">Email Body</label>
+                                                                    <label for="body">{{ __('admin.email_body') }}</label>
                                                                     <textarea class="summernote form-control"
                                                                               name="body" id="body"
                                                                               style="display: none;">
@@ -726,8 +726,7 @@
 
                                                                 <div class="form-group"
                                                                      style="display: flex;flex-direction: column;">
-                                                                    <label for="myfile">Select a file:
-                                                                        (Optional)</label>
+                                                                    <label for="myfile">{{ __('admin.select_a_file_optional') }}</label>
                                                                     <input class="" type="file" id="myfile"
                                                                            name="attachment">
                                                                 </div>
@@ -739,9 +738,9 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close
+                                                                        data-dismiss="modal">{{ __('admin.close') }}
                                                                 </button>
-                                                                <button type="submit" class="btn btn-primary">Update
+                                                                <button type="submit" class="btn btn-primary">{{ __('admin.update') }}
                                                                 </button>
                                                             </div>
                                                         </form>
@@ -782,8 +781,8 @@
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="createWebhookLabel">Webhook Event</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <h5 class="modal-title" id="createWebhookLabel">{{ __('admin.webhook_event') }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -792,33 +791,33 @@
                                             <div class="modal-body">
                                                 @csrf
                                                 <div class="mb-4">
-                                                    <label for="event">Event</label>
+                                                    <label for="event">{{ __('admin.event') }}</label>
                                                     <select class="form-control select2 select2-hidden-accessible"
                                                             name="event"
                                                             tabindex="-1" aria-hidden="true">
                                                         <option value="creation">
-                                                            Creation
+                                                            {{ __('admin.creation') }}
                                                         </option>
                                                         <option value="renewal">
-                                                            Renewal
+                                                            {{ __('admin.renewal') }}
                                                         </option>
                                                         <option value="suspension">
-                                                            Suspension
+                                                            {{ __('admin.suspension') }}
                                                         </option>
                                                         <option value="unsuspension">
-                                                            Unsuspension
+                                                            {{ __('admin.unsuspension') }}
                                                         </option>
                                                         <option value="cancellation">
-                                                            Cancellation
+                                                            {{ __('admin.cancellation') }}
                                                         </option>
                                                         <option value="termination">
-                                                            Termination
+                                                            {{ __('admin.termination') }}
                                                         </option>
                                                     </select>
                                                 </div>
 
                                                 <div class="mb-4">
-                                                    <label for="method">Method</label>
+                                                    <label for="method">{{ __('admin.method') }}</label>
                                                     <select class="form-control select2 select2-hidden-accessible"
                                                             name="method"
                                                             tabindex="-1" aria-hidden="true">
@@ -834,14 +833,14 @@
                                                 </div>
 
                                                 <div class="mb-4">
-                                                    <label for="url">URL</label>
+                                                    <label for="url">{{ __('admin.url') }}</label>
                                                     <input type="url" name="url" id="url"
                                                            placeholder="https://example.com/api/v1"
                                                            class="form-control" required=""/>
                                                 </div>
 
                                                 <div class="mb-4">
-                                                    <label for="data">Data</label>
+                                                    <label for="data">{{ __('admin.data') }}</label>
                                                     <textarea class="form-control" name="data" id="data"
                                                               placeholder='{"key": "value"}'
                                                               style="height: 200px !important"></textarea>
@@ -849,7 +848,7 @@
                                                 </div>
 
                                                 <div class="mb-4">
-                                                    <label for="headers">Headers</label>
+                                                    <label for="headers">{{ __('admin.headers') }}</label>
                                                     <textarea class="form-control" name="headers" id="headers"
                                                               placeholder='{"Authorization": "Bearer apikey"}'></textarea>
                                                     <small class="form-text text-muted"></small>
@@ -858,9 +857,9 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Close
+                                                    {{ __('admin.close') }}
                                                 </button>
-                                                <button type="submit" class="btn btn-primary">Create</button>
+                                                <button type="submit" class="btn btn-primary">{{ __('admin.create') }}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -873,10 +872,10 @@
                                         <tbody>
                                         @if($package->webhooks->count() > 0)
                                             <tr>
-                                                <th>Event</th>
-                                                <th>Method</th>
-                                                <th class="text-right">Last Updated</th>
-                                                <th class="text-right">Action</th>
+                                                <th>{{ __('admin.event') }}</th>
+                                                <th>{{ __('admin.method') }}</th>
+                                                <th class="text-right">{{ __('admin.last_updated') }}</th>
+                                                <th class="text-right">{{ __('admin.action') }}</th>
                                             </tr>
                                         @endif
                                         @foreach($package->webhooks->all() as $webhook)
@@ -889,7 +888,7 @@
                                                        class="btn btn-icon btn-danger"><i class="fas fa-trash-alt"></i></a>
                                                     <button data-toggle="modal"
                                                             data-target="#editWebhook{{$webhook->id}}"
-                                                            class="btn btn-primary">Manage
+                                                            class="btn btn-primary">{{ __('admin.manage') }}
                                                     </button>
                                                 </td>
                                             </tr>
@@ -902,9 +901,9 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title"
-                                                                id="editWebhook{{$webhook->id}}Label">Webhook Event</h5>
+                                                                id="editWebhook{{$webhook->id}}Label">{{ __('admin.webhook_event') }}</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                    aria-label="{{ __('admin.close') }}">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
@@ -914,40 +913,40 @@
                                                             <div class="modal-body">
                                                                 @csrf
                                                                 <div class="mb-4">
-                                                                    <label for="event">Event</label>
+                                                                    <label for="event">{{ __('admin.event') }}</label>
                                                                     <select
                                                                         class="form-control select2 select2-hidden-accessible"
                                                                         name="event"
                                                                         tabindex="-1" aria-hidden="true">
                                                                         <option value="creation"
                                                                                 @if($webhook->event == 'creation') selected @endif>
-                                                                            Creation
+                                                                            {{ __('admin.creation') }}
                                                                         </option>
                                                                         <option value="renewal"
                                                                                 @if($webhook->event == 'renewal') selected @endif>
-                                                                            Renewal
+                                                                            {{ __('admin.renewal') }}
                                                                         </option>
                                                                         <option value="suspension"
                                                                                 @if($webhook->event == 'suspension') selected @endif>
-                                                                            Suspension
+                                                                            {{ __('admin.suspension') }}
                                                                         </option>
                                                                         <option value="unsuspension"
                                                                                 @if($webhook->event == 'unsuspension') selected @endif>
-                                                                            Unsuspension
+                                                                            {{ __('admin.unsuspension') }}
                                                                         </option>
                                                                         <option value="cancellation"
                                                                                 @if($webhook->event == 'cancellation') selected @endif>
-                                                                            Cancellation
+                                                                            {{ __('admin.cancellation') }}
                                                                         </option>
                                                                         <option value="termination"
                                                                                 @if($webhook->event == 'termination') selected @endif>
-                                                                            Termination
+                                                                            {{ __('admin.termination') }}
                                                                         </option>
                                                                     </select>
                                                                 </div>
 
                                                                 <div class="mb-4">
-                                                                    <label for="method">Method</label>
+                                                                    <label for="method">{{ __('admin.method') }}</label>
                                                                     <select
                                                                         class="form-control select2 select2-hidden-accessible"
                                                                         name="method"
@@ -965,7 +964,7 @@
                                                                 </div>
 
                                                                 <div class="mb-4">
-                                                                    <label for="url">URL</label>
+                                                                    <label for="url">{{ __('admin.url') }}</label>
                                                                     <input type="url" name="url" id="url"
                                                                            placeholder="https://example.com/api/v1"
                                                                            class="form-control"
@@ -973,7 +972,7 @@
                                                                 </div>
 
                                                                 <div class="mb-4">
-                                                                    <label for="data">Data</label>
+                                                                    <label for="data">{{ __('admin.data') }}</label>
                                                                     <textarea class="form-control" name="data" id="data"
                                                                               placeholder='{"key": "value"}'
                                                                               style="height: 200px !important">{{ json_encode($webhook->data, JSON_PRETTY_PRINT) }}</textarea>
@@ -981,7 +980,7 @@
                                                                 </div>
 
                                                                 <div class="mb-4">
-                                                                    <label for="headers">Headers</label>
+                                                                    <label for="headers">{{ __('admin.headers') }}</label>
                                                                     <textarea class="form-control" name="headers"
                                                                               id="headers"
                                                                               placeholder='{"Authorization": "Bearer apikey"}'>{{ json_encode($webhook->headers, JSON_PRETTY_PRINT) }}</textarea>
@@ -991,9 +990,9 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close
+                                                                        data-dismiss="modal">{{ __('admin.close') }}
                                                                 </button>
-                                                                <button type="submit" class="btn btn-primary">Update
+                                                                <button type="submit" class="btn btn-primary">{{ __('admin.update') }}
                                                                 </button>
                                                             </div>
                                                         </form>
@@ -1010,24 +1009,20 @@
                         <div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="links_tab">
                             <div class="row">
                                 <div class="form-group col-12">
-                                    <label>Package checkout</label>
+                                    <label>{{ __('admin.package_checkout') }}</label>
                                     <input type="text" class="form-control"
                                            value="{{ route('store.package', $package->id) }}" readonly="">
                                     <small class="form-text text-muted">
-                                        Direct link to the checkout page on your application
+                                        {{ __('admin.direct_link_to_the_checkout_page_on_your_application') }}
                                     </small>
                                 </div>
                                 <div class="form-group col-12">
-                                    <label>Package Process Payment</label>
+                                    <label>{{ __('admin.package_process_payment') }}</label>
                                     <input type="text" class="form-control"
                                            value="{{ route('payment.package', ['package' => $package->id, 'price_id' => '1', 'gateway' => '1']) }}"
                                            readonly="">
                                     <small class="form-text text-muted">
-                                        Important: replace price_id with the id of the price from this package, and
-                                        replace gateway with the id of the gateway. Optionally, you can pass in a
-                                        &coupon=code in the request and additional parameters that will be saved as
-                                        "options" in the order. The direct payment link can be usefull if you're
-                                        building a custom checkout page.
+                                        {{ __('admin.important_replace_price_id_with_the_id') }}
                                     </small>
                                 </div>
                             </div>
@@ -1047,25 +1042,25 @@
                       enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title">Create Price</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title">{{ __('admin.create_price') }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="row" id="recurring-options-0">
                             <div class="form-group col-md-12 col-12">
-                                <label for="period">Period</label>
+                                <label for="period">{{ __('admin.period') }}</label>
                                 <select class="form-control select2 select2-hidden-accessible hide" id="period"
                                         name="period" tabindex="-1" aria-hidden="true">
-                                    <option value="1">Daily</option>
-                                    <option value="7">Weekly</option>
-                                    <option value="30" selected>Monthly</option>
-                                    <option value="90">Quaterly</option>
-                                    <option value="365">Yearly</option>
-                                    <option value="730">Per 2 years</option>
-                                    <option value="1825">Per 5 years</option>
-                                    <option value="3650">Per 10 years</option>
+                                    <option value="1">{{ __('admin.daily') }}</option>
+                                    <option value="7">{{ __('admin.weekly') }}</option>
+                                    <option value="30" selected>{{ __('admin.monthly') }}</option>
+                                    <option value="90">{{ __('admin.quaterly') }}</option>
+                                    <option value="365">{{ __('admin.yearly') }}</option>
+                                    <option value="730">{!! __('admin.per_years', ['years' => 2]) !!}</option>
+                                    <option value="1825">{!! __('admin.per_years', ['years' => 5]) !!}</option>
+                                    <option value="3650">{!! __('admin.per_years', ['years' => 10]) !!}</option>
 
                                 </select>
                             </div>
@@ -1073,13 +1068,13 @@
 
                         <div class="row">
                             <div class="form-group col-md-12 col-12">
-                                <label for="price-0">Price</label>
+                                <label for="price-0">{{ __('admin.price') }}</label>
                                 <input onInput="updateRenewal(0)" type="number" name="price" id="price-0"
                                        min="0" step="0.01" value="1.00" class="form-control" required=""/>
                             </div>
 
                             <div class="form-group col-md-12 col-12">
-                                <label for="setup_fee">Setup Fee</label>
+                                <label for="setup_fee">{{ __('admin.setup_fee') }}</label>
                                 <input type="number" name="setup_fee" id="setup_fee" min="0.00" step="0.01"
                                        value="0.00" class="form-control" required=""/>
                             </div>
@@ -1087,55 +1082,54 @@
 
                         <div class="row">
                             <div class="form-group col-md-12 col-12">
-                                <label for="data">Data</label>
+                                <label for="data">{{ __('admin.data') }}</label>
                                 <textarea type="text" name="data" id="data"
                                           class="form-control"></textarea>
-                                <small>Data for custom gateways, should be left empty by default.</small>
+                                <small>{{ __('admin.data_for_custom_gateways_should_be_left_empty') }}</small>
                             </div>
                         </div>
 
                         <div class="row" id="price-options-0">
                             <div class="form-group col-md-6 col-6">
-                                <div class="control-label">Renewal Price</div>
+                                <div class="control-label">{{ __('admin.renewal_price') }}</div>
                                 <label class="custom-switch mt-2">
                                     <input onchange="checkbox(0)" type="checkbox" id="enable-renewal-price-0"
                                            name="enable-renewal-price" class="custom-switch-input">
                                     <span class="custom-switch-indicator"></span>
-                                    <span class="custom-switch-description">Use Custom Renewal Price</span>
+                                    <span class="custom-switch-description">{{ __('admin.use_custom_renewal_price') }}</span>
                                 </label>
                             </div>
 
                             <div class="form-group col-md-6 col-6">
                                 <label for="renewal_price-0" data-toggle="tooltip" data-placement="right" title=""
-                                       data-original-title="Renewal price refers to the cost of renewing a subscription, service or contract after the initial period at a possibly different rate.">Renewal
-                                    Price <i class="fa-solid fa-circle-info"></i></label>
+                                       data-original-title="Renewal price refers to the cost of renewing a subscription, service or contract after the initial period at a possibly different rate.">{!! __('admin.renewal_price') !!} <i class="fa-solid fa-circle-info"></i></label>
                                 <input type="number" name="renewal_price" id="renewal_price-0" min="0.00"
                                        step="0.01" class="form-control" disabled/>
                             </div>
 
                             <div class="form-group col-md-6 col-6">
-                                <div class="control-label">Cancellation Fee</div>
+                                <div class="control-label">{{ __('admin.cancellation_fee') }}</div>
                                 <label class="custom-switch mt-2">
                                     <input type="checkbox" onchange="checkbox(0)" id="enable-cancellation-fee-0"
                                            name="enable-cancellation-fee" class="custom-switch-input">
                                     <span class="custom-switch-indicator"></span>
-                                    <span class="custom-switch-description">Setup cancellation fee</span>
+                                    <span class="custom-switch-description">{{ __('admin.setup_cancellation_fee') }}</span>
                                 </label>
                             </div>
 
                             <div class="form-group col-md-6 col-6">
                                 <label for="cancellation_fee-0" data-toggle="tooltip" data-placement="right"
                                        title=""
-                                       data-original-title="Cancellation fee is a charge for ending a contract or service agreement before its end date.">Cancellation
-                                    Fee <i class="fa-solid fa-circle-info"></i></label>
+                                       data-original-title="Cancellation fee is a charge for ending a contract or service agreement before its end date.">
+                                    {!! __('admin.cancellation_fee') !!} <i class="fa-solid fa-circle-info"></i></label>
                                 <input type="number" name="cancellation_fee" id="cancellation_fee-0" min="0.00"
                                        step="0.01" class="form-control" disabled/>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin.close') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('admin.create') }}</button>
                     </div>
                 </form>
             </div>
