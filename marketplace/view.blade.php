@@ -14,10 +14,10 @@
                 </li>
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="resource-tab2" data-toggle="tab" href="#resource" role="tab" aria-controls="resource" aria-selected="true">Resource</a>
+                        <a class="nav-link active" id="resource-tab2" data-toggle="tab" href="#resource" role="tab" aria-controls="resource" aria-selected="true">{{ __('admin.resource') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="releases-tab2" data-toggle="tab" href="#releases" role="tab" aria-controls="releases" aria-selected="false">Releases</a>
+                        <a class="nav-link" id="releases-tab2" data-toggle="tab" href="#releases" role="tab" aria-controls="releases" aria-selected="false">{{ __('admin.releases') }}</a>
                     </li>
                 </ul>
                 <div class="tab-content tab-bordered" id="myTab3Content">
@@ -29,10 +29,10 @@
                             <table class="table table-striped table-md">
                                 <tbody>
                                     <tr>
-                                        <th>Version</th>
-                                        <th>WemX Versions</th>
-                                        <th>Created At</th>
-                                        <th class="text-right">Action</th>
+                                        <th>{{ __('admin.version') }}</th>
+                                        <th>{{ __('admin.wemx_versions') }}</th>
+                                        <th>{{ __('admin.created_at') }}</th>
+                                        <th class="text-right">{{ __('admin.action') }}</th>
                                     </tr>
                                     @foreach($resource['versions'] as $version)
                                     <tr>
@@ -43,7 +43,7 @@
                                             @endforeach
                                         </td>
                                         <td>2017-01-09</td>
-                                        <td class="text-right"><a href="#" class="btn btn-primary">Download</a></td>
+                                        <td class="text-right"><a href="#" class="btn btn-primary">{{ __('admin.download') }}</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -60,19 +60,19 @@
             <div class="profile-widget-header">
                 <div class="profile-widget-items">
                     <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">Price</div>
+                        <div class="profile-widget-item-label">{{ __('admin.price') }}</div>
                         <div class="profile-widget-item-value">{{ (!$resource['is_free']) ? $resource['price'] : 'FREE' }}</div>
                     </div>
                     <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">Downloads</div>
+                        <div class="profile-widget-item-label">{{ __('admin.downloads') }}</div>
                         <div class="profile-widget-item-value">{{ $resource['download_count'] }}</div>
                     </div>
                     <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">Views</div>
+                        <div class="profile-widget-item-label">{{ __('admin.views') }}</div>
                         <div class="profile-widget-item-value">{{ $resource['views_count'] }}</div>
                     </div>
                     <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">Rating</div>
+                        <div class="profile-widget-item-label">{{ __('admin.rating') }}</div>
                         <div class="profile-widget-item-value" style="display: flex;align-items: center;justify-content: center;">
                             {{ $resource['rating'] }} <i class="fas fa-star ml-1 text-warning"></i>
                         </div>

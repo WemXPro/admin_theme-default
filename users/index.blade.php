@@ -13,23 +13,23 @@
                       <table class="table table-striped table-md">
                           <tbody>
                               <tr>
-                                  <th>Username</th>
-                                  <th>Email</th>
-                                  <th>Balance</th>
-                                  <th>Total Spent</th>
-                                  <th>Vissibility</th>
-                                  <th>Dates</th>
-                                  <th class="text-right">Action</th>
+                                  <th>{{ __('admin.username') }}</th>
+                                  <th>{{ __('admin.email') }}</th>
+                                  <th>{{ __('admin.balance') }}</th>
+                                  <th>{{ __('admin.total_spent') }}</th>
+                                  <th>{{ __('admin.vissibility') }}</th>
+                                  <th>{{ __('admin.dates') }}</th>
+                                  <th class="text-right">{{ __('admin.action') }}</th>
                               </tr>
-                  
+
                               @foreach ($users as $user)
                               <tr>
                                   <td>
                                     <div style="display: flex;align-items: center;">
-                                      <img src="{{ $user->avatar() }}" alt="avatar" style="width: 32px; border-radius: 20px; margin-right: 10px">
+                                      <img src="{{ $user->avatar() }}" alt="{{ __('admin.avatar') }}" style="width: 32px; border-radius: 20px; margin-right: 10px">
                                       <div>
                                         {{ $user->first_name }} {{ $user->last_name }} @if($user->is_admin()) <i class="fas fa-solid fa-star" style="color: gold"></i> @endif <br>
-                                        <small>{{ $user->username }}</small> 
+                                        <small>{{ $user->username }}</small>
                                       </div>
                                     </div>
                                   </td>
@@ -40,11 +40,11 @@
                                     <div>
                                       {{ ucfirst($user->visibility)  }}
                                     </div>
-                                    <small>{{ $user->last_login_at->diffForHumans() }}</small> 
+                                    <small>{{ $user->last_login_at->diffForHumans() }}</small>
                                   </td>
                                   <td>
-                                    <small>Created: {{ $user->created_at->diffForHumans() }}</small> <br>
-                                    <small>Updated: {{ $user->updated_at->diffForHumans() }}</small> 
+                                    <small>{{ __('admin.created') }}: {{ $user->created_at->diffForHumans() }}</small> <br>
+                                    <small>{{ __('admin.updated') }}: {{ $user->updated_at->diffForHumans() }}</small>
                                   </td>
                                   <td class="text-right">
                                       <a href="{{ route('users.edit', $user) }}"
@@ -55,7 +55,7 @@
                           </tbody>
                       </table>
                   </div>
-                  
+
                 </div>
             </div>
             {{ $users->links(AdminTheme::pagination()) }}
@@ -66,7 +66,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">{!! __('admin.search_engine', ['default' => 'Search Engine']) !!}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
                 <span aria-hidden="true">×</span>
               </button>
             </div>

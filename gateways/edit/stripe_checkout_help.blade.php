@@ -4,12 +4,12 @@
     </div>
     <div class="card-body">
         <div class="copy-url-container">
-            Webhook URL:
+            {{ __('admin.webhook_url') }}
             <textarea id="webhookUrl" style="display: none;">{{ route('payment.return', ['gateway' => $gateway->endpoint]) }}</textarea>
 
             <button class="btn btn-link" onclick="copyUrlToClipboard()">{{ route('payment.return', ['gateway' => $gateway->endpoint]) }}</button>
         </div>
-        Stripe URL: <a target="_blank" class="btn btn-link" href="https://dashboard.stripe.com/developers">https://dashboard.stripe.com/developers</a>
+        {{ __('admin.stripe_url') }}: <a target="_blank" class="btn btn-link" href="https://dashboard.stripe.com/developers">https://dashboard.stripe.com/developers</a>
         <div class="youtube-container">
             <iframe src="https://www.youtube.com/embed/2pxPd35eqXg"
                     frameborder="0"
@@ -26,12 +26,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitle"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin.close') }}</button>
             </div>
         </div>
     </div>

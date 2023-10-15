@@ -17,8 +17,8 @@
                             @if (is_bool($config) or $config === 'false' or $config === 'true')
                                 <select class="form-control" id="{{ $key }}" name="{{ $key }}">
                                     <option value="false" @if (!$config === false || $config === 'false') selected="selected" @endif>
-                                        False</option>
-                                    <option value="true" @if ($config === true || $config === 'true') selected="selected" @endif>True
+                                        {{ __('admin.false') }}</option>
+                                    <option value="true" @if ($config === true || $config === 'true') selected="selected" @endif>{{ __('admin.true') }}
                                     </option>
                                 </select>
                             @else

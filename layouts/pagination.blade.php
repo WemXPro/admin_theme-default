@@ -1,4 +1,4 @@
-<nav aria-label="Page navigation example" class="d-flex justify-content-end">
+<nav class="d-flex justify-content-end">
     <ul class="pagination">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())

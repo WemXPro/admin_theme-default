@@ -83,7 +83,7 @@
                                                                 {!!  __('admin.preview_email', ['default' => 'Previewing Email']) !!}
                                                             </h5>
                                                             <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                    aria-label="{{ __('client.close') }}">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>

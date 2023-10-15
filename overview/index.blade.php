@@ -482,7 +482,7 @@
                                         <li class="media">
                                             <a href="{{ route('users.edit', ['user' => $user->id]) }}">
                                                 <img class="mr-3 rounded" width="50" src="{{ $user->avatar() }}"
-                                                     alt="avatar">
+                                                     alt="{{ __('admin.avatar') }}">
                                             </a>
                                             <div class="media-body">
                                                 <div class="media-right">

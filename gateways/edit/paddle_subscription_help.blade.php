@@ -4,16 +4,19 @@
     </div>
     <div class="card-body">
         <div class="copy-url-container">
-            Webhook URL:
+            {{ __('admin.webhook_url') }}
             <textarea id="webhookUrl" style="display: none;">{{ route('payment.return', ['gateway' => $gateway->endpoint]) }}</textarea>
 
             <button class="btn btn-link" onclick="copyUrlToClipboard()">{{ route('payment.return', ['gateway' => $gateway->endpoint]) }}</button>
         </div>
-        API Settings URL: <a target="_blank" class="btn btn-link" href="https://vendors.paddle.com/authentication">https://vendors.paddle.com/authentication</a> or
+        {{ __('admin.api_settings_url') }}:
+        <a target="_blank" class="btn btn-link" href="https://vendors.paddle.com/authentication">https://vendors.paddle.com/authentication</a> or
         <a target="_blank" class="btn btn-link" href="https://sandbox-vendors.paddle.com/authentication">https://sandbox-vendors.paddle.com/authentication</a>
-        <br>Checkout Settings URL: <a target="_blank" class="btn btn-link" href="https://vendors.paddle.com/checkout-settings">https://vendors.paddle.com/checkout-settings</a> or
+        <br>{{ __('admin.checkout_settings_url') }}:
+        <a target="_blank" class="btn btn-link" href="https://vendors.paddle.com/checkout-settings">https://vendors.paddle.com/checkout-settings</a> or
         <a target="_blank" class="btn btn-link" href="https://sandbox-vendors.paddle.com/checkout-settings">https://sandbox-vendors.paddle.com/checkout-settings</a>
-        <br>WebHook Settings URL: <a target="_blank" class="btn btn-link" href="https://vendors.paddle.com/notifications">https://vendors.paddle.com/notifications</a> or
+        <br>{{ __('admin.webhook_settings_url') }}:
+        <a target="_blank" class="btn btn-link" href="https://vendors.paddle.com/notifications">https://vendors.paddle.com/notifications</a> or
         <a target="_blank" class="btn btn-link" href="https://sandbox-vendors.paddle.com/notifications">https://sandbox-vendors.paddle.com/notifications</a>
         <div class="youtube-container">
             <iframe src="https://www.youtube.com/embed/CNUYvkE8mzQ"
@@ -31,12 +34,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitle"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin.close') }}</button>
             </div>
         </div>
     </div>

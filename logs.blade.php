@@ -84,7 +84,7 @@
                                                             {{ $log->source }}
                                                         </h4>
                                                         <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
+                                                                aria-label="{{ __('admin.close') }}">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>

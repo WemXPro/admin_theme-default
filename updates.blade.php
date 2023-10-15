@@ -107,7 +107,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="installUpdateModalLabel">{{ __('admin.installing_update') }} {{ $latest_version->version }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -119,7 +119,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">{!! __('admin.cancel') !!}</button>
-        <a href="{{ route('updates.install', ['version' => $latest_version->version, 'type' => 'stable']) }}" class="btn btn-success">Install {{ $latest_version->version }}</a>
+        <a href="{{ route('updates.install', ['version' => $latest_version->version, 'type' => 'stable']) }}" class="btn btn-success">{{ __('admin.install') }} {{ $latest_version->version }}</a>
       </div>
     </div>
   </div>

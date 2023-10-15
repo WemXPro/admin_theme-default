@@ -25,7 +25,7 @@
                     <div class="card-header">
                         <h4>{!! __('admin.punishments') !!}</h4>
                         <div class="card-header-action">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#banModal" class="btn btn-icon icon-left btn-primary"><i class="fas fa-solid fa-plus"></i> 
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#banModal" class="btn btn-icon icon-left btn-primary"><i class="fas fa-solid fa-plus"></i>
                                 {!! __('admin.create') !!}
                             </button>
                         </div>
@@ -77,23 +77,23 @@
                                         </td>
                                         <td>
                                             <div class="flex align-items-center">
-                                                <i class="fas fa-solid fa-circle 
+                                                <i class="fas fa-solid fa-circle
                                                 @if(in_array($punishment->type, ['ban', 'ipban'])) text-danger @else text-warning @endif"
                                                    style="font-size: 11px;"></i> {{ ucfirst($punishment->type) }}
                                             </div>
                                         </td>
                                         <td>
-                                            {{ $punishment->reason }}    
+                                            {{ $punishment->reason }}
                                         </td>
                                         <td>
                                             {!! __('admin.created') !!}: {{ $punishment->created_at->translatedFormat(settings('date_format', 'd M Y')) }}
                                             <br>
-                                            {!! __('admin.expires_in') !!}: @isset($punishment->expires_at) {{ $punishment->expires_at->translatedFormat(settings('date_format', 'd M Y')) }} @else Never @endisset
+                                            {!! __('admin.expires_in') !!}: @isset($punishment->expires_at) {{ $punishment->expires_at->translatedFormat(settings('date_format', 'd M Y')) }} @else {{ __('admin.never') }} @endisset
                                             <br>
                                         </td>
                                         <td class="text-right">
                                             @if(in_array($punishment->type, ['ban', 'ipban']))
-                                                <a href="{{ route('admin.bans.unban', $punishment->id) }}" class="btn btn-warning">Unban</a>
+                                                <a href="{{ route('admin.bans.unban', $punishment->id) }}" class="btn btn-warning">{{ __('admin.unban') }}</a>
                                             @endif
                                             <a href="{{ route('admin.bans.destroy', $punishment->id) }}" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></a>
                                         </td>
@@ -117,8 +117,8 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="banModalLabel">Punish {{ $user->username }}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="banModalLabel">{{ __('admin.punish') }} {{ $user->username }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -126,45 +126,45 @@
             @csrf
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="type">Type</label>
+                    <label for="type">{{ __('admin.type') }}</label>
                     <div class="input-group mb-2">
                         <select name="type" id="type" class="form-control select2 select2-hidden-accessible"
                                 tabindex="-1" aria-hidden="true" onchange="toggleType()">
-                                <option value="warning" @if(false) selected @endif>Warning</option>
-                                <option value="ban" @if(false) selected @endif>Ban</option>
-                                <option value="ipban" @if(false) selected @endif>IP Ban</option>
+                                <option value="warning" @if(false) selected @endif>{{ __('admin.warning') }}</option>
+                                <option value="ban" @if(false) selected @endif>{{ __('admin.ban') }}</option>
+                                <option value="ipban" @if(false) selected @endif>{{ __('admin.ip_ban') }}</option>
                         </select>
                         <small class="form-text text-muted"></small>
                     </div>
                 </div>
 
                 <div class="form-group" style="display: none;" id="ip_address">
-                    <label>IP Address</label>
+                    <label>{{ __('admin.ip_address') }}</label>
                     <input type="text" class="form-control" name="ip_address" value="@if($user->ips()->exists()){{ $user->ips()->orderBy('uses', 'desc')->first()->ip_address  }}@endif"/>
-                    <small class="mt-1">The IP address is automatically retrieved by checking which IP the user used to most to access the application</small>
+                    <small class="mt-1">{{ __('admin.the_ip_address_is_automatically_retrieved_by_check') }}</small>
                 </div>
 
                 <div class="form-group">
-                    <label>Reason (optional)</label>
+                    <label>{{ __('admin.reason_optional') }}</label>
                     <textarea type="text" class="form-control" name="reason" value=""></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label>Expires at (optional)</label>
+                    <label>{{ __('admin.expires_at_optional') }}</label>
                     <input type="date" class="form-control" name="expires_at" value=""/>
                 </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin.close') }}</button>
+            <button type="submit" class="btn btn-primary">{{ __('admin.save_changes') }}</button>
             </div>
         </form>
       </div>
     </div>
   </div>
-  
+
   <script>
-    function toggleType() {        
+    function toggleType() {
         if(document.getElementById("type").value == 'ipban') {
             document.getElementById("ip_address").style.display = 'unset';
         } else {

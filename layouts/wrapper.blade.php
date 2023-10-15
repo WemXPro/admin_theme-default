@@ -495,15 +495,13 @@
 
             @if(!Cache::has('cron_active'))
             <div class="alert alert-danger" role="alert">
-                Cronjobs are not running! Add <code>* * * * * php {{base_path()}}/artisan schedule:run >> /dev/null 2>&1</code> to your cron list
+                {!! __('admin.cronjobs_are_not_running_add_php_artisan_scheduler', ['base_path' => base_path()]) !!}
             </div>
             @endif
 
             @if(config('app.debug') AND config('app.version') != 'dev')
                 <div class="alert alert-warning" role="alert">
-                    Disable <strong>debug mode</strong> immediately if your application is in production for security
-                    reasons! To disable, edit file {{ base_path('.env') }} and set <code>APP_DEBUG</code> to
-                    <code>false</code>
+                    {!! __('admin.disable_debug_mode_immediately_if_your_application', ['base_path' => base_path('.env')]) !!}
                 </div>
             @endif
             {{-- end alerts --}}
@@ -513,9 +511,9 @@
 
         <footer class="main-footer">
             <div class="footer-left">
-                Copyright &copy; 2023
+                {{ __('admin.copyright') }} &copy; {{ date('Y') }}
                 <div class="bullet"></div>
-                Design By <a href="">WemX</a>
+                {{ __('admin.desing_by') }} <a href="">WemX</a>
             </div>
             <div class="footer-right"></div>
         </footer>
