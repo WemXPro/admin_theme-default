@@ -380,37 +380,37 @@
                                 <div class="form-group col-md-12 col-12">
                                     <label>{!! __('admin.company_name', ['default' => 'Company Name']) !!} {!! __('admin.optional') !!}</label>
                                     <input type="text" class="form-control" name="company_name"
-                                           value="{{ $user->address->company_name }}"/>
+                                           value="{{ $user->address->company_name ?? '' }}"/>
                                 </div>
 
                                 <div class="form-group col-md-12 col-12">
                                     <label>{!! __('admin.street') !!}</label>
                                     <input type="text" class="form-control" name="address"
-                                           value="{{ $user->address->address }}"/>
+                                           value="{{ $user->address->address ?? ''}}"/>
                                 </div>
 
                                 <div class="form-group col-md-12 col-12">
                                     <label>{!! __('admin.street_2', ['default' => 'Street 2']) !!}</label>
                                     <input type="text" class="form-control" name="address_2"
-                                           value="{{ $user->address->address_2 }}"/>
+                                           value="{{ $user->address->address_2 ?? '' }}"/>
                                 </div>
 
                                 <div class="form-group col-md-3 col-6">
                                     <label>{!! __('admin.zip_code', ['default' => 'Zip Code']) !!}</label>
                                     <input type="text" class="form-control" name="zip_code"
-                                           value="{{ $user->address->zip_code }}"/>
+                                           value="{{ $user->address->zip_code ?? '' }}"/>
                                 </div>
 
                                 <div class="form-group col-md-3 col-6">
                                     <label>{!! __('admin.city') !!}</label>
                                     <input type="text" class="form-control" name="city"
-                                           value="{{ $user->address->city }}"/>
+                                           value="{{ $user->address->city ?? '' }}"/>
                                 </div>
 
                                 <div class="form-group col-md-3 col-6">
                                     <label>{!! __('admin.province_state', ['default' => 'Province / State']) !!}</label>
                                     <input type="text" class="form-control" name="region"
-                                           value="{{ $user->address->region }}"/>
+                                           value="{{ $user->address->region ?? '' }}"/>
                                 </div>
 
                                 <div class="form-group col-md-3 col-6">
