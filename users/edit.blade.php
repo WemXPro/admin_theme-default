@@ -21,7 +21,7 @@
                         <div class="alert-title">
                             {{ __('admin.punishments_on_record') }}
                         </div>
-                        {{ __('admin.history_of_punishments', ['number' => $user->punishments()->count()]) }} 
+                        {{ __('admin.history_of_punishments', ['number' => $user->punishments()->count()]) }}
                     </div>
                 </div>
             @endif
@@ -95,10 +95,10 @@
                                 {{ $user->email }}
                             </div>
                         </div>
-                        {{ $user->address->company }} <br>
-                        {{ $user->address->address }} {{ $user->address->address_2 }} <br>
-                        {{ $user->address->zip_code }} {{ $user->address->city }}
-                        {{ $user->address->province }} {{ $user->address->country }}
+                        {{ $user->address->company ?? '' }} <br>
+                        {{ $user->address->address ?? ''}} {{ $user->address->address_2 ?? ''}} <br>
+                        {{ $user->address->zip_code ?? ''}} {{ $user->address->city ?? ''}}
+                        {{ $user->address->province ?? ''}} {{ $user->address->country ?? ''}}
                     </div>
                     <div class="card-footer text-left">
                         <a href="{{ route('admin.user.impersonate', ['user' => $user->id]) }}"
