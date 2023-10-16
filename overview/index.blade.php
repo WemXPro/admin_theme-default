@@ -57,7 +57,7 @@
                             beginAtZero: true,
                             stepSize: {{ collect($unpaid_amounts)->sum() }},
                             callback: function (value, index, values) {
-                                return '{{ currency('symbol') }}' + value;
+                                return '{{ currency('symbol') }}' + parseFloat(value).toFixed(1);
                             }
                         }
                     }],
