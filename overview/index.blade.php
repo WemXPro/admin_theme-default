@@ -513,4 +513,7 @@
             </div>
         </div>
     </section>
+    <x-button class="btn-primary">
+        click me
+    </x-button>
 @endsection
