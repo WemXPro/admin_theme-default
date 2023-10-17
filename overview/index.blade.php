@@ -514,6 +514,6 @@
         </div>
     </section>
     <x-button class="btn-primary">
-        click me
+        Click me component
     </x-button>
 @endsection
