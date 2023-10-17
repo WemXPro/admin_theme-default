@@ -513,7 +513,4 @@
             </div>
         </div>
     </section>
-    <x-button class="btn-primary">
-        Click me component
-    </x-button>
 @endsection
