@@ -22,13 +22,13 @@
                     <div class="card-body">
                         @csrf
                       <div class="row">
-        
+
                         @foreach($config->all() as $name => $field)
                           <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset">
                               <label>{!! $field['name'] !!}</label>
                               @if($field['type'] == 'select')
                               <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"
-                              name="{{ $name }}" 
+                              name="{{ $name }}"
                               id="{{ $name }}"
                               @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
                               >
@@ -38,9 +38,9 @@
                               </select>
                               @else
                               <input class="form-control"
-                                type="{{ $field['type'] }}" 
-                                name="{{ $name }}" 
-                                id="{{ $name }}" 
+                                type="{{ $field['type'] }}"
+                                name="{{ $name }}"
+                                id="{{ $name }}"
                                 value="@settings($name, $field['default_value'] ?? '')"
                                 placeholder="@isset($field['placeholder']){{$field['placeholder']}} @else{{ $field['name'] }} @endisset"
                                 @if(in_array('required', $field['rules'])) required="" @endif>
@@ -50,7 +50,7 @@
                               </small>
                           </div>
                         @endforeach
-        
+
                       </div>
                     </div>
                     <div class="card-footer text-right">
