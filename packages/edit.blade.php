@@ -530,39 +530,7 @@
                             <hr>
 
 
-                            <div class="row">
-                                @foreach(Service::find($package->service)->getPackageConfig()->all() ?? [] as $name => $field)
-                                <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset">
-                                    <label>{!! $field['name'] !!}</label>
-                                    @if($field['type'] == 'select')
-                                    <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"
-                                    name="{{ $field['key'] }}"
-                                    id="{{ $field['key'] }}"
-                                    @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
-                                    >
-                                        @foreach($field['options'] ?? [] as $key => $option)
-                                          <option value="{{ $key }}"
-                                          @if(in_array($key, (array) $package->data(Str::remove("[]", $field['key'])))) selected @endif
-                                          >{{ $option }}</option>
-                                        @endforeach
-                                    </select>
-                                    @else
-                                    <input class="form-control"
-                                      type="{{ $field['type'] }}"
-                                      name="{{ $field['key'] }}"
-                                      id="{{ $field['key'] }}"
-                                      @isset($field['min']) min="{{$field['min']}}" @endisset
-                                      @isset($field['max']) max="{{$field['max']}}" @endisset
-                                      value="{{ $package->data($field['key'], $field['default_value'] ?? '') }}"
-                                      placeholder="@isset($field['placeholder']){{$field['placeholder']}} @else{{ $field['name'] }} @endisset"
-                                      @if(in_array('required', $field['rules'])) required="" @endif>
-                                    @endif
-                                    <small class="form-text text-muted">
-                                        {!! $field['description'] !!}
-                                    </small>
-                                </div>
-                              @endforeach
-                            </div>
+                            @includeIf(AdminTheme::serviceView($package->service, 'params'))
 
                         </div>
                         <div class="tab-pane fade" id="emails" role="tabpanel" aria-labelledby="emails_tab">
