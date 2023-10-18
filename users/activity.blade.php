@@ -20,7 +20,6 @@
                             <tr>
                                 <th>{!! __('admin.user') !!}</th>
                                 <th>{!! __('admin.email') !!}</th>
-                                <th>{!! __('admin.uses') !!}</th>
                                 <th>{!! __('admin.create_at') !!}</th>
                                 <th>{!! __('admin.ip_address', ['default' => 'IP Address']) !!}</th>
                                 <th class="text-right">{!! __('admin.actions') !!}</th>

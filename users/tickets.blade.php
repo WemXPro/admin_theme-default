@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-body">
 
-                @includeIf(AdminTheme::path('empty-state'), ['title' => 'No Active Tickets', 'description' => 'This user has no tickets in history'])
+                @includeIf(AdminTheme::path('empty-state'), ['title' => __('admin.no_tickets') , 'description' => __('admin.no_tickets_desc')])
 
             </div>
         </div>
