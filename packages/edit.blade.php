@@ -536,21 +536,21 @@
                                     <label>{!! $field['name'] !!}</label>
                                     @if($field['type'] == 'select')
                                     <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"
-                                    name="{{ $name }}"
-                                    id="{{ $name }}"
+                                    name="{{ $field['key'] }}"
+                                    id="{{ $field['key'] }}"
                                     @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
                                     >
                                         @foreach($field['options'] ?? [] as $key => $option)
                                           <option value="{{ $key }}"
-                                          @if(in_array($key, $package->data($name, []))) selected @endif
+                                          @if(in_array($key, (array) $package->data(Str::remove("[]", $field['key'])))) selected @endif
                                           >{{ $option }}</option>
                                         @endforeach
                                     </select>
                                     @else
                                     <input class="form-control"
                                       type="{{ $field['type'] }}"
-                                      name="{{ $name }}"
-                                      id="{{ $name }}"
+                                      name="{{ $field['key'] }}"
+                                      id="{{ $field['key'] }}"
                                       @isset($field['min']) min="{{$field['min']}}" @endisset
                                       @isset($field['max']) max="{{$field['max']}}" @endisset
                                       value="{{ $package->data($field['key'], $field['default_value'] ?? '') }}"
