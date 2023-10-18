@@ -27,7 +27,7 @@
                           <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset">
                               <label>{!! $field['name'] !!}</label>
                               @if($field['type'] == 'select')
-                              <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"
+                              <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" @if(in_array('required', $field['rules'])) required="" @endif
                               name="{{ $name }}"
                               id="{{ $name }}"
                               @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
@@ -41,6 +41,8 @@
                                 type="{{ $field['type'] }}"
                                 name="{{ $name }}"
                                 id="{{ $name }}"
+                                @isset($field['min']) min="{{$field['min']}}" @endisset
+                                @isset($field['max']) max="{{$field['max']}}" @endisset
                                 value="@settings($name, $field['default_value'] ?? '')"
                                 placeholder="@isset($field['placeholder']){{$field['placeholder']}} @else{{ $field['name'] }} @endisset"
                                 @if(in_array('required', $field['rules'])) required="" @endif>
