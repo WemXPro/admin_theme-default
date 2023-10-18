@@ -29,12 +29,14 @@
                                         @endif
                                     </td>
                                     <td class="text-right">
+                                        <a href="{{ route('services.config', ['service' => $module->getLowerName()]) }}"
+                                            class="btn btn-primary"><i class="fas fa-cog"></i> {!! __('admin.configuration') !!}</a>
                                         @if ($module->isEnabled())
                                             <a href="{{ route('modules.toggle', ['module' => $module->getName()]) }}"
                                                 class="btn btn-danger">{!! __('admin.disable') !!}</a>
                                         @else
                                             <a href="{{ route('modules.toggle', ['module' => $module->getName()]) }}"
-                                                class="btn btn-dark">{!! __('admin.enable') !!}</a>
+                                                class="btn btn-success">{!! __('admin.enable') !!}</a>
                                         @endif
                                     </td>
                                 </tr>
