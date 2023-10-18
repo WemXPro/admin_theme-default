@@ -1,4 +1,4 @@
-@extends(AdminTheme::wrapper(), ['title' => $service->getName() . ' '.__('admin.configuration'), 'keywords' => 'WemX Dashboard, WemX Panel'])
+@extends(AdminTheme::wrapper(), ['title' => $service->service->getName() . ' '.__('admin.configuration'), 'keywords' => 'WemX Dashboard, WemX Panel'])
 
 @section('css_libraries')
 <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/summernote/summernote-bs4.css')) }}" />
@@ -15,15 +15,15 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <form action="{{ route('services.store', $service->getLowerName()) }}" method="POST">
+                <form action="{{ route('services.store', $service->service->getLowerName()) }}" method="POST">
                     <div class="card-header">
-                      <h4>{{ $service->getName() }} {!! __('admin.configuration') !!}</h4>
+                      <h4>{{ $service->service->getName() }} {!! __('admin.configuration') !!}</h4>
                     </div>
                     <div class="card-body">
                         @csrf
                       <div class="row">
         
-                        @foreach($config->all() as $name => $field)
+                        @foreach($service->getConfig()->all() as $name => $field)
                           <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset">
                               <label>{!! $field['name'] !!}</label>
                               @if($field['type'] == 'select')
