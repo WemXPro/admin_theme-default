@@ -360,7 +360,7 @@
                             <h4>{!! __('client.subscription') !!}</h4>
                         </div>
                         <div class="card-body">
-                            {{ currency('symbol') }}{{ $incomeSubscriptions }}/{!! __('admin.monthly') !!}
+                            {{ currency('symbol') }}{{ $incomeSubscriptions }}/{{request()->input('period', 30)}} {!! __('admin.days') !!}
                         </div>
                     </div>
                 </div>
