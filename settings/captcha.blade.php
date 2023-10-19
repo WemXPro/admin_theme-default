@@ -41,7 +41,7 @@
                   <input type="checkbox" name="encrypted::captcha::cloudflare[is_enabled]" value="1" class="custom-switch-input"
                          @if(Settings::getJson('encrypted::captcha::cloudflare', 'is_enabled', false)) checked @endif>
                   <span class="custom-switch-indicator"></span>
-                  <span class="custom-switch-description">{!! __('admin.enable_captcha_discord', ['default' => 'Allow users to connect Discord']) !!}</span>
+                  <span class="custom-switch-description">{!! __('admin.enable_captcha') !!}</span>
                 </label>
               </div>
 
