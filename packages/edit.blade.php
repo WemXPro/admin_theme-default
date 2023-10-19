@@ -529,9 +529,11 @@
                             </div>
                             <hr>
 
-
+                            @includeIf(AdminTheme::serviceView($package->service, 'params'))
+                            
+                            @if($package->service()->hasPackageConfig())
                             <div class="row">
-                                @foreach(Service::find($package->service)->getPackageConfig()->all() ?? [] as $name => $field)
+                                @foreach($package->service()->getPackageConfig()->all() ?? [] as $name => $field)
                                 <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset">
                                     <label>{!! $field['name'] !!}</label>
                                     @if($field['type'] == 'select')
@@ -563,6 +565,7 @@
                                 </div>
                               @endforeach
                             </div>
+                            @endif
 
                         </div>
                         <div class="tab-pane fade" id="emails" role="tabpanel" aria-labelledby="emails_tab">
