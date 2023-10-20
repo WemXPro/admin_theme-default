@@ -16,7 +16,7 @@
                                 <th>{!!  __('admin.code', ['default' => 'Code']) !!}</th>
                                 <th>{!! __('admin.amount', ['default' => 'Amount']) !!}</th>
                                 <th>{!!  __('admin.user_left', ['default' => 'Uses left']) !!}</th>
-                                <th>{!!  __('admin.is_recurring', ['default' => 'Is Recurring']) !!}</th>
+{{--                                <th>{!!  __('admin.is_recurring', ['default' => 'Is Recurring']) !!}</th>--}}
                                 <th>{!!  __('admin.expires_at', ['default' => 'Expires At']) !!}</th>
                                 <th class="text-right">{!! __('admin.actions', ['default' => 'Actions']) !!}</th>
                             </tr>
@@ -27,7 +27,7 @@
                                     <td>{{ $coupon->code }}</td>
                                     <td>{{ $coupon->discount_amount }}@if($coupon->discount_type == 'percentage') % @else $ @endif</td>
                                     <td>{{ $coupon->allowed_uses }}</td>
-                                    <td>@if($coupon->recurring) {!!  __('admin.yes', ['default' => 'Yes']) !!} @else {!!  __('admin.no', ['default' => 'No']) !!} @endif</td>
+{{--                                    <td>@if($coupon->recurring) {!!  __('admin.yes', ['default' => 'Yes']) !!} @else {!!  __('admin.no', ['default' => 'No']) !!} @endif</td>--}}
                                     <td>@if($coupon->expires_at) {{ $coupon->expires_at }} @else {!!  __('admin.never', ['default' => 'never']) !!} @endif</td>
                                     <td class="text-right">
                                         <a href="{{ route('coupons.edit', $coupon->id) }}"
