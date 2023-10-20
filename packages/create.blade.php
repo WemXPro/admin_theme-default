@@ -43,7 +43,7 @@
                                 <select class="form-control select2 select2-hidden-accessible" name="service"
                                         tabindex="-1" aria-hidden="true">
                                     @foreach (Service::allEnabled() as $service)
-                                        <option value="{{ $service->getLowerName() }}">{{ $service }}</option>
+                                        <option value="{{ $service->module()->getLowerName() }}">{{ $service->about()->display_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
