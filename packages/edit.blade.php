@@ -521,8 +521,8 @@
                                         onchange="updateService()"
                                         name="service" id="service" tabindex="-1" aria-hidden="true">
                                     @foreach (Service::allEnabled() as $service)
-                                        <option value="{{ $service->getLowerName() }}"
-                                                @if ($package->service == $service->getLowerName()) selected @endif>{{ $service }}
+                                        <option value="{{ $service->module()->getLowerName() }}"
+                                                @if ($package->service == $service->module()->getLowerName()) selected @endif>{{ $service->about()->display_name }}
                                         </option>
                                     @endforeach
                                 </select>
