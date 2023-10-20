@@ -60,6 +60,10 @@
                                             <td>{{ $package->service }}</td>
                                             <td><span class="badge badge-secondary">{!! __('admin.' . $package->status) !!}</span></td>
                                             <td class="text-right">
+                                                <a href="{{ route('admin.change-order', ['id' => $package->id, 'model' => 'packages', 'direction' => 'up']) }}"
+                                                   class="btn btn-primary"><i class="fas fa-solid fa-caret-up"></i></a>
+                                                <a href="{{ route('admin.change-order', ['id' => $package->id, 'model' => 'packages', 'direction' => 'down']) }}"
+                                                   class="btn btn-primary"><i class="fas fa-solid fa-caret-down"></i></a>
                                                 <a href="{{ route('packages.clone', $package->id) }}"
                                                    class="btn btn-primary"><i class="fas fa-clone"></i></a>
                                                 <a href="{{ route('packages.edit', $package->id) }}"

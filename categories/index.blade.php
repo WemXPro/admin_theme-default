@@ -32,6 +32,10 @@
                                     <td>{{ $category->link }}</td>
                                     <td>{{ $category->description }}</td>
                                     <td class="text-right">
+                                        <a href="{{ route('admin.change-order', ['id' => $category->id, 'model' => 'categories', 'direction' => 'up']) }}"
+                                           class="btn btn-primary"><i class="fas fa-solid fa-caret-up"></i></a>
+                                        <a href="{{ route('admin.change-order', ['id' => $category->id, 'model' => 'categories', 'direction' => 'down']) }}"
+                                           class="btn btn-primary"><i class="fas fa-solid fa-caret-down"></i></a>
                                         <a href="{{ route('categories.edit', $category->id) }}"
                                             class="btn btn-primary">{!! __('admin.edit') !!}</a>
 
