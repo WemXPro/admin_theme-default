@@ -531,11 +531,11 @@
 
                             @includeIf(AdminTheme::serviceView($package->service, 'params'))
                             
-                            @if($package->service()->hasPackageConfig())
+                            @if($package->service()->hasPackageConfig($package))
                             <form action="{{ route('package.update-service', $package->id) }}" method="POST">
                                 @csrf
                                 <div class="row">
-                                    @foreach($package->service()->getPackageConfig()->all() ?? [] as $name => $field)
+                                    @foreach($package->service()->getPackageConfig($package)->all() ?? [] as $name => $field)
                                     <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset" style="display: flex;flex-direction: column;">
                                         <label>{!! $field['name'] !!}</label>
                                         @if($field['type'] == 'select')
