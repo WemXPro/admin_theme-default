@@ -127,8 +127,6 @@
                                                 {!! $package->description !!}
                                             @endisset
                                         </textarea>
-                                        <small
-                                            class="form-text text-muted">{!! __('admin.separate_each_individual_feature_with_the_tag_exam') !!}</small>
                                     </div>
                                 </div>
 
