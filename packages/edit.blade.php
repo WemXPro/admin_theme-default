@@ -629,6 +629,9 @@
                                                         <option value="renewal">
                                                             {{ __('admin.renewal') }}
                                                         </option>
+                                                        <option value="upgrade">
+                                                            {{ __('admin.upgrade') }}
+                                                        </option>
                                                         <option value="suspension">
                                                             {{ __('admin.suspension') }}
                                                         </option>
@@ -732,6 +735,10 @@
                                                                         <option value="renewal"
                                                                                 @if($email->event == 'renewal') selected @endif>
                                                                             {{ __('admin.renewal') }}
+                                                                        </option>
+                                                                        <option value="upgrade"
+                                                                                @if($email->event == 'upgrade') selected @endif>
+                                                                            {{ __('admin.upgrade') }}
                                                                         </option>
                                                                         <option value="suspension"
                                                                                 @if($email->event == 'suspension') selected @endif>
@@ -846,6 +853,9 @@
                                                         </option>
                                                         <option value="renewal">
                                                             {{ __('admin.renewal') }}
+                                                        </option>
+                                                        <option value="upgrade">
+                                                            {{ __('admin.upgrade') }}
                                                         </option>
                                                         <option value="suspension">
                                                             {{ __('admin.suspension') }}
@@ -971,6 +981,10 @@
                                                                         <option value="renewal"
                                                                                 @if($webhook->event == 'renewal') selected @endif>
                                                                             {{ __('admin.renewal') }}
+                                                                        </option>
+                                                                        <option value="upgrade"
+                                                                                @if($webhook->event == 'upgrade') selected @endif>
+                                                                            {{ __('admin.upgrade') }}
                                                                         </option>
                                                                         <option value="suspension"
                                                                                 @if($webhook->event == 'suspension') selected @endif>
