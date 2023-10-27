@@ -40,7 +40,7 @@
                             </select>
                             @elseif($field['type'] == 'bool')
                             <label class="custom-switch mt-2">
-                                <input type="checkbox" name="{{ $field['key'] }}" class="custom-switch-input" @if(settings($field['key'], $field['default_value'] ?? '')) checked @endif>
+                                <input type="checkbox" name="{{ $field['key'] }}" value="1" class="custom-switch-input" @if(settings($field['key'], $field['default_value'] ?? '')) checked @endif>
                                 <span class="custom-switch-indicator"></span>
                               </label>
                             @else
