@@ -25,7 +25,7 @@
                             @foreach ($coupons as $coupon)
                                 <tr>
                                     <td>{{ $coupon->code }}</td>
-                                    <td>{{ $coupon->discount_amount }}@if($coupon->discount_type == 'percentage') % @else $ @endif</td>
+                                    <td>{{ $coupon->discount_amount }}@if($coupon->discount_type == 'percentage') % @else {{ currency("symbol") }} @endif</td>
                                     <td>{{ $coupon->allowed_uses }}</td>
 {{--                                    <td>@if($coupon->recurring) {!!  __('admin.yes', ['default' => 'Yes']) !!} @else {!!  __('admin.no', ['default' => 'No']) !!} @endif</td>--}}
                                     <td>@if($coupon->expires_at) {{ $coupon->expires_at }} @else {!!  __('admin.never', ['default' => 'never']) !!} @endif</td>

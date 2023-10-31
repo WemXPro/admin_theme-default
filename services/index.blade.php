@@ -18,30 +18,32 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach (Service::all() as $module)
-                            <tr>
-                                <td>{{ $module->getName() }}</td>
-                                <td>
-                                    @if ($module->isEnabled())
-                                        <span class="badge badge-success">{!! __('admin.enabled') !!}</span>
-                                    @else
-                                        <span class="badge badge-danger">{!! __('admin.disabled') !!}</span>
-                                    @endif
-                                </td>
-                                <td class="text-right">
-                                    <a href="{{ route('services.config', ['service' => $module->getLowerName()]) }}"
-                                       class="btn btn-primary"><i
-                                            class="fas fa-cog"></i> {!! __('admin.configuration') !!}</a>
-                                    @if ($module->isEnabled())
-                                        <a href="{{ route('modules.toggle', ['module' => $module->getName()]) }}"
-                                           class="btn btn-danger">{!! __('admin.disable') !!}</a>
-                                    @else
-                                        <a href="{{ route('modules.toggle', ['module' => $module->getName()]) }}"
-                                           class="btn btn-success">{!! __('admin.enable') !!}</a>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
+                            @foreach (Service::all() as $service)
+                                <tr>
+                                    <td>{{ $service->about()->display_name }}</td>
+                                    <td>
+                                        @if ($service->module()->isEnabled())
+                                            <span class="badge badge-success">{!! __('admin.enabled') !!}</span>
+                                        @else
+                                            <span class="badge badge-danger">{!! __('admin.disabled') !!}</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-right">
+                                        @if($service->hasConfig())
+                                        <a href="{{ route('services.config', ['service' => $service->module()->getLowerName()]) }}" class="btn btn-primary mr-2">
+                                            <i class="fas fa-cog"></i> {!! __('admin.configuration') !!}
+                                        </a>
+                                        @endif
+                                        @if ($service->module()->isEnabled())
+                                            <a href="{{ route('modules.toggle', ['module' => $service->module()->getName()]) }}"
+                                                class="btn btn-danger">{!! __('admin.disable') !!}</a>
+                                        @else
+                                            <a href="{{ route('modules.toggle', ['module' => $service->module()->getName()]) }}"
+                                                class="btn btn-success">{!! __('admin.enable') !!}</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

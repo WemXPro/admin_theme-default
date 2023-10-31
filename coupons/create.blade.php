@@ -18,18 +18,6 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-
-{{--                                <div class="form-group col-md-6 col-12">--}}
-{{--                                    <div class="control-label">{!!  __('admin.recurring', ['default' => 'Recurring']) !!}</div>--}}
-{{--                                    <label class="custom-switch mt-2">--}}
-{{--                                      <input type="checkbox" name="is_recurring" class="custom-switch-input" value="1">--}}
-{{--                                      <span class="custom-switch-indicator"></span>--}}
-{{--                                      <span class="custom-switch-description">--}}
-{{--                                          {!!  __('admin.recurring_coupons', ['default' => 'Recurring Coupons give a dicsount on each new monthly payment']) !!}--}}
-{{--                                      </span>--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-
                                 <div class="form-group col-md-12 col-12">
                                     <label for="code">{!!  __('admin.coupon_code', ['default' => 'Coupon Code']) !!}</label>
                                     <input type="text" name="code" id="code"
@@ -47,7 +35,7 @@
                                     <div class="input-group mb-2">
                                         <input type="number" class="form-control text-right" name="discount_amount" id="discount_amount" value="{{ old('discount_amount', 0) }}" min="0" required="">
                                         <div class="input-group-append">
-                                            <div class="input-group-text">%</div>
+                                            <div class="input-group-text" id="type">%</div>
                                         </div>
                                         <small class="form-text text-muted"> </small>
                                     </div>
@@ -55,7 +43,7 @@
 
                                 <div class="form-group col-md-6 col-6">
                                     <label for="discount_type">{!!  __('admin.discount_type', ['default' => 'Discount Type']) !!}</label>
-                                    <select class="form-control select2 select2-hidden-accessible" name="discount_type" tabindex="-1" aria-hidden="true">
+                                    <select onchange="updateType()" class="form-control select2 select2-hidden-accessible" name="discount_type" id="discount_type" tabindex="-1" aria-hidden="true">
                                         <option value="percentage">{!!  __('admin.percentage', ['default' => 'Percentage %']) !!}</option>
                                         <option value="flat">{!!  __('admin.flat', ['default' => 'Flat $']) !!}</option>
                                     </select>
@@ -75,7 +63,7 @@
                                         <input type="date" class="form-control text-left" name="expires_at" id="expires_at" value="{{ old('expires_at') }}">
                                         <small class="form-text text-muted">
                                             {!!  __('admin.expires_coupon_desc', ['default' => 'Leave this field empty if you do not want to set an expiration date for this coupon. If a expiration date is set, the coupon will be valid until that date.']) !!}
-                                            /small>
+                                        </small>
                                     </div>
                                 </div>
 
@@ -88,6 +76,7 @@
                                                 <option value="{{ $package->id }}">{{ $package->name }}</option>
                                             @endforeach
                                         </select>
+                                        <small class="form-text text-muted text-primary"><a href="#" onclick="selectAllPackages()">Select All (after select a item from the menu to load all)</a></small>
                                     </div>
                                 </div>
 
@@ -99,4 +88,19 @@
                 </div>
             </form>
             </div>
+            <script>
+            function selectAllPackages() {
+                let select = document.getElementById("applicable_products");
+                for (let option of select.options) {
+                    option.selected = true;
+                }
+            }
+            function updateType() {
+                if(document.getElementById("discount_type").value == 'flat') {
+                    document.getElementById("type").innerHTML = '{{ currency("symbol") }}';
+                } else {
+                    document.getElementById("type").innerHTML = '%';
+                }
+            }
+            </script>
 @endsection

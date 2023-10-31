@@ -127,8 +127,6 @@
                                                 {!! $package->description !!}
                                             @endisset
                                         </textarea>
-                                        <small
-                                            class="form-text text-muted">{!! __('admin.separate_each_individual_feature_with_the_tag_exam') !!}</small>
                                     </div>
                                 </div>
 
@@ -521,8 +519,8 @@
                                         onchange="updateService()"
                                         name="service" id="service" tabindex="-1" aria-hidden="true">
                                     @foreach (Service::allEnabled() as $service)
-                                        <option value="{{ $service->getLowerName() }}"
-                                                @if ($package->service == $service->getLowerName()) selected @endif>{{ $service }}
+                                        <option value="{{ $service->module()->getLowerName() }}"
+                                                @if ($package->service == $service->module()->getLowerName()) selected @endif>{{ $service->about()->display_name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -531,11 +529,11 @@
 
                             @includeIf(AdminTheme::serviceView($package->service, 'params'))
                             
-                            @if($package->service()->hasPackageConfig())
+                            @if($package->service()->hasPackageConfig($package))
                             <form action="{{ route('package.update-service', $package->id) }}" method="POST">
                                 @csrf
                                 <div class="row">
-                                    @foreach($package->service()->getPackageConfig()->all() ?? [] as $name => $field)
+                                    @foreach($package->service()->getPackageConfig($package)->all() ?? [] as $name => $field)
                                     <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset" style="display: flex;flex-direction: column;">
                                         <label>{!! $field['name'] !!}</label>
                                         @if($field['type'] == 'select')
@@ -552,7 +550,7 @@
                                         </select>
                                         @elseif($field['type'] == 'bool')
                                         <label class="custom-switch mt-2">
-                                            <input type="checkbox" name="{{ $field['key'] }}" class="custom-switch-input" @if($package->data($field['key'], $field['default_value'] ?? '')) checked @endif>
+                                            <input type="checkbox" name="{{ $field['key'] }}" value="1" class="custom-switch-input" @if($package->data($field['key'], $field['default_value'] ?? '')) checked @endif>
                                             <span class="custom-switch-indicator"></span>
                                           </label>
                                         @else
@@ -630,6 +628,9 @@
                                                         </option>
                                                         <option value="renewal">
                                                             {{ __('admin.renewal') }}
+                                                        </option>
+                                                        <option value="upgrade">
+                                                            {{ __('admin.upgrade') }}
                                                         </option>
                                                         <option value="suspension">
                                                             {{ __('admin.suspension') }}
@@ -734,6 +735,10 @@
                                                                         <option value="renewal"
                                                                                 @if($email->event == 'renewal') selected @endif>
                                                                             {{ __('admin.renewal') }}
+                                                                        </option>
+                                                                        <option value="upgrade"
+                                                                                @if($email->event == 'upgrade') selected @endif>
+                                                                            {{ __('admin.upgrade') }}
                                                                         </option>
                                                                         <option value="suspension"
                                                                                 @if($email->event == 'suspension') selected @endif>
@@ -848,6 +853,9 @@
                                                         </option>
                                                         <option value="renewal">
                                                             {{ __('admin.renewal') }}
+                                                        </option>
+                                                        <option value="upgrade">
+                                                            {{ __('admin.upgrade') }}
                                                         </option>
                                                         <option value="suspension">
                                                             {{ __('admin.suspension') }}
@@ -973,6 +981,10 @@
                                                                         <option value="renewal"
                                                                                 @if($webhook->event == 'renewal') selected @endif>
                                                                             {{ __('admin.renewal') }}
+                                                                        </option>
+                                                                        <option value="upgrade"
+                                                                                @if($webhook->event == 'upgrade') selected @endif>
+                                                                            {{ __('admin.upgrade') }}
                                                                         </option>
                                                                         <option value="suspension"
                                                                                 @if($webhook->event == 'suspension') selected @endif>
