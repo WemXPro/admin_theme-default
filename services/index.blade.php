@@ -11,11 +11,11 @@
 
                     <table class="table">
                         <thead>
-                            <tr>
-                                <th>{!! __('admin.name') !!}</th>
-                                <th>{!! __('admin.status') !!}</th>
-                                <th class="text-right">{!! __('admin.actions') !!}</th>
-                            </tr>
+                        <tr>
+                            <th>{!! __('admin.name') !!}</th>
+                            <th>{!! __('admin.status') !!}</th>
+                            <th class="text-right">{!! __('admin.actions') !!}</th>
+                        </tr>
                         </thead>
                         <tbody>
                             @foreach (Service::all() as $service)

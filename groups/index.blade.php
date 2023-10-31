@@ -25,6 +25,8 @@
                                     <td>{{ $group->id }}</td>
                                     <td>{{ $group->name }}</td>
                                     <td class="text-right">
+                                        <a href="{{ route('groups.users', $group->id) }}"
+                                           class="btn btn-primary">{!! __('admin.users') !!}</a>
                                         <a href="{{ route('groups.edit', $group->id) }}"
                                             class="btn btn-primary">{!! __('admin.edit') !!}</a>
 

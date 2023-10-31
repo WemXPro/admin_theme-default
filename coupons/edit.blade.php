@@ -19,18 +19,6 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-
-                                {{-- <div class="form-group col-md-6 col-12">
-                                    <div class="control-label">{!!  __('admin.recurring', ['default' => 'Recurring']) !!}</div>
-                                    <label class="custom-switch mt-2">
-                                      <input type="checkbox" name="is_recurring" class="custom-switch-input" value="1" @if($coupon->is_recurring) checked="" @endif>
-                                      <span class="custom-switch-indicator"></span>
-                                      <span class="custom-switch-description">
-                                          {!!  __('admin.recurring_coupons', ['default' => 'Recurring Coupons give a dicsount on each new monthly payment']) !!}
-                                      </span>
-                                    </label>
-                                </div> --}}
-
                                 <div class="form-group col-md-12 col-12">
                                     <label for="code">{!!  __('admin.coupon_code', ['default' => 'Coupon Code']) !!}</label>
                                     <input type="text" name="code" id="code"
