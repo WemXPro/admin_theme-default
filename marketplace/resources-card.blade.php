@@ -1,4 +1,4 @@
-<div class="card">
+{{-- <div class="card">
     <div class="card-header">
         <h4>{!! __('admin.marketplace') !!}</h4>
     </div>
@@ -19,15 +19,6 @@
                 <tbody>
                 @php($install_key = 'install')
                 @foreach($marketplace['data'] as $resource)
-{{--                    @if($module = Module::find($resource['name']))--}}
-{{--                        @if (version_compare($resource['version'], config($module->getSnakeName() . '.version'), '<'))--}}
-{{--                            @php($install_key = 'installed')--}}
-{{--                        @elseif (version_compare($resource['version'], config($module->getSnakeName() . '.version'), '>'))--}}
-{{--                            @php($install_key = 'update')--}}
-{{--                        @else--}}
-{{--                            @php($install_key = 'installed')--}}
-{{--                        @endif--}}
-{{--                    @endif--}}
                     <tr>
                         <td>
                             <img src="{{ $resource['icon'] ?? 'https://imgur.com/koz9j8a.png' }}" alt="Icon"
@@ -75,4 +66,4 @@
             </table>
         </div>
     </div>
-</div>
+</div> --}}
