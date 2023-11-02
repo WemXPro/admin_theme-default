@@ -60,43 +60,13 @@
                         </div>
                         @endforeach
 
-                            @foreach($service->getConfig()->all() as $name => $field)
-                                <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset">
-                                    <label>{!! $field['name'] !!}</label>
-                                    @if($field['type'] == 'select')
-                                        <select class="form-control select2 select2-hidden-accessible" tabindex="-1"
-                                                aria-hidden="true"
-                                                @if(in_array('required', $field['rules'])) required="" @endif
-                                                name="{{ $name }}"
-                                                id="{{ $name }}"
-                                                @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
-                                        >
-                                            @foreach($field['options'] ?? [] as $key => $option)
-                                                <option value="{{ $key }}"
-                                                        @if(settings($name, $field['default_value'] ?? '') == $key) selected @endif>{{ $option }}</option>
-                                            @endforeach
-                                        </select>
-                                    @else
-                                        <input class="form-control"
-                                               type="{{ $field['type'] }}"
-                                               name="{{ $name }}"
-                                               id="{{ $name }}"
-                                               @isset($field['min']) min="{{$field['min']}}" @endisset
-                                               @isset($field['max']) max="{{$field['max']}}" @endisset
-                                               value="@settings($name, $field['default_value'] ?? '')"
-                                               placeholder="@isset($field['placeholder']){{$field['placeholder']}} @else{{ $field['name'] }} @endisset"
-                                               @if(in_array('required', $field['rules'])) required="" @endif>
-                                    @endif
-                                    <small class="form-text text-muted">
-                                        {!! $field['description'] !!}
-                                    </small>
-                                </div>
-                            @endforeach
-
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-primary">{!! __('admin.submit') !!}</button>
+                        @if($service->canTestConnection())
+                            <a href="{{ route('services.test-connection', $service->service->getLowerName()) }}" class="btn btn-success mr-2">Test Connection</a>
+                        @endif
+                        <button type="submit" class="btn btn-primary">{!! __('admin.update') !!}</button>
                     </div>
             </div>
             </form>

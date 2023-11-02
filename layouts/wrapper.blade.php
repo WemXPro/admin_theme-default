@@ -144,7 +144,7 @@
                             <div class="dropdown-list-content dropdown-list-icons">
 
                                 @foreach (Notification::where('user_id', Auth::user()->id)->latest()->paginate(10) as $notificaiton)
-                                    <a href="/notifications" class="dropdown-item dropdown-item-unread">
+                                    <a href="#" class="dropdown-item dropdown-item-unread">
                                         <div class="dropdown-item-desc">
                                             {{ $notificaiton->message }}
                                             <div
@@ -153,10 +153,6 @@
                                     </a>
                                 @endforeach
 
-                            </div>
-                            <div class="dropdown-footer text-center">
-                                <a href="/notifications">{!!  __('admin.view_all') !!} <i
-                                        class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </li>
