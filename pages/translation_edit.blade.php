@@ -23,7 +23,7 @@
                         <div class="row">
 
                             <div class="form-group col-md-12 col-12">
-                                <label for="language">{!! __('admin.transactions') !!}</label>
+                                <label for="language">{!! __('admin.locations') !!}</label>
                                 <select class="form-control select2 select2-hidden-accessible" name="locale" tabindex="-1" aria-hidden="true">
                                     @if(Module::isEnabled('locales'))
                                         @foreach(lang_module()->getInstalled() as $key => $lang)
