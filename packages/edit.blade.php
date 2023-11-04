@@ -537,7 +537,7 @@
                                     <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset" style="display: flex;flex-direction: column;">
                                         <label>{!! $field['name'] !!}</label>
                                         @if($field['type'] == 'select')
-                                        <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" 
+                                        <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"
                                         name="{{ $field['key'] }}"
                                         id="{{ $field['key'] }}"
                                         @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
