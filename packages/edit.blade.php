@@ -540,6 +540,7 @@
                                         <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"
                                         name="{{ $field['key'] }}"
                                         id="{{ $field['key'] }}"
+                                        @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif
                                         @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
                                         >
                                             @foreach($field['options'] ?? [] as $key => $option)
@@ -550,7 +551,7 @@
                                         </select>
                                         @elseif($field['type'] == 'bool')
                                         <label class="custom-switch mt-2">
-                                            <input type="checkbox" name="{{ $field['key'] }}" value="1" class="custom-switch-input" @if($package->data($field['key'], $field['default_value'] ?? '')) checked @endif>
+                                            <input type="checkbox" name="{{ $field['key'] }}" @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif value="1" class="custom-switch-input" @if($package->data($field['key'], $field['default_value'] ?? '')) checked @endif>
                                             <span class="custom-switch-indicator"></span>
                                           </label>
                                         @else
@@ -560,6 +561,7 @@
                                         id="{{ $field['key'] }}"
                                         @isset($field['min']) min="{{$field['min']}}" @endisset
                                         @isset($field['max']) max="{{$field['max']}}" @endisset
+                                        @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif
                                         value="{{ $package->data($field['key'], $field['default_value'] ?? '') }}"
                                         placeholder="@isset($field['placeholder']){{$field['placeholder']}} @else{{ $field['name'] }} @endisset"
                                         @if(in_array('required', $field['rules'])) required="" @endif>
@@ -571,12 +573,19 @@
                                 @endforeach
                                     <div class="col-12">
                                         <div class="text-right">
-                                            <button class="btn btn-primary" type="submit">Update</button>
+                                            <button class="btn btn-primary" id="service-settings-submit" type="submit">Update</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                             @endif
+
+                            <script>
+                                function saveServiceSettings()
+                                {
+                                    document.getElementById('service-settings-submit').click();
+                                }
+                            </script>
 
                         </div>
                         <div class="tab-pane fade" id="emails" role="tabpanel" aria-labelledby="emails_tab">
