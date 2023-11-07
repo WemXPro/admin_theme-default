@@ -307,7 +307,7 @@
                                 <tbody>
                                 @foreach ($prices as $price)
                                     <tr>
-                                        <td>{{ __('admin.billed') }} {{ $price->periodToHuman() }}</td>
+                                        <td>{{ $price->type == 'single' ? ucfirst($price->type) : ucfirst($price->type). ' / ' . $price->periodToHuman() }}</td>
                                         <td>
                                             @if($price->is_active)
                                                 <div class="flex align-items-center">
@@ -356,7 +356,17 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body modal-lg">
-                                                        <div class="row" id="recurring-options-{{ $price->id }}">
+
+                                                        <div class="form-group">
+                                                            <label for="type">{{ __('admin.type') }}</label>
+                                                            <select class="form-control select2 select2-hidden-accessible hide" id="type-{{$price->id}}"
+                                                                    name="type" tabindex="-1" aria-hidden="true" onchange="setPriceType('{{$price->id}}')">
+                                                                <option value="single" @if($price->type == 'single') selected @endif>{{ __('admin.single') }}</option>
+                                                                <option value="recurring" @if($price->type == 'recurring') selected @endif>{{ __('admin.recurring') }}</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="row @if($price->type == 'single') d-none @endif" id="recurring-options-{{ $price->id }}">
                                                             <div class="form-group col-md-12 col-12">
                                                                 <label for="period">{{ __('admin.period') }}</label>
                                                                 <select
@@ -429,7 +439,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="row" id="price-options-{{ $price->id }}">
+                                                        <div class="row @if($price->type == 'single') d-none @endif" id="price-options-{{ $price->id }}">
                                                             <div class="form-group col-md-6 col-6">
                                                                 <div class="control-label">{{ __('admin.renewal_price') }}</div>
                                                                 <label class="custom-switch mt-2">
@@ -477,17 +487,17 @@
                                                                        step="0.01" class="form-control" disabled/>
                                                             </div>
 
-                                                            <div class="col-md-12 col-12">
-                                                                <div class="form-group">
-                                                                    <div class="control-label">{{ __('admin.active') }}</div>
-                                                                    <label class="custom-switch mt-2">
-                                                                        <input type="checkbox" name="is_active"
-                                                                               class="custom-switch-input" value="1"
-                                                                               @if($price->is_active) checked @endif>
-                                                                        <span class="custom-switch-indicator"></span>
-                                                                        <span class="custom-switch-description">{{ __('admin.you_can_deactivate_price_if_you_no_longer') }}</span>
-                                                                    </label>
-                                                                </div>
+                                                        </div>
+                                                        <div class="">
+                                                            <div class="form-group">
+                                                                <div class="control-label">{{ __('admin.active') }}</div>
+                                                                <label class="custom-switch mt-2">
+                                                                    <input type="checkbox" name="is_active"
+                                                                           class="custom-switch-input" value="1"
+                                                                           @if($price->is_active) checked @endif>
+                                                                    <span class="custom-switch-indicator"></span>
+                                                                    <span class="custom-switch-description">{{ __('admin.you_can_deactivate_price_if_you_no_longer') }}</span>
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1117,6 +1127,16 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        
+                        <div class="form-group">
+                            <label for="type">{{ __('admin.type') }}</label>
+                            <select class="form-control select2 select2-hidden-accessible hide" id="type-0"
+                                    name="type" tabindex="-1" aria-hidden="true" onchange="setPriceType('0')">
+                                <option value="single">{{ __('admin.single') }}</option>
+                                <option value="recurring" selected>{{ __('admin.recurring') }}</option>
+                            </select>
+                        </div>
+                        
                         <div class="row" id="recurring-options-0">
                             <div class="form-group col-md-12 col-12">
                                 <label for="period">{{ __('admin.period') }}</label>
@@ -1252,6 +1272,18 @@
                 document.getElementById('cancellation_fee-' + id).setAttribute('disabled', '');
             } else {
                 document.getElementById('cancellation_fee-' + id).removeAttribute('disabled');
+            }
+        }
+
+        function setPriceType(id) {
+            var type = document.getElementById('type-' + id).value;
+
+            if(type == 'single') {
+                document.getElementById('recurring-options-' + id).classList.add('d-none');
+                document.getElementById('price-options-'+ id).classList.add('d-none');
+            } else {
+                document.getElementById('recurring-options-'+ id).classList.remove('d-none');
+                document.getElementById('price-options-'+ id).classList.remove('d-none');
             }
         }
 
