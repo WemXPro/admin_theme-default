@@ -33,6 +33,7 @@
                                 @foreach(EmailHistory::latest()->paginate(15) as $email)
                                     <tr>
                                         <td>
+                                            @if($email->user)
                                             <a style="display: flex; color: #6c757d"
                                                href="{{ route('users.edit', ['user' => $email->user->id ]) }}">
                                                 <img alt="image" src="{{ $email->user->avatar() }}"
@@ -44,6 +45,9 @@
                                                     <small>{{ $email->user->email }}</small>
                                                 </div>
                                             </a>
+                                            @else 
+                                            {{ $email->receiver }}
+                                            @endif
                                         </td>
                                         <td>
                                             {{ $email->subject }}
@@ -89,7 +93,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             @include(EmailTemplate::view(), [
-                                                                'name' => $email->user->username,
+                                                                'name' => $email->user->username ?? '👋',
                                                                 'subject' => $email->subject,
                                                                 'intro' => $email->content,
                                                                 'button' =>  $email->button,
@@ -122,6 +126,9 @@
     <style>
         span.select2.select2-container.select2-container--default {
             width: 100% !important;
+        }
+        body {
+            background-color: var(--primary-bg) !important;
         }
     </style>
 @endsection

@@ -126,6 +126,10 @@
             </div>
 
         </div>
-
+        <style>
+        body {
+            background-color: var(--primary-bg) !important;
+        }
+        </style>
     </section>
 @endsection
