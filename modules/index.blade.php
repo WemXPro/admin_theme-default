@@ -47,6 +47,5 @@
             </div>
         </div>
     </div>
-
     @includeIf(AdminTheme::path('marketplace.resources-card'))
 @endsection
