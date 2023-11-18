@@ -372,11 +372,11 @@
                     <li class="menu-header">
                         {!!  __('admin.design_and_compatibility', ['default' => 'Design & Compatibility']) !!}</li>
 
-                    {{-- <li>
+                    <li>
                         <a class="nav-link {{ nav_active('admin.marketplace') }}"
                            href="{{ route('admin.marketplace') }}"><i class="fas fa-store"></i>
                             <span>{!! __('admin.marketplace') !!}</span></a>
-                    </li> --}}
+                    </li>
 
                     <li class="dropdown {{ nav_active('themes', dropdown: true) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
