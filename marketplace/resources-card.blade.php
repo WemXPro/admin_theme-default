@@ -1,4 +1,4 @@
-{{-- <div class="card">
+ <div class="card">
     <div class="card-header">
         <h4>{!! __('admin.marketplace') !!}</h4>
     </div>
@@ -66,4 +66,4 @@
             </table>
         </div>
     </div>
-</div> --}}
+</div>
