@@ -19,6 +19,8 @@
                 <tbody>
                 @php($install_key = 'install')
                 @foreach($marketplace['data'] as $resource)
+                    @php($resource['installed'] = false)
+                    @if(Module::find($resource['real_name'])) @php($resource['installed'] = true) @php($install_key = 'reinstall') @endif
                     <tr>
                         <td>
                             <img src="{{ $resource['icon'] ?? 'https://imgur.com/koz9j8a.png' }}" alt="Icon"
