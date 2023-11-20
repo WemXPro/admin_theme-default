@@ -1,4 +1,4 @@
- <div class="card">
+<div class="card">
     <div class="card-header">
         <h4>{!! __('admin.marketplace') !!}</h4>
     </div>
@@ -20,7 +20,12 @@
                 @php($install_key = 'install')
                 @foreach($marketplace['data'] as $resource)
                     @php($resource['installed'] = false)
-                    @if(Module::find($resource['real_name'])) @php($resource['installed'] = true) @php($install_key = 'reinstall') @endif
+                    @if($installedResource = Module::find($resource['real_name']))
+                        @php($resource['installed'] = true)
+                        @php($install_key = 'reinstall')
+                        @php($installedResourceConfig = config($installedResource->getLowerName()))
+                    @endif
+
                     <tr>
                         <td>
                             <img src="{{ $resource['icon'] ?? 'https://imgur.com/koz9j8a.png' }}" alt="Icon"
@@ -40,9 +45,9 @@
                         </td>
                         <td>{{ $resource['version'] }}</td>
                         <td>
-                        @foreach($resource['wemx_version'] as $wemx_version)
-                            {{ $wemx_version }}
-                        @endforeach
+                            @foreach($resource['wemx_version'] as $wemx_version)
+                                {{ $wemx_version }}
+                            @endforeach
                         </td>
                         <td>@if($resource['is_free'])
                                 {!! __('admin.free') !!}
