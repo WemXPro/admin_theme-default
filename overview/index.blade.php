@@ -469,6 +469,47 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
+                        <h4>Online users</h4>
+                        <div class="card-header-action">
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="summary">
+                            <div class="summary-item">
+                                <ul class="list-unstyled list-unstyled-border">
+                                    @foreach(User::getOnlineUsers()->paginate(5) as $user)
+                                        <li class="media">
+                                            <a href="{{ route('users.edit', ['user' => $user->id]) }}">
+                                                <img class="mr-3 rounded" width="50" src="{{ $user->avatar() }}"
+                                                     alt="{{ __('admin.avatar') }}">
+                                            </a>
+                                            <div class="media-body">
+                                                {{-- <div class="media-right">
+                                                    <span
+                                                        class="text-primary">
+                                                        {!! __('client.online') !!}
+                                                    </span>
+                                                </div> --}}
+                                                <div class="media-title"><a
+                                                        href="{{ route('users.edit', ['user' => $user->id]) }}">{{ $user->username }}</a>
+                                                </div>
+                                                <div class="text-muted text-small"><a
+                                                        href="{{ route('users.edit', ['user' => $user->id]) }}">{{ $user->first_name }} {{ $user->last_name }}</a>
+                                                    <div
+                                                        class="bullet"></div> {{ $user->last_seen_at->diffForHumans() }}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
                         <h4>{!! __('admin.recent_registrations', ['default' => 'Recent Registrations']) !!}</h4>
                         <div class="card-header-action">
 

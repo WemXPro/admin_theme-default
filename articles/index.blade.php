@@ -17,6 +17,10 @@
                                 <th>{!! __('admin.name') !!}</th>
                                 <th>{!! __('admin.url', ['default' => 'URL']) !!}</th>
                                 <th>{!! __('admin.status') !!}</th>
+                                <th>{!! __('admin.views') !!}</th>
+                                <th>{!! __('admin.comments') !!}</th>
+                                <th>{!! __('admin.likes') !!}</th>
+                                <th>{!! __('admin.dislikes') !!}</th>
                                 <th class="text-right">{!! __('admin.actions') !!}</th>
                             </tr>
                         </thead>
@@ -32,6 +36,10 @@
                                             <i class="fas fa-solid fa-circle text-danger " style="font-size: 11px;"></i> {!! __('admin.inactive') !!}
                                         @endif
                                     </td>
+                                    <td>{{ $article->views }}</td>
+                                    <td>{{ $article->comments()->count() }}</td>
+                                    <td>{{ $article->likes }}</td>
+                                    <td>{{ $article->dislikes }}</td>
                                     <td class="text-right">
                                         <a href="{{ route('articles.translation', $article->id) }}"
                                            class="btn btn-warning">{{ __('admin.translations') }}</a>

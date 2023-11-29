@@ -38,9 +38,12 @@
                                   <td>{{currency('symbol')}}{{ number_format($user->payments->where('status', 'paid')->sum('amount'), 2) }}</td>
                                   <td>
                                     <div>
+                                      @if($user->isOnline())
+                                        <span class="beep-online"></span>
+                                      @endif
                                       {{ ucfirst($user->visibility)  }}
                                     </div>
-                                    <small>{{ $user->last_login_at->diffForHumans() }}</small>
+                                    <small>{{ $user->last_seen_at->diffForHumans() }}</small>
                                   </td>
                                   <td>
                                     <small>{{ __('admin.created') }}: {{ $user->created_at->diffForHumans() }}</small> <br>

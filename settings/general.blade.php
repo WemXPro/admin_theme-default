@@ -58,7 +58,14 @@
                         @endif
                     </select>
                 </div>
-
+                <div class="form-group col-6">
+                    <label>{!! __('admin.terminate_order_after_days') !!}</label>
+                    <input type="number" name="orders::terminate_suspended_after" value="@settings('orders::terminate_suspended_after', 7)" class="form-control">
+                </div>
+                <div class="form-group col-6">
+                    <label>{!! __('admin.maxmimum_members_per_order') !!}</label>
+                    <input type="number" name="orders::maxmimum_members" value="@settings('orders::maxmimum_members', 5)" class="form-control">
+                </div>
                 <div class="form-group col-6">
                     <div class="control-label">
                         User Data Download

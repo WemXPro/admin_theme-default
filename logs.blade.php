@@ -101,7 +101,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ $log->created_at }}</td>
+                                    <td>{{$log->created_at->format('d M Y') }} ({{ $log->created_at->diffForHumans() }})</td>
                                     <td class="text-right">
                                         <button type="button" class="btn btn-primary" data-toggle="modal"
                                                 data-target="#logModal{{ $log->id }}">

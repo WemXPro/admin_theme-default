@@ -79,6 +79,16 @@
                             </div>
 
                             <div class="form-group col-md-12 col-12">
+                                <label for="short_desc">Short Description</label>
+                                <textarea class="form-control @error('short_desc') is-invalid @enderror" name="short_desc" placeholder="Write a short description about the article" id="short_desc"></textarea>
+                                @error('short_desc')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-12 col-12">
                                 <label>{{ __('admin.labels') }}</label>
                                 <select
                                     class="form-control select2 select2-hidden-accessible  @error('labels') is-invalid @enderror"
