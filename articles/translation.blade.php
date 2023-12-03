@@ -7,19 +7,20 @@
                 <div class="card-header">{!!  __('admin.pages') !!}</div>
 
                 <div class="card-body">
-                    <a href="{{ route('articles.translation.edit', $id) }}" class="btn btn-primary">{{ __('admin.create_translation') }}</a>
+                    <a href="{{ route('articles.translation.edit', $id) }}"
+                       class="btn btn-primary">{{ __('admin.create_translation') }}</a>
                     <hr>
-
-                    <table class="table">
-                        <thead>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                             <tr>
                                 <th>{!! __('admin.id') !!}</th>
                                 <th>{!! __('admin.name') !!}</th>
                                 <th>{!! __('admin.locations') !!}</th>
                                 <th class="text-right">{!! __('admin.actions') !!}</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             @foreach ($translations as $translation)
                                 <tr>
                                     <td>{{ $translation->id }}</td>
@@ -27,20 +28,30 @@
                                     <td>{{ $translation->locale }}</td>
                                     <td class="text-right">
                                         <a href="{{ route('articles.translation.edit', ['id' => $id, 'locale' => $translation->locale]) }}"
-                                            class="btn btn-primary">{!! __('admin.edit') !!}</a>
+                                           class="btn btn-primary">
+                                            <i class="fas fa-edit" data-bs-toggle="tooltip"
+                                               data-bs-placement="top"
+                                               title="{{ __('admin.edit') }}"></i>
+                                        </a>
 
-                                        <form action="{{ route('articles.translation.destroy', ['translation' => $translation]) }}" method="POST"
-                                            style="display: inline-block;">
+                                        <form
+                                            action="{{ route('articles.translation.destroy', ['translation' => $translation]) }}"
+                                            method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="deleteItem(event)" type="submit"
-                                                class="btn btn-danger">{!! __('admin.delete') !!}</button>
+                                            <button onclick="deleteItem(event)" type="submit" class="btn btn-danger">
+                                                <i class="fas fa-trash-alt"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-placement="top"
+                                                   title="{{ __('admin.delete') }}"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
