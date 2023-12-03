@@ -102,11 +102,11 @@
                     </div>
                     <div class="card-footer text-left">
                         <a href="{{ route('admin.user.impersonate', ['user' => $user->id]) }}"
-                            class="btn btn-icon icon-left btn-dark"><i class="fas fa-user"></i>
+                            class="btn btn-icon icon-left btn-primary"><i class="fas fa-user"></i>
                              {!! __('admin.login_as_user', ['default' => 'Login as User']) !!}
                          </a>
                         <a href="{{ route('users.email-password-reset', ['user' => $user->id]) }}"
-                           class="btn btn-icon icon-left btn-dark"><i class="fas fa-envelope"></i>
+                           class="btn btn-icon icon-left btn-info"><i class="fas fa-envelope"></i>
                             {!! __('admin.email_password_reset', ['default' => 'Email Password Reset']) !!}
                         </a>
                     </div>
@@ -129,12 +129,16 @@
                                         <option value="=">{!! __('admin.SET') !!}</option>
                                     </select>
                                 </div>
+                                <div class="form-group col-md-12 col-12">
+                                    <label>{!! __('admin.description') !!} (optional)</label>
+                                    <input type="text" class="form-control" name="description" placeholder="optional">
+                                </div>
                                 <div class="col-12" style="display: flex;justify-content: space-between;">
                                     <div class="profile-widget-name">
                                         {!! __('admin.current_balance', ['default' => 'Current Balance']) !!}:
                                         <strong>{{ currency('symbol') }}{{ number_format( $user->balance ,2)}}</strong>
                                     </div>
-                                    <button class="btn btn-dark" type="submit">
+                                    <button class="btn btn-success" type="submit">
                                         {!! __('admin.update_balance', ['default' => 'Update Balance']) !!}
                                     </button>
                                 </div>
@@ -440,7 +444,7 @@
                         </div>
                         <div class="card-footer text-right">
                             <button class="btn btn-danger" type="button" onclick="deleteUser()">{!! __('admin.delete', ['default' => 'Delete']) !!}</button>
-                            <button class="btn btn-dark" type="submit">{!! __('admin.update_changes', ['default' => 'Update Changes']) !!}</button>
+                            <button class="btn btn-success" type="submit">{!! __('admin.update_changes', ['default' => 'Update Changes']) !!}</button>
                         </div>
                     </form>
                 </div>
@@ -459,7 +463,7 @@
                         <a href="{{ route('admin.user.reset-avatar', ['user' => $user->id]) }}" class="btn btn-danger">
                             {!! __('admin.reset_avatar', ['default' => 'Reset Avatar']) !!}
                         </a>
-                        <button class="btn btn-dark"
+                        <button class="btn btn-success"
                                 type="submit">{!! __('admin.upload_avatar', ['default' => 'Upload Avatar']) !!}</button>
                     </div>
                     </form>
