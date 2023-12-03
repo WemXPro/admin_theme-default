@@ -469,7 +469,7 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Online users</h4>
+                        <h4>{!! __('admin.online_users') !!}</h4>
                         <div class="card-header-action">
 
                         </div>
