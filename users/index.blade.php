@@ -45,7 +45,7 @@
                                       @endif
                                       {{ ucfirst($user->visibility)  }}
                                     </div>
-                                    <small>{{ $user->last_seen_at->diffForHumans() }}</small>
+                                    <small>{{ $user->last_seen_at ? $user->last_seen_at->diffForHumans() : 'never' }}</small>
                                   </td>
                                   <td>
                                     <small>{{ __('admin.created') }}: {{ $user->created_at->diffForHumans() }}</small> <br>
