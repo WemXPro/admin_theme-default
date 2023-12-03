@@ -1,6 +1,7 @@
+@if(isset($marketplace) and count($marketplace))
 <div class="card">
     <div class="card-header">
-        <h4>{!! __('admin.marketplace') !!}</h4>
+        <h4>{!! __('admin.marketplace') !!} Beta</h4>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -74,3 +75,4 @@
         </div>
     </div>
 </div>
+@endif
