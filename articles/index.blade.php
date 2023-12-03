@@ -42,16 +42,16 @@
                                     <td>{{ $article->dislikes }}</td>
                                     <td class="text-right">
                                         <a href="{{ route('articles.translation', $article->id) }}"
-                                           class="btn btn-warning">{{ __('admin.translations') }}</a>
+                                           class="btn btn-primary"><i class="fas fa-language" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('admin.translations') }}"></i></a>
                                         <a href="{{ route('articles.edit', $article->id) }}"
-                                            class="btn btn-primary">{!! __('admin.edit') !!}</a>
+                                            class="btn btn-primary"><i class="fas fa-edit" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('admin.edit') }}"></i></a>
 
                                         <form action="{{ route('articles.destroy', $article->id) }}" method="POST"
                                             style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button onclick="deleteItem(event)" type="submit"
-                                                class="btn btn-danger">{!! __('admin.delete') !!}</button>
+                                                class="btn btn-danger"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('admin.delete') }}"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -62,4 +62,5 @@
             </div>
         </div>
     </div>
+
 @endsection

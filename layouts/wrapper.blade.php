@@ -57,7 +57,6 @@
         }
 
         gtag("js", new Date());
-
         gtag("config", "UA-94034622-3");
     </script>
     <!-- /END GA -->
@@ -90,7 +89,8 @@
                         @includeIf(AdminTheme::moduleView($module->getLowerName(), 'elements.navbar-dropdown-right'))
                     @endforeach
                     <li>
-                        <a href="{{ route('admin.toggle-mode') }}" class="nav-link nav-link-lg"><i class="fas fa-adjust"></i></a>
+                        <a href="{{ route('admin.toggle-mode') }}" class="nav-link nav-link-lg"><i
+                                class="fas fa-adjust"></i></a>
                     </li>
                     <li class="dropdown dropdown-list-toggle">
                         <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle">
@@ -424,7 +424,7 @@
                                                 <li>
                                                     <a class="nav-link {{ nav_active($item['href'], href: true) }}"
                                                        href="{{ $item['href'] }}">
-                                                            {{ __($item['name']) }}
+                                                        {{ __($item['name']) }}
                                                     </a>
                                                 </li>
                                             @endforeach
@@ -494,9 +494,9 @@
             @endif
 
             @if(!Cache::has('cron_active'))
-            <div class="alert alert-danger" role="alert">
-                {!! __('admin.cronjobs_are_not_running_add_php_artisan_scheduler', ['base_path' => base_path()]) !!}
-            </div>
+                <div class="alert alert-danger" role="alert">
+                    {!! __('admin.cronjobs_are_not_running_add_php_artisan_scheduler', ['base_path' => base_path()]) !!}
+                </div>
             @endif
 
             @if(config('app.debug') AND config('app.version') != 'dev')
@@ -540,6 +540,12 @@
 <script src="{{ asset(AdminTheme::assets('js/scripts.js')) }}"></script>
 <script src="{{ asset(AdminTheme::assets('js/custom.js')) }}"></script>
 <script>
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
     function deleteItem(event) {
         if (window.confirm('{!! __('admin.are_you_sure') !!}')) {
             // Delete item code here
@@ -547,6 +553,7 @@
             event.preventDefault();
         }
     }
+
     function confirmAction(event, message) {
         if (window.confirm(message)) {
             // Delete item code here
