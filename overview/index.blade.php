@@ -469,7 +469,7 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
-                        <h4>{!! __('admin.online_users') !!}</h4>
+                        <h4><a href="{{ route('users.index', ['sort' => 'online']) }}">{!! __('admin.online_users') !!}</a></h4>
                         <div class="card-header-action">
 
                         </div>

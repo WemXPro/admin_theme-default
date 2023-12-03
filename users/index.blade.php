@@ -9,6 +9,8 @@
                     <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
                         {!! __('admin.search', ['default' => 'Search']) !!}
                     </button>
+
+                    <a class="btn btn-primary mb-3" href="{{ route('users.index', ['sort' => 'online']) }}">{!! __('admin.online_users') !!}</a>
                     <div class="table-responsive">
                       <table class="table table-striped table-md">
                           <tbody>
