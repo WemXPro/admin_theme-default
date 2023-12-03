@@ -8,7 +8,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>{!! __('admin.theme') !!}</th>
+                    <th>{!! __('admin.name') !!}</th>
                     <th>{!! __('admin.description') !!}</th>
                     <th>{!! __('admin.author') !!}</th>
                     <th>{!! __('admin.version') !!}</th>
