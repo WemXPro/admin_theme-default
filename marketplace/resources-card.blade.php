@@ -20,11 +20,13 @@
                 <tbody>
                 @php($install_key = 'install')
                 @foreach($marketplace['data'] as $resource)
-                    @php($resource['installed'] = false)
                     @if($installedResource = Module::find($resource['real_name']))
                         @php($resource['installed'] = true)
                         @php($install_key = 'reinstall')
                         @php($installedResourceConfig = config($installedResource->getLowerName()))
+                    @else
+                        @php($resource['installed'] = false)
+                        @php($install_key = 'install')
                     @endif
 
                     <tr>
