@@ -538,7 +538,7 @@
                             <hr>
 
                             @includeIf(AdminTheme::serviceView($package->service, 'params'))
-                            
+
                             @if($package->service()->hasPackageConfig($package))
                             <form action="{{ route('package.update-service', $package->id) }}" method="POST">
                                 @csrf
@@ -561,6 +561,7 @@
                                         </select>
                                         @elseif($field['type'] == 'bool')
                                         <label class="custom-switch mt-2">
+                                            <input type="hidden" name="{{ $field['key'] }}" value="0">
                                             <input type="checkbox" name="{{ $field['key'] }}" @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif value="1" class="custom-switch-input" @if($package->data($field['key'], $field['default_value'] ?? '')) checked @endif>
                                             <span class="custom-switch-indicator"></span>
                                           </label>
@@ -1127,7 +1128,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        
+
                         <div class="form-group">
                             <label for="type">{{ __('admin.type') }}</label>
                             <select class="form-control select2 select2-hidden-accessible hide" id="type-0"
@@ -1136,7 +1137,7 @@
                                 <option value="recurring" selected>{{ __('admin.recurring') }}</option>
                             </select>
                         </div>
-                        
+
                         <div class="row" id="recurring-options-0">
                             <div class="form-group col-md-12 col-12">
                                 <label for="period">{{ __('admin.period') }}</label>
