@@ -527,7 +527,7 @@
                                 <label for="service">{{ __('admin.service_provider') }}</label>
                                 <select class="form-control select2 select2-hidden-accessible"
                                         onchange="updateService()"
-                                        name="service" id="service" tabindex="-1" aria-hidden="true">
+                                        name="service" id="service" tabindex="-1" aria-hidden="true" disabled>
                                     @foreach (Service::allEnabled() as $service)
                                         <option value="{{ $service->module()->getLowerName() }}"
                                                 @if ($package->service == $service->module()->getLowerName()) selected @endif>{{ $service->about()->display_name }}
