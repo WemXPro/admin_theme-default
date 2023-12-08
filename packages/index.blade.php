@@ -1,9 +1,5 @@
 @extends(AdminTheme::wrapper(), ['title' => __('admin.packages'), 'keywords' => 'WemX Dashboard, WemX Panel'])
 
-@section('css_libraries')
-    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/wd/123-bs4.css')) }}" />
-@endsection
-
 @section('container')
     <div class="row justify-content-center">
         <div class="col-md-12">
