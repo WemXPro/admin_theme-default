@@ -675,8 +675,7 @@
 
                                                 <div class="">
                                                     <label for="body">{{ __('admin.email_body') }}</label>
-                                                    <textarea class="summernote form-control" name="body" id="body"
-                                                              style="display: none;">
+                                                    <textarea class="form-control" name="body" id="body">
                                                 </textarea>
                                                     <small class="form-text text-muted"></small>
                                                 </div>
@@ -789,9 +788,8 @@
 
                                                                 <div class="">
                                                                     <label for="body">{{ __('admin.email_body') }}</label>
-                                                                    <textarea class="summernote form-control"
-                                                                              name="body" id="body"
-                                                                              style="display: none;">
+                                                                    <textarea class="form-control"
+                                                                              name="body" id="body">
                                                                         {!! $email->body !!}
                                                                     </textarea>
                                                                     <small class="form-text text-muted"></small>
