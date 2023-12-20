@@ -30,7 +30,7 @@
                             <a href="{{ route('packages.prices', $package->id) }}" class="nav-link nav-link-tab @if($tab == 'prices') active @endif">{{ __('admin.prices') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('packages.service', $package->id) }}" class="nav-link nav-link-tab @if($tab == 'service') active @endif">{{ __('admin.service_provider') }}</a>
+                            <a href="{{ route('packages.service', $package->id) }}" class="nav-link nav-link-tab @if($tab == 'service') active @endif">{{ __('admin.service') }} ({{ ucfirst($package->service) }})</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('packages.emails', $package->id) }}" class="nav-link nav-link-tab @if($tab == 'emails') active @endif">

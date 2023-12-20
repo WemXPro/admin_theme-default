@@ -16,7 +16,7 @@
 
             <div class="form-group col-md-6 col-6">
                 <label for="category">{{ __('admin.category') }}</label>
-                <select class="form-control select2 select2-hidden-accessible" name="category"
+                <select class="form-control select2 select2-hidden-accessible" name="category" id="category"
                         tabindex="-1" aria-hidden="true">
                     @foreach (Categories::get() as $category)
                         <option value="{{ $category->id }}"
@@ -28,7 +28,7 @@
 
             <div class="form-group col-md-6 col-6">
                 <label for="status">{{ __('admin.package_status') }}</label>
-                <select class="form-control select2 select2-hidden-accessible" name="status"
+                <select class="form-control select2 select2-hidden-accessible" name="status" id="status"
                         tabindex="-1" aria-hidden="true">
                     <option value="active" @if ($package->status == 'active') selected @endif>
                         {{ __('admin.active') }}
@@ -46,6 +46,13 @@
                         {{ __('admin.retired_inactive_package_will_not_be_shown_to_new') }}
                     </option>
                 </select>
+            </div>
+
+            <div class="form-group col-md-12 col-12">
+                <label>{{ __('admin.service') }}</label>
+                <input type="text"
+                       value="{{ ucfirst($package->service) }}" class="form-control"
+                       disabled=""/>
             </div>
 
             <div class="form-group col-md-12 col-12 mt-3">
@@ -69,8 +76,8 @@
 
         <div class="row">
             <div class="form-group col-md-6 col-6">
-                <label for="stock">{{ __('admin.global_stock') }}</label>
-                <input type="number" name="global_stock" id="stock" min="-1"
+                <label for="global_stock">{{ __('admin.global_stock') }}</label>
+                <input type="number" name="global_stock" id="global_stock" min="-1"
                        value="{{ $package->global_quantity }}" class="form-control"
                        required=""/>
                 <small

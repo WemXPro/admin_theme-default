@@ -2,19 +2,6 @@
 
 @section('content')
 <div>
-    <div class="form-group col-md-12 col-12">
-        <label for="service">{{ __('admin.service_provider') }}</label>
-        <select class="form-control select2 select2-hidden-accessible"
-                onchange="updateService()"
-                name="service" id="service" tabindex="-1" aria-hidden="true" disabled>
-            @foreach (Service::allEnabled() as $service)
-                <option value="{{ $service->module()->getLowerName() }}"
-                        @if ($package->service == $service->module()->getLowerName()) selected @endif>{{ $service->about()->display_name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-    <hr>
 
     @includeIf(AdminTheme::serviceView($package->service, 'params'))
 
@@ -63,7 +50,7 @@
         @endforeach
             <div class="col-12">
                 <div class="text-right">
-                    <button class="btn btn-primary" id="service-settings-submit" type="submit">Update</button>
+                    <button class="btn btn-success" id="service-settings-submit" type="submit">Update</button>
                 </div>
             </div>
         </div>
