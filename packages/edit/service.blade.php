@@ -47,7 +47,7 @@
                     {!! $field['description'] !!}
                 </small>
             </div>
-        @endforeach
+            @endforeach
             <div class="col-12">
                 <div class="text-right">
                     <button class="btn btn-success" id="service-settings-submit" type="submit">Update</button>
