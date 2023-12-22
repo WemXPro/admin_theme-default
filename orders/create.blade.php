@@ -24,14 +24,47 @@
         <div class="row mt-sm-4">
             <div class="col-12 col-md-12 col-lg-12">
 
+            <form method="post" action="{{ route('orders.store') }}" class="needs-validation" novalidate="">
+                @csrf
                 <div class="card">
-                    <form method="post" action="{{ route('orders.store') }}" class="needs-validation" novalidate="">
-                        @csrf
                         <div class="card-header">
-                            <h4>{!!  __('admin.update_service', ['default' => 'Update Service']) !!}</h4>
+                            <h4>{!!  __('admin.create', ['default' => 'Create']) !!}</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
+
+                                <div class="form-group col-md-12 col-12">
+                                    <label
+                                        for="package_id">{!!  __('admin.package', ['default' => 'Package']) !!}</label>
+                                    <select class="form-control select2 select2-hidden-accessible"
+                                        onchange="setPackage(this.value)" 
+                                        name="package_id" id="package_id"
+                                            tabindex="-1" aria-hidden="true">
+                                        @foreach (Package::get() as $packageList)
+                                            @if($packageList->status == 'inactive')
+                                                @continue;
+                                            @endif
+                                            <option value="{{ $packageList->id }}" @if(isset($package) AND $package->id == $packageList->id) selected @endif>{{ $packageList->name }}
+                                                ({{ $packageList->service }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                @if(isset($package))
+                                <div class="form-group col-md-12 col-12">
+                                    <label for="price">{!!  __('admin.price', ['default' => 'Price']) !!}</label>
+                                    <select class="form-control select2 select2-hidden-accessible" name="price"
+                                            id="price" tabindex="-1" aria-hidden="true">
+                                            @foreach ($package->prices as $price)
+                                                @if(!$price->is_active)
+                                                    @continue;
+                                                @endif
+                                                <option value="{{ $price->id }}">{{ currency('symbol') . number_format($price->renewal_price, 2) }} @ {{ $price->periodToHuman() }}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
+                                @endif
 
                                 <div class="form-group col-md-12 col-12">
                                     <label for="user">{!!  __('admin.user', ['default' => 'User']) !!}</label>
@@ -41,31 +74,6 @@
                                             <option value="{{ $user->id }}">{{ $user->username }} ({{ $user->email }})
                                             </option>
                                         @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group col-md-12 col-12">
-                                    <label
-                                        for="package_id">{!!  __('admin.package', ['default' => 'Package']) !!}</label>
-                                    <select class="form-control select2 select2-hidden-accessible"
-                                            onchange="retrieveJSONList()" name="package_id" id="package_id"
-                                            tabindex="-1" aria-hidden="true">
-                                        @foreach (Package::get() as $package)
-                                            @if($package->status == 'inactive')
-                                                @continue;
-                                            @endif
-                                            <option value="{{ $package->id }}">{{ $package->name }}
-                                                ({{ $package->service }})
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group col-md-12 col-12">
-                                    <label for="price">{!!  __('admin.price', ['default' => 'Price']) !!}</label>
-                                    <select class="form-control select2 select2-hidden-accessible" name="price"
-                                            id="price" tabindex="-1" aria-hidden="true">
-
                                     </select>
                                 </div>
 
@@ -82,14 +90,16 @@
                                     </select>
                                 </div>
 
+                                @if(isset($package) AND $package->require_domain)
                                 <div class="form-group col-md-12 col-12">
                                     <label for="status">
-                                        {!!  __('admin.domain', ['default' => 'Domain']) !!} {!!  __('admin.optional', ['default' => '(optional)']) !!}
+                                        {!!  __('admin.domain', ['default' => 'Domain']) !!}
                                     </label>
-                                    <input type="text" class="form-control" name="domain" value=""
+                                    <input type="text" class="form-control" name="domain" value="" required
                                            placeholder="example.com"/>
                                     <small class="form-text text-muted"></small>
                                 </div>
+                                @endif
 
                                 <div class="form-group col-md-6 col-12">
                                     <label
@@ -143,11 +153,60 @@
 
                             </div>
                         </div>
-                        <div class="card-footer text-right">
-                            <button class="btn btn-dark" type="submit">{!!  __('admin.create', ['default' => 'Create']) !!}</button>
-                        </div>
-                    </form>
                 </div>
+
+                @if(isset($package) AND $package->service()->hasCheckoutConfig($package))
+                <div class="card">
+                    <div class="card-body">
+                        @foreach($package->service()->getCheckoutConfig($package)->all() ?? [] as $name => $field)
+                        <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset" style="display: flex;flex-direction: column;">
+                            <label>{!! $field['name'] !!}</label>
+                            @if($field['type'] == 'select')
+                            <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"
+                            name="{{ $field['key'] }}"
+                            id="{{ $field['key'] }}"
+                            @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif
+                            @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
+                            >
+                                @foreach($field['options'] ?? [] as $key => $option)
+                                <option value="{{ $key }}"
+                                @if(in_array($key, (array) $package->data(Str::remove("[]", $field['key']), $field['default_value'] ?? ''))) selected @endif
+                                >{{ $option }}</option>
+                                @endforeach
+                            </select>
+                            @elseif($field['type'] == 'bool')
+                            <label class="custom-switch mt-2">
+                                <input type="hidden" name="{{ $field['key'] }}" value="0">
+                                <input type="checkbox" name="{{ $field['key'] }}" @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif value="1" class="custom-switch-input" @if($package->data($field['key'], $field['default_value'] ?? '')) checked @endif>
+                                <span class="custom-switch-indicator"></span>
+                              </label>
+                            @else
+                            <input class="form-control"
+                            type="{{ $field['type'] }}"
+                            name="{{ $field['key'] }}"
+                            id="{{ $field['key'] }}"
+                            @isset($field['min']) min="{{$field['min']}}" @endisset
+                            @isset($field['max']) max="{{$field['max']}}" @endisset
+                            @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif
+                            value="{{ $package->data($field['key'], $field['default_value'] ?? '') }}"
+                            placeholder="@isset($field['placeholder']){{$field['placeholder']}} @else{{ $field['name'] }} @endisset"
+                            @if(in_array('required', $field['rules'])) required="" @endif>
+                            @endif
+                            <small class="form-text text-muted">
+                                {!! $field['description'] !!}
+                            </small>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+
+                <div class="card">
+                    <div class="card-footer text-right">
+                        <button class="btn btn-success" type="submit">{!!  __('admin.create', ['default' => 'Create']) !!}</button>
+                    </div>
+                </div>
+            </form>
 
             </div>
         </div>
@@ -155,54 +214,9 @@
     </section>
 
     <script>
-        function periodToHuman(price) {
-            if (price == 1) {
-                return 'daily';
-            } else if (price == 7) {
-                return 'weekly';
-            } else if (price == 30) {
-                return 'monthly';
-            } else if (price == 90) {
-                return 'quarterly';
-            } else if (price == 365) {
-                return 'yearly';
-            } else if (price == 730) {
-                return 'Per 2 years';
-            } else if (price == 1825) {
-                return 'Per 5 years';
-            } else if (price == 3650) {
-                return 'Per 10 years';
-            } else {
-                return 'daily';
-            }
+        function setPackage(id) {
+            // redirect the user to the same page with package=ID in the request
+            return location.href = '/admin/orders/create?package=' + id;
         }
-
-        retrieveJSONList();
-
-        function retrieveJSONList() {
-            const selectElement = document.getElementById('price');
-            var id = document.getElementById('package_id').value;
-            fetch('/admin/orders/prices/' + id, {
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    selectElement.innerHTML = '';
-
-                    data.forEach(function (price) {
-                        const optionElement = document.createElement('option');
-                        optionElement.value = price.id;
-                        optionElement.text = '{{ currency('symbol') }}' + price.price.toFixed(2) + ' @ ' + periodToHuman(price.period);
-            selectElement.appendChild(optionElement);
-    });
-})
-.catch(error => {
-    console.error('Error:', error);
-    // Handle the error case
-});
-
-}
-</script>
+    </script>
 @endsection

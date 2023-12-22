@@ -21,6 +21,14 @@
 
         <div class="col-12">
             <div class="card">
+                <div class="card-header">
+                    <h4>{!! __('admin.emails') !!}</h4>
+                    <div class="card-header-action">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" class="btn btn-icon icon-left btn-primary"><i class="fas fa-solid fa-plus"></i>
+                            {!! __('admin.create') !!}
+                        </button>
+                    </div>
+                </div>
                 <div class="card-body">
                     @if($user->emails->count() < 0)
                         @includeIf(AdminTheme::path('empty-state'), ['title' => 'No emails found', 'description' => 'This user has no emails in history'])
@@ -132,4 +140,42 @@
         }
         </style>
     </section>
+
+<!-- Modal -->
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="emailModalLabel">{{ __('admin.email') }} {{ $user->email }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{ route('emails.send') }}" method="POST">
+            @csrf
+            <div class="modal-body">
+
+                <input type="hidden" name="email" value="{{ $user->email }}">
+
+                <div class="mb-4">
+                    <label for="subject">{{ __('admin.subject') }}</label>
+                    <input type="text" name="subject" id="subject" placeholder="{{ __('admin.subject') }}"
+                           class="form-control" required=""/>
+                </div>
+
+                <div class="mb-4">
+                    <label for="body">{{ __('admin.email_body') }}</label>
+                    <textarea class="form-control" name="body" id="body"></textarea>
+                    <small class="form-text text-muted"></small>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin.close') }}</button>
+            <button type="submit" class="btn btn-primary">{{ __('admin.send') }}</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @endsection
