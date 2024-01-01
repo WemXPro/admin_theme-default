@@ -30,7 +30,9 @@
                     <input type="hidden" name="{{ $field['key'] }}" value="0">
                     <input type="checkbox" name="{{ $field['key'] }}" @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif value="1" class="custom-switch-input" @if($package->data($field['key'], $field['default_value'] ?? '')) checked @endif>
                     <span class="custom-switch-indicator"></span>
-                  </label>
+                </label>
+                @elseif($field['type'] == 'textarea')
+                    <textarea class="form-control" name="{{ $field['key'] }}" id="{{ $field['key'] }}">{{ $package->data($field['key'], $field['default_value'] ?? '') }}</textarea>
                 @else
                 <input class="form-control"
                 type="{{ $field['type'] }}"
