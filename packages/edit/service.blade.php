@@ -41,7 +41,7 @@
                 @isset($field['min']) min="{{$field['min']}}" @endisset
                 @isset($field['max']) max="{{$field['max']}}" @endisset
                 @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif
-                value="{{ $package->data($field['key'], $field['default_value'] ?? '') }}"
+                value="{{ getValueByKey($field['key'], $package->data, $field['default_value'] ?? '') }}"
                 placeholder="@isset($field['placeholder']){{$field['placeholder']}} @else{{ $field['name'] }} @endisset"
                 @if(in_array('required', $field['rules'])) required="" @endif>
                 @endif
