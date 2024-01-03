@@ -3,8 +3,6 @@
 @section('content')
 <div>
 
-    @includeIf(AdminTheme::serviceView($package->service, 'params'))
-
     @if($package->service()->hasPackageConfig($package))
     <form action="{{ route('package.update-service', $package->id) }}" method="POST">
         @csrf
@@ -57,6 +55,8 @@
             </div>
         </div>
     </form>
+    @else
+        @includeIf(AdminTheme::serviceView($package->service, 'params'))
     @endif
 
     <script>
