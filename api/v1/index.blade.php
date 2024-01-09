@@ -31,9 +31,9 @@
                             <tbody>
                             <tr>
                                 <th>{!! __('admin.id') !!}</th>
+                                <th>Api Key</th>
                                 <th>{!! __('admin.user') !!}</th>
                                 <th>{!! __('admin.description') !!}</th>
-                                <th>{!! __('admin.permissions') !!}</th>
                                 <th>{!! __('admin.expires_at') !!}</th>
                                 <th>{!! __('admin.last_used') !!}</th>
                                 <th>{!! __('admin.create_at') !!}</th>
@@ -43,6 +43,7 @@
                             @foreach($apiKeys as $key)
                                 <tr>
                                     <td>{{ $key->id }}</td>
+                                    <td>{{ $key->secret }}</td>
                                     <td>
                                         <a href="{{ route('users.edit', ['user' => $key->user->id]) }}"
                                            style="display: flex; color: #6c757d">
@@ -60,16 +61,13 @@
                                         {{ $key->description }}
                                     </td>
                                     <td>
-                                        {{ $key->permissions }}
+                                        {{ $key->expires_at ? $key->expires_at->format(settings('date_format', 'd M Y')) : 'Never' }}
                                     </td>
                                     <td>
-                                        {{ $key->expires_at->translatedFormat(settings('date_format', 'd M Y')) }}
+                                        {{ $key->last_used_at ? $key->last_used_at->diffForHumans() : 'Never' }}
                                     </td>
                                     <td>
-                                        {{ $key->last_used_at->diffForHumans() }}
-                                    </td>
-                                    <td>
-                                        {{ $key->created_at->translatedFormat(settings('date_format', 'd M Y')) }}
+                                        {{ $key->created_at->format(settings('date_format', 'd M Y')) }}
                                     </td>
                                     <td class="text-right">
 
