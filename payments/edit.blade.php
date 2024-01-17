@@ -78,13 +78,13 @@
                                 <div class="col-8 mb-3">
                                     <label
                                         for="currency">{!! __('admin.gateway_name', ['default' => 'Gateway Name']) !!}</label>
-                                    <input type="text" class="form-control" value="{{ $payment->gateway['name'] }}"
+                                    <input type="text" class="form-control" value="{{ $payment->gateway['name'] ?? '' }}"
                                            disabled="">
                                 </div>
 
                                 <div class="col-4 mb-3">
                                     <label for="currency">{!! __('admin.type', ['default' => 'Type']) !!}</label>
-                                    <input type="text" class="form-control" value="{{ $payment->gateway['type'] }}"
+                                    <input type="text" class="form-control" value="{{ $payment->gateway['type'] ?? '' }}"
                                            disabled="">
                                 </div>
 
@@ -208,7 +208,7 @@
                 @csrf
                 <div class="modal-body">
                     <p>You can manually complete payments that are unpaid. On completion, the application will attempt to mark the payment as complete and run the program the payment was created for.</p>
-                    
+
                     <div class="form-group">
                         <label for="user">{!! __('client.payment_method') !!}</label>
                         <select class="form-control select2 select2-hidden-accessible" name="gateway" tabindex="-1"
