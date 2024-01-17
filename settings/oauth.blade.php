@@ -54,18 +54,6 @@
                 </label>
               </div>
 
-              <div class="form-group col-6">
-                <div class="control-label">{!! __('admin.allow_login', ['default' => 'Allow Login']) !!}</div>
-                <label class="custom-switch mt-2">
-                  <input type="checkbox" name="encrypted::oauth::discord[allow_login]" value="1" class="custom-switch-input"
-                         @if(Settings::getJson('encrypted::oauth::discord', 'allow_login', false)) checked @endif>
-                  <span class="custom-switch-indicator"></span>
-                  <span class="custom-switch-description">
-                      {!! __('admin.allow_login_using', ['name' => 'Discord', 'default' => 'Allow users to login using :name']) !!}
-                  </span>
-                </label>
-              </div>
-
               <div class="col-12" style="display: flex;justify-content: flex-end;">
                 <button type="submit" class="btn btn-primary">{!! __('admin.update_driver', ['default' => 'Update Driver']) !!}</button>
               </div>
@@ -115,18 +103,6 @@
                 </label>
               </div>
 
-              <div class="form-group col-6">
-                <div class="control-label">{!! __('admin.allow_login', ['default' => 'Allow Login']) !!}</div>
-                <label class="custom-switch mt-2">
-                  <input type="checkbox" name="encrypted::oauth::github[allow_login]" value="1" class="custom-switch-input"
-                         @if(Settings::getJson('encrypted::oauth::github', 'allow_login', false)) checked @endif>
-                  <span class="custom-switch-indicator"></span>
-                  <span class="custom-switch-description">
-                      {!! __('admin.allow_login_using', ['name' => 'Github', 'default' => 'Allow users to login using :name']) !!}
-                  </span>
-                </label>
-              </div>
-
               <div class="col-12" style="display: flex;justify-content: flex-end;">
                 <button type="submit" class="btn btn-primary">{!! __('admin.update_driver', ['default' => 'Update Driver']) !!}</button>
               </div>
@@ -172,18 +148,6 @@
                   <span class="custom-switch-indicator"></span>
                   <span class="custom-switch-description">
                       {!! __('admin.allow_connect_using', ['name' => 'Google','default' => 'Allow users to connect :name']) !!}
-                  </span>
-                </label>
-              </div>
-
-              <div class="form-group col-6">
-                <div class="control-label">{!! __('admin.allow_login', ['default' => 'Allow Login']) !!}</div>
-                <label class="custom-switch mt-2">
-                  <input type="checkbox" name="encrypted::oauth::google[allow_login]" value="1" class="custom-switch-input"
-                         @if(Settings::getJson('encrypted::oauth::google', 'allow_login', false)) checked @endif>
-                  <span class="custom-switch-indicator"></span>
-                  <span class="custom-switch-description">
-                      {!! __('admin.allow_login_using', ['name' => 'Google', 'default' => 'Allow users to login using :name']) !!}
                   </span>
                 </label>
               </div>
