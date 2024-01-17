@@ -86,6 +86,7 @@
                         <h4>IP connections</h4>
                     </div>
                     <div class="card-body">
+                        <p>{{ __('admin.allowed_ips_desc') }}</p>
                         <div class="form-group">
                             <label for="ips[]">IP Address</label>
                             <input type="text" name="ips[]" id="ips[]"
