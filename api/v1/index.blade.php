@@ -17,7 +17,7 @@
         <div class="">
             <div class="card">
                 <div class="card-header">
-                    <h4>Api Keys</h4>
+                    <h4>{{ __('admin.api_tokens') }} <a href="https://wemx.gitbook.io/wemx-api/" class="ml-2" target="_blank">API Documentation</a></h4>
                     <div class="card-header-action">
                         <a href="{{ route('api-v1.create') }}" class="btn btn-primary">{{ __('admin.create') }}</a>
                     </div>

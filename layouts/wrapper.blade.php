@@ -407,6 +407,12 @@
                             <span>{!!  __('admin.services', ['default' => 'Services']) !!}</span></a>
                     </li>
 
+                    <li>
+                        <a class="nav-link {{ nav_active('api-v1.index') }}" href="{{ route('api-v1.index') }}"><i
+                                class="fas fa-solid fa-code"></i>
+                            <span>{!!  __('admin.api_tokens', ['default' => 'API Tokens']) !!}</span></a>
+                    </li>
+
                     <li class="menu-header">{!! __('admin.modules') !!}</li>
 
                     @foreach (Module::allEnabled() as $module)
