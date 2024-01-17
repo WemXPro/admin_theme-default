@@ -33,6 +33,9 @@
                             <a href="{{ route('packages.service', $package->id) }}" class="nav-link nav-link-tab @if($tab == 'service') active @endif">{{ __('admin.service') }} ({{ ucfirst($package->service) }})</a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('packages.config-options', $package->id) }}" class="nav-link nav-link-tab @if($tab == 'config_options') active @endif">Configurable Options</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('packages.emails', $package->id) }}" class="nav-link nav-link-tab @if($tab == 'emails') active @endif">
                                 {{ __('admin.emails') }}</a>
                         </li>

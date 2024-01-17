@@ -17,9 +17,9 @@
         <div class="">
             <div class="card">
                 <div class="card-header">
-                    <h4>Api Keys</h4>
+                    <h4>{{ __('admin.api_tokens') }} <a href="https://wemx.gitbook.io/wemx-api/" class="ml-2" target="_blank">API Documentation</a></h4>
                     <div class="card-header-action">
-                        <a href="#" class="btn btn-primary">{{ __('admin.create') }}</a>
+                        <a href="{{ route('api-v1.create') }}" class="btn btn-primary">{{ __('admin.create') }}</a>
                     </div>
                 </div>
                 <div class="card-body p-0">
@@ -31,19 +31,20 @@
                             <tbody>
                             <tr>
                                 <th>{!! __('admin.id') !!}</th>
-                                <th>Api Key</th>
-                                <th>{!! __('admin.user') !!}</th>
                                 <th>{!! __('admin.description') !!}</th>
+                                <th>{!! __('admin.user') !!}</th>
+                                <th>{!! __('admin.permissions') !!}</th>
+                                <th>{!! __('admin.allowed_ips') !!}</th>
                                 <th>{!! __('admin.expires_at') !!}</th>
                                 <th>{!! __('admin.last_used') !!}</th>
                                 <th>{!! __('admin.create_at') !!}</th>
-                                <th class="text-right">{!! __('admin.actions') !!}</th>
+                                <th class="text-left">{!! __('admin.actions') !!}</th>
                             </tr>
 
                             @foreach($apiKeys as $key)
                                 <tr>
                                     <td>{{ $key->id }}</td>
-                                    <td>{{ $key->secret }}</td>
+                                    <td>{{ $key->description }}</td>
                                     <td>
                                         <a href="{{ route('users.edit', ['user' => $key->user->id]) }}"
                                            style="display: flex; color: #6c757d">
@@ -58,7 +59,10 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {{ $key->description }}
+                                        <a data-toggle="tooltip" title="" data-original-title="@if($key->full_permissions) Full Access @else{{ $key->permissions->implode(', ') }} {!! __('admin.permissions') !!} @endif">@if($key->full_permissions) Full Access @else {{ $key->permissions->count() }} {!! __('admin.permissions') !!} @endif</a>
+                                    </td>
+                                    <td>
+                                        <a data-toggle="tooltip" title="" data-original-title="@if(empty($key->allowed_ips)) Anywhere @else{{ $key->permissions->implode(', ') }} {!! __('admin.ip_address') !!} @endif">@if(empty($key->allowed_ips)) Anywhere @else {{ $key->allowed_ips->count() }} {!! __('admin.ip_address') !!} @endif</a>
                                     </td>
                                     <td>
                                         {{ $key->expires_at ? $key->expires_at->format(settings('date_format', 'd M Y')) : 'Never' }}
@@ -69,8 +73,14 @@
                                     <td>
                                         {{ $key->created_at->format(settings('date_format', 'd M Y')) }}
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-left" style="display: flex">
+                                        <a href="{{ route('api-v1.show', $key->id) }}" class="btn btn-icon btn-success mr-1"><i class="fas fa-recycle"></i></a>
 
+                                        <form action="{{ route('api-v1.destroy', $key->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-icon btn-danger"><i class="fas fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
