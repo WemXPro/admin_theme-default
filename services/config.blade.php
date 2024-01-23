@@ -22,7 +22,7 @@
                     <div class="card-body">
                         @csrf
                       <div class="row">
-        
+
                         @foreach($service->getConfig()->all() ?? [] as $name => $field)
                         <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset" style="display: flex;flex-direction: column;">
                             <label>{!! $field['name'] !!}</label>
@@ -40,6 +40,7 @@
                             </select>
                             @elseif($field['type'] == 'bool')
                             <label class="custom-switch mt-2">
+                                <input type="hidden" name="{{ $field['key'] }}" value="0">
                                 <input type="checkbox" name="{{ $field['key'] }}" value="1" class="custom-switch-input" @if(settings($field['key'], $field['default_value'] ?? '')) checked @endif>
                                 <span class="custom-switch-indicator"></span>
                               </label>
