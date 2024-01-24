@@ -8,6 +8,17 @@
         @csrf
         <div class="row">
             @foreach($package->service()->getPackageConfig($package)->all() ?? [] as $name => $field)
+                @if($field['type'] == 'content')
+                    <div class="container w-100">
+                        <div class="row justify-content-md-center">
+                            <h4 class="text-center">{!!  $field['label'] !!}</h4>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <p class="text-bold">{!!  $field['description'] !!}</p>
+                        </div>
+                    </div>
+                    @continue
+                @endif
             <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset" style="display: flex;flex-direction: column;">
                 <label>{!! $field['name'] !!}</label>
                 @if($field['type'] == 'select')
