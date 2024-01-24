@@ -36,11 +36,14 @@
                                         @endif
                                         @if ($service->module()->isEnabled())
                                             <a href="{{ route('modules.toggle', ['module' => $service->module()->getName()]) }}"
-                                                class="btn btn-danger">{!! __('admin.disable') !!}</a>
+                                                class="btn btn-warning">{!! __('admin.disable') !!}</a>
                                         @else
                                             <a href="{{ route('modules.toggle', ['module' => $service->module()->getName()]) }}"
                                                 class="btn btn-success">{!! __('admin.enable') !!}</a>
                                         @endif
+                                            <button
+                                                onclick="if (confirm('{{__('client.sure_you_want_delete')}}')) {window.location.href = '{{ route('modules.delete', ['module' => $service->module()->getName()]) }}'}"
+                                                    class="btn btn-danger m-2">{!! __('admin.delete') !!}</button>
                                     </td>
                                 </tr>
                             @endforeach
