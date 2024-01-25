@@ -260,7 +260,7 @@
                     </li>
 
                     <li class="menu-header">{!!  __('admin.settings', ['default' => 'Settings']) !!}</li>
-                    <li class="dropdown {{ nav_active('admin/settings', prefix: true) }}">
+                    <li class="dropdown {{ nav_active('admin/settings', prefix: true) }} {{ nav_active('admin/logs', prefix: true) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                 class="fas fa-cog"></i>
                             <span>{!!  __('admin.configuration', ['default' => 'Configuration']) !!}</span></a>
