@@ -454,6 +454,16 @@
                 <div id="nav-footer" style="min-height: 20px;"></div>
                 <hr>
             </aside>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    setTimeout(function() {
+                        let activeItem = document.querySelector('.sidebar-menu .active-nav');
+                        if (activeItem) {
+                            activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }, 300);
+                });
+            </script>
         </div>
 
         <!-- Main Content -->
