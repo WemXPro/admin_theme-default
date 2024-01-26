@@ -107,8 +107,6 @@
                                                 data-target="#logModal{{ $log->id }}">
                                             {!! __('admin.view') !!}
                                         </button>
-                                        <button type="button"
-                                                class="btn btn-primary">{!! __('admin.resolve') !!}</button>
                                     </td>
                                 </tr>
                             @endforeach

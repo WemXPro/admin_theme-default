@@ -112,27 +112,31 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-4 mb-2 d-flex">
-                                <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'unsuspend']) }}"
-                                   class="btn btn-icon icon-left btn-info w-100"><i class="fas fa-solid fa-rotate-left"></i>
-                                    {!! __('admin.unsuspend', ['default' => 'Unsuspend']) !!}</a>
-                            </div>
-                            <div class="col-4 mb-2 d-flex">
-                                <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'suspend']) }}"
-                                   class="btn btn-icon icon-left btn-warning w-100"><i class="fas fa-solid fa-ban"></i>
-                                    {!! __('admin.suspend', ['default' => 'Suspend']) !!}</a>
-                            </div>
-                            <div class="col-4 mb-2 d-flex">
-                                <a onclick="terminate(event)"
-                                   href="{{ route('orders.action', ['order' => $order->id, 'action' => 'terminate']) }}"
-                                   class="btn btn-icon icon-left btn-danger w-100"><i class="fas fa-solid fa-trash-can"></i>
-                                    {!! __('admin.terminate', ['default' => 'Terminate']) !!}</a>
-                            </div>
-                        </div>
+                        <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'unsuspend']) }}"
+                            class="btn btn-icon icon-left btn-info mr-2"><i class="fas fa-solid fa-rotate-left"></i>
+                            {!! __('admin.unsuspend', ['default' => 'Unsuspend']) !!}
+                        </a>
+                        <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'suspend']) }}"
+                            class="btn btn-icon icon-left btn-warning  mr-2"><i class="fas fa-solid fa-ban"></i>
+                            {!! __('admin.suspend', ['default' => 'Suspend']) !!}
+                        </a>
+                        <a onclick="terminate(event)"
+                            href="{{ route('orders.action', ['order' => $order->id, 'action' => 'terminate']) }}"
+                            class="btn btn-icon icon-left btn-danger mr-2"><i class="fas fa-solid fa-trash-can"></i>
+                            {!! __('admin.terminate', ['default' => 'Terminate']) !!}
+                        </a>
+                        <br>
+                        <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'force_suspend']) }}"
+                            class="btn btn-icon icon-left btn-warning mr-2 mt-4 "><i class="fas fa-solid fa-ban"></i>
+                             {!! __('admin.force_suspend', ['default' => 'Force Suspend']) !!}
+                         </a>
+                         <a onclick="terminate(event)"
+                            href="{{ route('orders.action', ['order' => $order->id, 'action' => 'force_terminate']) }}"
+                            class="btn btn-icon icon-left btn-danger mr-2  mt-4"><i class="fas fa-solid fa-trash-can"></i>
+                             {!! __('admin.force_terminate', ['default' => 'Force Terminate']) !!}
+                         </a>
                     </div>
                 </div>
-
 
                 <div class="card">
                     <div class="card-header">

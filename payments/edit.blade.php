@@ -176,13 +176,6 @@
                             <textarea type="text" class="form-control" rows="4"
                                       name="notes">{{ $payment->notes }}</textarea>
                         </div>
-
-                        <div class="col-md-12 col-12">
-                            <a href="{{ route('invoice', ['payment' => $payment->id]) }}" target="_blank"
-                               class="btn btn-icon icon-left btn-dark"><i class="fas fa-solid fa-envelope"></i>
-                                {!! __('admin.email_invoice', ['default' => 'Email Invoice']) !!}
-                            </a>
-                        </div>
                     </div>
 
                 </div>
