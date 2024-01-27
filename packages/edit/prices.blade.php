@@ -141,6 +141,15 @@
                                                class="form-control"
                                                required=""/>
                                     </div>
+
+                                    <div class="form-group col-md-12 col-12">
+                                        <label for="upgrade_fee">{{ __('admin.upgrade_fee') }}</label>
+                                        <input type="number" name="upgrade_fee" id="upgrade_fee"
+                                               min="0.00" step="0.01"
+                                               value="{{ $price->upgrade_fee }}"
+                                               class="form-control"
+                                               required=""/>
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -289,6 +298,12 @@
                             <div class="form-group col-md-12 col-12">
                                 <label for="setup_fee">{{ __('admin.setup_fee') }}</label>
                                 <input type="number" name="setup_fee" id="setup_fee" min="0.00" step="0.01"
+                                       value="0.00" class="form-control" required=""/>
+                            </div>
+
+                            <div class="form-group col-md-12 col-12">
+                                <label for="upgrade_fee">{{ __('admin.upgrade_fee') }}</label>
+                                <input type="number" name="upgrade_fee" id="upgrade_fee" min="0.00" step="0.01"
                                        value="0.00" class="form-control" required=""/>
                             </div>
                         </div>

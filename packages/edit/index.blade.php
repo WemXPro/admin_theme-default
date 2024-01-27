@@ -80,8 +80,7 @@
                 <input type="number" name="global_stock" id="global_stock" min="-1"
                        value="{{ $package->global_quantity }}" class="form-control"
                        required=""/>
-                <small
-                    class="form-text text-muted">{!! __('admin.client_stock_indicates_the_stock_limit_per_client') !!}</small>
+                <small class="form-text text-muted">{!! __('admin.client_stock_indicates_the_stock_limit_per_client') !!}</small>
             </div>
 
             <div class="form-group col-md-6 col-6">
@@ -119,6 +118,22 @@
                     </label>
                 </div>
             </div>
+
+            @if($package->service()->canUpgrade())
+            <div class="form-group col-md-6 col-6">
+                <label for="settings[allow_upgrading]">{{ __('admin.allow_upgrading') }}</label>
+                <select class="form-control select2 select2-hidden-accessible" required="" name="settings[allow_upgrading]" id="settings[allow_upgrading]"
+                        tabindex="-1" aria-hidden="true">
+                    <option value="1" @if($package->settings('allow_upgrading', true)) selected @endif>
+                        Yes, allow users to upgrade
+                    </option>
+                    <option value="0" @if(!$package->settings('allow_upgrading', true)) selected @endif>
+                        No, disable upgrading for this package
+                    </option>
+                </select>
+                <small class="form-text text-muted">{!! __('admin.allow_upgrading_desc') !!}</small>
+            </div>
+            @endif
         </div>
         <div class="text-right">
             <button class="btn btn-success" type="submit">{{ __('admin.update') }}</button>
