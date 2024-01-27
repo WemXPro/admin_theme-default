@@ -40,7 +40,7 @@
     <div class="col-12 col-sm-6 col-md-6 col-lg-3">
         <article class="article article-style-c">
             <div class="article-header">
-                <div class="article-image" data-background="{{ $resource['icon'] }}" style="background-image: url('{{ $resource['icon'] }}');"></div>
+                <div class="article-image" data-background="{{ $resource['icon'] }}" style="background-image: url('{{ $resource['icon'] }}'); background-size: contain;"></div>
                 <div class="article-badge">
                     @if($resource['is_free'])
                         <div class="article-badge-item bg-info">{!! __('admin.free') !!}</div>
