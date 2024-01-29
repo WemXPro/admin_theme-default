@@ -96,7 +96,7 @@
                     </label>
                 </div>
 
-                <div class="form-group col-6">
+                <div class="form-group col-12">
                     <div class="control-label">
                         Enable Cookie popup
                     </div>
@@ -107,21 +107,6 @@
                         <span class="custom-switch-indicator"></span>
                         <span class="custom-switch-description">
                             Do you want to enable the cookie alert popup message on the client area
-                        </span>
-                    </label>
-                </div>
-
-                <div class="form-group col-6">
-                    <div class="control-label">
-                        Enable Contact Us Page
-                    </div>
-                    <label class="custom-switch mt-2"
-                           onclick="location.href = '@if(settings('contact_us_enabled', true)) /admin/settings/store?contact_us_enabled=0 @else /admin/settings/store?contact_us_enabled=1 @endif';">
-                        <input type="checkbox" name="contact_us_enabled" value="1" class="custom-switch-input"
-                               @if(settings('contact_us_enabled', true)) checked @endif>
-                        <span class="custom-switch-indicator"></span>
-                        <span class="custom-switch-description">
-                            Do you want to enable the "contact us" page and allow users to submit submissions
                         </span>
                     </label>
                 </div>
