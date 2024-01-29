@@ -24,9 +24,11 @@
                             $resource['installed'] = (bool)$installedResource;
                             $install_key = $resource['installed'] ? 'reinstall' : 'install';
                             if($resource['installed']) {
-                                $config = require $installedResource->getExtraPath('Config/config.php');
-                                if (version_compare($config['version'], $resource['version'], '<')){
-                                    $install_key = 'update';
+                                if(file_exists($installedResource->getExtraPath('Config/config.php'))) {
+                                    $config = require $installedResource->getExtraPath('Config/config.php') ?? [];
+                                    if (version_compare($config['version'], $resource['version'], '<')){
+                                        $install_key = 'update';
+                                    }
                                 }
                             }
                         @endphp
