@@ -31,7 +31,7 @@
                     @foreach($field['options'] ?? [] as $key => $option)
                     <option value="{{ $key }}"
                     @if(in_array($key, (array) getValueByKey($field['key'], $package->data, $field['default_value'] ?? ''))) selected @endif
-                    >{{ $option }}</option>
+                    >{{ is_string($option) ? $option : $option['name'] }}</option>
                     @endforeach
                 </select>
                 @elseif($field['type'] == 'bool')
