@@ -515,6 +515,12 @@
                 </div>
             @endif
 
+            @if(!Cache::has('queue_active'))
+                <div class="alert alert-danger" role="alert">
+                    {!! __('admin.queue_worker_not_setup') !!}
+                </div>
+            @endif
+
             @if(config('app.debug') AND config('app.version') != 'dev')
                 <div class="alert alert-warning" role="alert">
                     {!! __('admin.disable_debug_mode_immediately_if_your_application', ['base_path' => base_path('.env')]) !!}
