@@ -12,7 +12,7 @@
                         <th>{!! __('admin.description') !!}</th>
                         <th>{!! __('admin.author') !!}</th>
                         <th>{!! __('admin.version') !!}</th>
-                        <th>{!! __('admin.wemx_version') !!}</th>
+                        <th>{!! __('admin.wemx_version') !!} ({{ config('app.version') }})</th>
                         <th>{!! __('admin.price') !!}</th>
                         <th class="text-right">{!! __('admin.actions') !!}</th>
                     </tr>
