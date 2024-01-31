@@ -343,11 +343,11 @@
                             <span>{{ __('admin.articles') }}</span></a>
                     </li>
 
-                    {{-- <li>
+                    <li>
                         <a class="nav-link {{ nav_active('updates.index') }}"
                            href="{{ route('updates.index') }}"><i class="fas fa-cloud-download-alt"></i>
                             <span>{{ __('admin.updates') }}</span></a>
-                    </li> --}}
+                    </li>
 
                     <li class="menu-header">{!!  __('admin.store', ['default' => 'Store']) !!}</li>
                     <li class="dropdown {{ nav_active(['categories.index', 'packages.index', 'coupons.index']) }}">
