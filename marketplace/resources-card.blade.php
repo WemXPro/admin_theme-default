@@ -31,6 +31,18 @@
                                     }
                                 }
                             }
+                        $currentVersion = config('app.version');
+                        $versionSupport = false;
+                        foreach ($resource['wemx_version'] as $version) {
+                            if (version_compare($version, $currentVersion, '>')) {
+                                $versionSupport = false;
+                                break;
+                            }
+                            if (version_compare($version, $currentVersion, '<=') && !$versionSupport) {
+                                $versionSupport = true;
+                            }
+                        }
+
                         @endphp
 
                         <tr>
@@ -46,7 +58,11 @@
                                 {{ $resource['owner']['username'] }}
                             </td>
                             <td>{{ $resource['version'] }}</td>
-                            <td>{{ implode(', ', $resource['wemx_version']) }}</td>
+                            <td>
+                                <span class="badge p-1 @if($versionSupport) badge-success @else badge-danger @endif ">
+                                    {{ implode(', ', $resource['wemx_version']) }}
+                                </span>
+                                </td>
                             <td>{{ $resource['is_free'] ? __('admin.free') : $resource['price'] }}</td>
                             <td class="text-right">
                                 @if($resource['purchased'])
