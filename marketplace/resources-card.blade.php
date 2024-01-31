@@ -34,15 +34,11 @@
                         $currentVersion = config('app.version');
                         $versionSupport = false;
                         foreach ($resource['wemx_version'] as $version) {
-                            if (version_compare($version, $currentVersion, '>')) {
-                                $versionSupport = false;
+                            if (version_compare($version, $currentVersion, '<=')) {
+                                $versionSupport = true;
                                 break;
                             }
-                            if (version_compare($version, $currentVersion, '<=') && !$versionSupport) {
-                                $versionSupport = true;
-                            }
                         }
-
                         @endphp
 
                         <tr>
