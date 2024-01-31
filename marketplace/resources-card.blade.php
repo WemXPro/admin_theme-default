@@ -12,7 +12,7 @@
                         <th>{!! __('admin.description') !!}</th>
                         <th>{!! __('admin.author') !!}</th>
                         <th>{!! __('admin.version') !!}</th>
-                        <th>{!! __('admin.wemx_version') !!}</th>
+                        <th>{!! __('admin.wemx_version') !!} ({{ config('app.version') }})</th>
                         <th>{!! __('admin.price') !!}</th>
                         <th class="text-right">{!! __('admin.actions') !!}</th>
                     </tr>
@@ -31,6 +31,14 @@
                                     }
                                 }
                             }
+                        $currentVersion = config('app.version');
+                        $versionSupport = false;
+                        foreach ($resource['wemx_version'] as $version) {
+                            if (version_compare($version, $currentVersion, '<=')) {
+                                $versionSupport = true;
+                                break;
+                            }
+                        }
                         @endphp
 
                         <tr>
@@ -46,7 +54,11 @@
                                 {{ $resource['owner']['username'] }}
                             </td>
                             <td>{{ $resource['version'] }}</td>
-                            <td>{{ implode(', ', $resource['wemx_version']) }}</td>
+                            <td>
+                                <span class="badge p-1 @if($versionSupport) badge-success @else badge-danger @endif ">
+                                    {{ implode(', ', $resource['wemx_version']) }}
+                                </span>
+                                </td>
                             <td>{{ $resource['is_free'] ? __('admin.free') : $resource['price'] }}</td>
                             <td class="text-right">
                                 @if($resource['purchased'])
