@@ -26,7 +26,7 @@
                             if($resource['installed']) {
                                 if(file_exists($installedResource->getExtraPath('Config/config.php'))) {
                                     $config = require $installedResource->getExtraPath('Config/config.php') ?? [];
-                                    if (version_compare($config['version'], $resource['version'], '<')){
+                                    if (version_compare($config['version'] ?? '0.0.0', $resource['version'], '<')){
                                         $install_key = 'update';
                                     }
                                 }

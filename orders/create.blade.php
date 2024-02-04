@@ -37,9 +37,10 @@
                                     <label
                                         for="package_id">{!!  __('admin.package', ['default' => 'Package']) !!}</label>
                                     <select class="form-control select2 select2-hidden-accessible"
-                                        onchange="setPackage(this.value)" 
+                                        onchange="setPackage(this.value)"
                                         name="package_id" id="package_id"
                                             tabindex="-1" aria-hidden="true">
+                                        <option value="0"></option>
                                         @foreach (Package::get() as $packageList)
                                             @if($packageList->status == 'inactive')
                                                 @continue;
@@ -157,7 +158,7 @@
 
                 @if(isset($package) AND $package->service()->hasCheckoutConfig($package))
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body row">
                         @foreach($package->service()->getCheckoutConfig($package)->all() ?? [] as $name => $field)
                         <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset" style="display: flex;flex-direction: column;">
                             <label>{!! $field['name'] !!}</label>
@@ -169,9 +170,9 @@
                             @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
                             >
                                 @foreach($field['options'] ?? [] as $key => $option)
-                                <option value="{{ $key }}"
-                                @if(in_array($key, (array) $package->data(Str::remove("[]", $field['key']), $field['default_value'] ?? ''))) selected @endif
-                                >{{ $option }}</option>
+                                    <option value="{{ $key }}"
+                                            @if(in_array($key, (array) getValueByKey($field['key'], $package->data, $field['default_value'] ?? ''))) selected @endif
+                                    >{{ is_string($option) ? $option : $option['name'] }}</option>
                                 @endforeach
                             </select>
                             @elseif($field['type'] == 'bool')
@@ -209,7 +210,6 @@
             </form>
 
             </div>
-        </div>
         </div>
     </section>
 
