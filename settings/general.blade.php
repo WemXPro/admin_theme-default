@@ -66,6 +66,11 @@
                     <label>{!! __('admin.maxmimum_members_per_order') !!}</label>
                     <input type="number" name="orders::maxmimum_members" value="@settings('orders::maxmimum_members', 5)" class="form-control">
                 </div>
+                <div class="form-group col-12">
+                    <label>Google Analytics Code</label>
+                    <input type="text" name="google::analytics_code" value="@settings('google::analytics_code')" class="form-control">
+                    <small class="mt-1">Enter your google analytics code for tracking. For example G-6HY2KDZ223 - Leave empty to disable</small>
+                </div>
                 <div class="form-group col-6">
                     <div class="control-label">
                         User Data Download
