@@ -100,7 +100,7 @@
                 <div class="form-group col-md-12 col-12">
                   <label for="email::account_deletion_requested">Account Deletion Request Notice</label>
                   <textarea class="summernote form-control" name="email::account_deletion_requested" id="email::account_deletion_requested" style="display: none;">
-                      @settings('email::account_deletion_requested', "You have requested to have your account permanent deleted from our platform. To protect you, we have placed your account in a queue of 72 hours, after which your account will be permanently deleted. this action is irreversible."),
+                      @settings('email::account_deletion_requested', "You have requested to have your account permanent deleted from our platform. To protect you, we have placed your account in a queue of 72 hours, after which your account will be permanently deleted. this action is irreversible.")
                   </textarea>
                   <small class="form-text text-muted"></small>
                 </div>
