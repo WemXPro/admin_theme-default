@@ -74,4 +74,6 @@
         width: 100% !important;
     }
 </style>
+
+@includeIf(AdminTheme::path('marketplace.resources-card'))
 @endsection
