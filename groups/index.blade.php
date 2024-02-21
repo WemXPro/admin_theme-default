@@ -8,18 +8,19 @@
 
                 <div class="card-body">
                     <a href="{{ route('groups.create') }}" class="btn btn-primary">{!! __('admin.create_group') !!}</a>
-                    <a href="{{ route('permissions.index') }}" class="btn btn-primary">{!! __('admin.permissions') !!}</a>
+                    <a href="{{ route('permissions.index') }}"
+                       class="btn btn-primary">{!! __('admin.permissions') !!}</a>
                     <hr>
-
-                    <table class="table">
-                        <thead>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                             <tr>
                                 <th>{!! __('admin.id') !!}</th>
                                 <th>{!! __('admin.name') !!}</th>
                                 <th class="text-right">{!! __('admin.actions') !!}</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             @foreach ($groups as $group)
                                 <tr>
                                     <td>{{ $group->id }}</td>
@@ -28,20 +29,21 @@
                                         <a href="{{ route('groups.users', $group->id) }}"
                                            class="btn btn-primary">{!! __('admin.users') !!}</a>
                                         <a href="{{ route('groups.edit', $group->id) }}"
-                                            class="btn btn-primary">{!! __('admin.edit') !!}</a>
+                                           class="btn btn-primary">{!! __('admin.edit') !!}</a>
 
                                         <form action="{{ route('groups.destroy', $group->id) }}" method="POST"
-                                            style="display: inline-block;">
+                                              style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button onclick="deleteItem(event)" type="submit"
-                                                class="btn btn-danger">{!! __('admin.delete') !!}</button>
+                                                    class="btn btn-danger">{!! __('admin.delete') !!}</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

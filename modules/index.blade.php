@@ -8,16 +8,16 @@
 
                 <div class="card-body">
                     <hr>
-
-                    <table class="table">
-                        <thead>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                             <tr>
                                 <th>{!! __('admin.name') !!}</th>
                                 <th>{!! __('admin.status') !!}</th>
                                 <th class="text-right">{!! __('admin.actions') !!}</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             @foreach (Module::all() as $module)
                                 @if(strpos(Module::getModulePath($module), '/Modules'))
                                     <tr>
@@ -32,19 +32,21 @@
                                         <td class="text-right">
                                             @if ($module->isEnabled())
                                                 <a href="{{ route('modules.toggle', ['module' => $module->getName()]) }}"
-                                                    class="btn btn-warning">{!! __('admin.disable') !!}</a>
+                                                   class="btn btn-warning">{!! __('admin.disable') !!}</a>
                                             @else
                                                 <a href="{{ route('modules.toggle', ['module' => $module->getName()]) }}"
-                                                    class="btn btn-success">{!! __('admin.enable') !!}</a>
+                                                   class="btn btn-success">{!! __('admin.enable') !!}</a>
                                             @endif
-                                            <button onclick="if (confirm('{{__('client.sure_you_want_delete')}}')) {window.location.href = '{{ route('modules.delete', ['module' => $module->getName()]) }}'}"
+                                            <button
+                                                onclick="if (confirm('{{__('client.sure_you_want_delete')}}')) {window.location.href = '{{ route('modules.delete', ['module' => $module->getName()]) }}'}"
                                                 class="btn btn-danger m-2">{!! __('admin.delete') !!}</button>
                                         </td>
                                     </tr>
                                 @endif
                             @endforeach
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

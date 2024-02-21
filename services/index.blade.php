@@ -8,16 +8,16 @@
 
                 <div class="card-body">
                     <hr>
-
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>{!! __('admin.name') !!}</th>
-                            <th>{!! __('admin.status') !!}</th>
-                            <th class="text-right">{!! __('admin.actions') !!}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>{!! __('admin.name') !!}</th>
+                                <th>{!! __('admin.status') !!}</th>
+                                <th class="text-right">{!! __('admin.actions') !!}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             @foreach (Service::all() as $service)
                                 <tr>
                                     <td>{{ $service->about()->display_name }}</td>
@@ -30,25 +30,27 @@
                                     </td>
                                     <td class="text-right">
                                         @if($service->hasConfig())
-                                        <a href="{{ route('services.config', ['service' => $service->module()->getLowerName()]) }}" class="btn btn-primary mr-2">
-                                            <i class="fas fa-cog"></i> {!! __('admin.configuration') !!}
-                                        </a>
+                                            <a href="{{ route('services.config', ['service' => $service->module()->getLowerName()]) }}"
+                                               class="btn btn-primary mr-2">
+                                                <i class="fas fa-cog"></i> {!! __('admin.configuration') !!}
+                                            </a>
                                         @endif
                                         @if ($service->module()->isEnabled())
                                             <a href="{{ route('modules.toggle', ['module' => $service->module()->getName()]) }}"
-                                                class="btn btn-warning">{!! __('admin.disable') !!}</a>
+                                               class="btn btn-warning">{!! __('admin.disable') !!}</a>
                                         @else
                                             <a href="{{ route('modules.toggle', ['module' => $service->module()->getName()]) }}"
-                                                class="btn btn-success">{!! __('admin.enable') !!}</a>
+                                               class="btn btn-success">{!! __('admin.enable') !!}</a>
                                         @endif
-                                            <button
-                                                onclick="if (confirm('{{__('client.sure_you_want_delete')}}')) {window.location.href = '{{ route('modules.delete', ['module' => $service->module()->getName()]) }}'}"
-                                                    class="btn btn-danger m-2">{!! __('admin.delete') !!}</button>
+                                        <button
+                                            onclick="if (confirm('{{__('client.sure_you_want_delete')}}')) {window.location.href = '{{ route('modules.delete', ['module' => $service->module()->getName()]) }}'}"
+                                            class="btn btn-danger m-2">{!! __('admin.delete') !!}</button>
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

@@ -7,41 +7,44 @@
                 <div class="card-header">{!! __('admin.permissions') !!}</div>
 
                 <div class="card-body">
-                    <a href="{{ route('permissions.create') }}" class="btn btn-primary">{!! __('admin.create_perms') !!}</a>
-                    <a href="{{ route('permissions.import') }}" class="btn btn-primary">{!! __('admin.import_perms') !!}</a>
+                    <a href="{{ route('permissions.create') }}"
+                       class="btn btn-primary">{!! __('admin.create_perms') !!}</a>
+                    <a href="{{ route('permissions.import') }}"
+                       class="btn btn-primary">{!! __('admin.import_perms') !!}</a>
 
                     <hr>
-
-                    <table class="table">
-                        <thead>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                             <tr>
                                 <th>{!! __('admin.name') !!}</th>
                                 <th>{!! __('admin.descriptions') !!}</th>
                                 <th class="text-right">{!! __('admin.actions') !!}</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             @foreach ($permissions as $permission)
                                 <tr>
                                     <td>{{ $permission->name }}</td>
                                     <td>{{ $permission->descriptions }}</td>
                                     <td class="text-right">
                                         <a href="{{ route('permissions.show', $permission->id) }}"
-                                            class="btn btn-success">{!! __('admin.show') !!}</a>
+                                           class="btn btn-success">{!! __('admin.show') !!}</a>
                                         <a href="{{ route('permissions.edit', $permission->id) }}"
-                                            class="btn btn-primary">{!! __('admin.edit') !!}</a>
+                                           class="btn btn-primary">{!! __('admin.edit') !!}</a>
                                         <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST"
-                                            style="display: inline-block;">
+                                              style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button onclick="deleteItem(event)" type="submit"
-                                                class="btn btn-danger">{!! __('admin.delete') !!}</button>
+                                                    class="btn btn-danger">{!! __('admin.delete') !!}</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
