@@ -13,6 +13,7 @@
                             <thead>
                             <tr>
                                 <th>{!! __('admin.name') !!}</th>
+                                <th>{!! __('admin.version') !!}</th>
                                 <th>{!! __('admin.status') !!}</th>
                                 <th class="text-right">{!! __('admin.actions') !!}</th>
                             </tr>
@@ -21,6 +22,7 @@
                             @foreach (Service::all() as $service)
                                 <tr>
                                     <td>{{ $service->about()->display_name }}</td>
+                                    <td>{{ config($service->module()->getLowerName() . '.version', 'N/A') ?? 'N/A' }}</td>
                                     <td>
                                         @if ($service->module()->isEnabled())
                                             <span class="badge badge-success">{!! __('admin.enabled') !!}</span>

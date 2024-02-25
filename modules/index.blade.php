@@ -13,6 +13,7 @@
                             <thead>
                             <tr>
                                 <th>{!! __('admin.name') !!}</th>
+                                <th>{!! __('admin.version') !!}</th>
                                 <th>{!! __('admin.status') !!}</th>
                                 <th class="text-right">{!! __('admin.actions') !!}</th>
                             </tr>
@@ -22,6 +23,7 @@
                                 @if(strpos(Module::getModulePath($module), '/Modules'))
                                     <tr>
                                         <td>{{ $module->getName() }}</td>
+                                        <td>{{ config($module->getLowerName() . '.version', 'N/A') ?? 'N/A'}}</td>
                                         <td>
                                             @if ($module->isEnabled())
                                                 <span class="badge badge-success">{!! __('admin.enabled') !!}</span>
