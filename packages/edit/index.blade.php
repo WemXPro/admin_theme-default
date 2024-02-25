@@ -125,10 +125,10 @@
                 <select class="form-control select2 select2-hidden-accessible" required="" name="settings[allow_upgrading]" id="settings[allow_upgrading]"
                         tabindex="-1" aria-hidden="true">
                     <option value="1" @if($package->settings('allow_upgrading', true)) selected @endif>
-                        Yes, allow users to upgrade
+                        {!! __('admin.allow_user_upgrade') !!}
                     </option>
                     <option value="0" @if(!$package->settings('allow_upgrading', true)) selected @endif>
-                        No, disable upgrading for this package
+                        {!! __('admin.disable_user_upgrade') !!}
                     </option>
                 </select>
                 <small class="form-text text-muted">{!! __('admin.allow_upgrading_desc') !!}</small>

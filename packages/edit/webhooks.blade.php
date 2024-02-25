@@ -9,10 +9,8 @@
     </button>
 
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        Package webhooks are a powerful feature allowing you to do a huge amount of things. You
-        can also use custom variables inside webhooks. <a
-            href="https://docs.wemx.net/en/setup/packages#package-webhooks" target="_blank">Learn
-            More</a>
+        {!! __('admin.webhooks_desc') !!}
+        <a href="https://docs.wemx.net/en/setup/packages#package-webhooks" target="_blank">{!! __('admin.learn_more') !!}</a>
     </div>
 
     @if ($package->webhooks->count() == 0)

@@ -61,7 +61,7 @@
             @endforeach
             <div class="col-12">
                 <div class="text-right">
-                    <button class="btn btn-success" id="service-settings-submit" type="submit">Update</button>
+                    <button class="btn btn-success" id="service-settings-submit" type="submit">{!! __('admin.update') !!}</button>
                 </div>
             </div>
         </div>

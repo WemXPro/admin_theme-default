@@ -9,10 +9,7 @@
     </button>
 
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        WemX already sends a set of emails when an order is cancelled, suspended or terminated.
-        You can configure them <a target="_blank"
-                                  href="/admin/emails/messages"><strong>here</strong></a>
-        - This page provides you more customibility to send package specific emails.
+        {!! __('admin.edit_email_alert') !!}
         <button type="button" class="close" data-dismiss="alert" aria-label="{{ __('admin.close') }}">
             <span aria-hidden="true">&times;</span>
         </button>
