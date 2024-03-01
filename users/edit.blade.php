@@ -422,7 +422,7 @@
                                     <select id="inputState" name="country"
                                             class="form-control select2 select2-hidden-accessible">
                                         @foreach(config('utils.countries') as $key => $country)
-                                            <option value="{{$key}}" @if($user->address->country == $key) selected @endif>{{ $country }}</option>
+                                            <option value="{{$key}}" @if($user->address->country ?? '' == $key) selected @endif>{{ $country }}</option>
                                         @endforeach
                                     </select>
                                 </div>
