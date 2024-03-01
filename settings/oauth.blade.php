@@ -53,6 +53,17 @@
                   </span>
                 </label>
               </div>
+                <div class="form-group col-6">
+                    <div class="control-label">{!! __('admin.allow_login') !!}</div>
+                    <label class="custom-switch mt-2">
+                        <input type="checkbox" name="oauth::discord[allow_login]" value="1" class="custom-switch-input"
+                               @if(Settings::getJson('oauth::discord', 'allow_login', false)) checked @endif>
+                        <span class="custom-switch-indicator"></span>
+                        <span class="custom-switch-description">
+                      {!! __('admin.allow_login_using', ['name' => 'Discord']) !!}
+                  </span>
+                    </label>
+                </div>
 
               <div class="col-12" style="display: flex;justify-content: flex-end;">
                 <button type="submit" class="btn btn-primary">{!! __('admin.update_driver', ['default' => 'Update Driver']) !!}</button>
