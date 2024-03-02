@@ -28,7 +28,7 @@
                                 <tbody>
                                 @foreach ($categories as $category)
                                     <tr>
-                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $category->order ?? 0 }}</td>
                                         <td><img alt="image" src="{{ asset('storage/products/' . $category->icon) }}"
                                                  class="rounded-circle" width="35" data-toggle="tooltip" title=""
                                                  data-original-title="{{ $category->name }}"></td>
