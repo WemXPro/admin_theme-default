@@ -50,7 +50,7 @@
                                     @foreach ($packages as $package)
                                         @if($package->category_id == $category->id)
                                             <tr class="collapse category-{{ $category->id }} @if($i == 1) show @endif">
-                                                <td>{{ $package->id }}</td>
+                                                <td>{{ $package->order ?? 0 }}</td>
                                                 <td>
                                                     <img alt="image"
                                                          src="{{ asset('storage/products/' . $package->icon) }}"
