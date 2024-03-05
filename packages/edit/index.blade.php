@@ -56,12 +56,15 @@
             </div>
 
             <div class="form-group col-md-12 col-12 mt-3">
+                <div class="mb-3">
+                    <img id="iconPreview" class="img-thumbnail mb-2" src="{{ asset('storage/products/' . $package->icon ?? '') }}" alt="" style="max-width: 150px;" /> 
+                </div>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="icon" id="customFile">
-                    <label class="custom-file-label"
-                           for="customFile">{{ __('admin.choose_file') }}</label>
+                    <input type="file" class="custom-file-input" name="icon" id="customFile" onchange="previewIcon()">
+                    <label class="custom-file-label" for="customFile">{{ __('admin.choose_file') }}</label>
                 </div>
             </div>
+
 
             <div class="form-group col-md-12 col-12">
                 <label for="description">{{ __('admin.package_description') }}</label>
@@ -140,4 +143,23 @@
         </div>
     </form>
 </div>
+
+<script>
+    function previewIcon() {
+        const file = document.querySelector('#customFile').files[0];
+        const preview = document.querySelector('#iconPreview');
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            preview.src = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+        const label = document.querySelector('label[for="customFile"]');
+        label.textContent = file.name;
+    }
+</script>
+
 @endsection
