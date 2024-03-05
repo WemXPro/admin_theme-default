@@ -57,7 +57,7 @@
 
             <div class="form-group col-md-12 col-12 mt-3">
                 <div class="mb-3">
-                    <img id="iconPreview" class="img-thumbnail mb-2" src="{{ asset('storage/products/' . $package->icon ?? '') }}" alt="" style="max-width: 150px;" /> 
+                    <img id="iconPreview" class="img-thumbnail mb-2" src="{{ asset('storage/products/' . $package->icon ?? '') }}" alt="" style="max-width: 150px;" />
                 </div>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" name="icon" id="customFile" onchange="previewIcon()">

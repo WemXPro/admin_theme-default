@@ -61,7 +61,7 @@
             <div class="col-12 col-md-12 col-lg-4">
                 <div class="card profile-widget">
                     <div class="profile-widget-header">
-                        <img alt="image" src="{{ $user->avatar() }}" class="rounded-circle profile-widget-picture"/>
+                        <img alt="image" src="{{ $user->avatar() }}" class="rounded-circle profile-widget-picture" style="max-width: 100px; max-height: 100px;"/>
                         <div class="profile-widget-items">
                             <div class="profile-widget-item">
                                 <div class="profile-widget-item-label">
