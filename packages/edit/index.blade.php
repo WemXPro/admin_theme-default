@@ -137,6 +137,21 @@
                 <small class="form-text text-muted">{!! __('admin.allow_upgrading_desc') !!}</small>
             </div>
             @endif
+
+            <div class="form-group col-md-6 col-6">
+                <label for="settings[allow_cancellation]">{{ __('admin.allow_cancellation') }}</label>
+                <select class="form-control select2 select2-hidden-accessible" required="" name="settings[allow_cancellation]" id="settings[allow_cancellation]"
+                        tabindex="-1" aria-hidden="true">
+                    <option value="1" @if($package->settings('allow_cancellation', true)) selected @endif>
+                        {!! __('admin.allow_package_cancellation') !!}
+                    </option>
+                    <option value="0" @if(!$package->settings('allow_cancellation', true)) selected @endif>
+                        {!! __('admin.disable_package_cancellation') !!}
+                    </option>
+                </select>
+                <small class="form-text text-muted">{!! __('admin.allow_cancellation_desc') !!}</small>
+            </div>
+
         </div>
         <div class="text-right">
             <button class="btn btn-success" type="submit">{{ __('admin.update') }}</button>
