@@ -6,11 +6,25 @@
             <div class="card">
                 <div class="card-header">{!! __('admin.users') !!}</div>
                 <div class="card-body">
-                    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+                    <div class="dropdown d-inline">
+                      <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="sortUsersDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {!! __('admin.sort_by', ['default' => 'Sort By']) !!}
+                      </button>
+                      <div class="dropdown-menu" x-placement="bottom-start">
+                        <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'latest']) }}">{{ __('admin.latest') }}</a>
+                        <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'oldest']) }}">{{ __('admin.oldest') }}</a>
+                        <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'online']) }}">{!! __('admin.online_users') !!}</a>
+                        <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'subscribed']) }}">{!! __('admin.subscribed') !!}</a>
+                        <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'random']) }}">{{ __('admin.random') }}</a>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#userSearchModal">
                         {!! __('admin.search', ['default' => 'Search']) !!}
                     </button>
+                    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#userFilterModal">
+                      {!! __('admin.filter', ['default' => 'Filter']) !!}
+                     </button>
 
-                    <a class="btn btn-primary mb-3" href="{{ route('users.index', ['sort' => 'online']) }}">{!! __('admin.online_users') !!}</a>
                     <div class="table-responsive">
                       <table class="table table-striped table-md">
                           <tbody>
@@ -27,13 +41,15 @@
                               @foreach ($users as $user)
                               <tr>
                                   <td>
-                                    <div style="display: flex;align-items: center;">
-                                      <img src="{{ $user->avatar() }}" alt="{{ __('admin.avatar') }}" style="width: 32px; border-radius: 20px; margin-right: 10px">
-                                      <div>
-                                        {{ $user->first_name }} {{ $user->last_name }} @if($user->is_admin()) <i class="fas fa-solid fa-star" style="color: gold"></i> @endif <br>
-                                        <small>{{ $user->username }}</small>
+                                    <a href="{{ route('users.edit', $user) }}" style="color: inherit">
+                                      <div style="display: flex;align-items: center;">
+                                        <img src="{{ $user->avatar() }}" alt="{{ __('admin.avatar') }}" style="width: 32px; border-radius: 20px; margin-right: 10px">
+                                        <div>
+                                          {{ $user->first_name }} {{ $user->last_name }} @if($user->is_admin()) <i class="fas fa-solid fa-star" style="color: gold"></i> @endif <br>
+                                          <small>{{ $user->username }}</small>
+                                        </div>
                                       </div>
-                                    </div>
+                                    </a>
                                   </td>
                                   <td>{{ $user->email }}</td>
                                   <td>{{currency('symbol')}}{{ number_format($user->balance, 2) }}</td>
@@ -63,10 +79,20 @@
 
                 </div>
             </div>
-            {{ $users->links(AdminTheme::pagination()) }}
+            <div class="d-flex" style="justify-content: space-between">
+              <div>
+                <select class="form-control">
+                  <option>10 Results</option>
+                  <option>20 Results</option>
+                  <option>50 Results</option>
+                  <option>100 Results</option>
+                </select>
+              </div>
+              {{ $users->links(AdminTheme::pagination()) }}
+            </div>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal" aria-hidden="true" style="display: none;">
+    <div class="modal fade" tabindex="-1" role="dialog" id="userSearchModal" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -95,6 +121,50 @@
             <div class="modal-footer bg-whitesmoke br">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">{!! __('admin.close') !!}</button>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" tabindex="-1" role="dialog" id="userFilterModal" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <form action="">
+            <div class="modal-header">
+              <h5 class="modal-title">{!! __('admin.filter', ['default' => 'Filter']) !!}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                @csrf
+                <div class="row">
+                  <div class="form-group col-4">
+                    <label>{{ __('admin.key') }}</label>
+                    <select class="form-control select2 select2-hidden-accessible" required="" name="filter[][key]" tabindex="-1" aria-hidden="true">
+                      @foreach(User::$filters as $filter)
+                        <option>{{ $filter }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group col-4">
+                    <label>{{ __('admin.operator') }}</label>
+                    <select class="form-control select2 select2-hidden-accessible" required="" name="filter[][operator]" tabindex="-1" aria-hidden="true">
+                        <option value="=">Equals</option>
+                        <option value="!=">Does not Equal</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-4">
+                    <label>{{ __('admin.value') }}</label>
+                    <input type="text" placeholder="Value" required="" name="filter[][value]" class="form-control">
+                    <small>{{ __('admin.separate_multiple_values_with_comma') }}</small>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{!! __('admin.close') !!}</button>
+              <button type="submit" class="btn btn-primary" data-dismiss="modal">{!! __('admin.filter') !!}</button>
+            </div>
+            </form>
           </div>
         </div>
       </div>
