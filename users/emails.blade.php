@@ -74,6 +74,7 @@
                                         </td>
                                         <td>{{ $email->created_at->diffForHumans() }}</td>
                                         <td class="text-right">
+                                            <a href="{{ route('emails.destroy', $email->id) }}" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></a>
                                             <a href="{{ route('emails.resend', ['email' => $email->id]) }}"
                                                class="btn btn-icon icon-left btn-success"><i
                                                     class="fas fa-check"></i>
