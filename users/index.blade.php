@@ -79,17 +79,7 @@
 
                 </div>
             </div>
-            <div class="d-flex" style="justify-content: space-between">
-              <div>
-                <select class="form-control">
-                  <option>10 Results</option>
-                  <option>20 Results</option>
-                  <option>50 Results</option>
-                  <option>100 Results</option>
-                </select>
-              </div>
               {{ $users->links(AdminTheme::pagination()) }}
-            </div>
         </div>
     </div>
     <div class="modal fade" tabindex="-1" role="dialog" id="userSearchModal" aria-hidden="true" style="display: none;">
@@ -137,38 +127,104 @@
             </div>
             <div class="modal-body">
                 @csrf
-                <div class="row">
-                  <div class="form-group col-4">
-                    <label>{{ __('admin.key') }}</label>
-                    <select class="form-control select2 select2-hidden-accessible" required="" name="filter[][key]" tabindex="-1" aria-hidden="true">
-                      @foreach(User::$filters as $filter)
-                        <option>{{ $filter }}</option>
+                <div id="filters-container">
+                  <div class="row filter" id="filter">
+                    @if(isset(request()->filter))
+                      @foreach(request()->filter as $key => $filter)
+                      <div class="form-group col-4">
+                        <label>{{ __('admin.key') }}</label>
+                        <select class="form-control select2 select2-hidden-accessible" required="" name="filter[{{$key}}][key]" tabindex="-1" aria-hidden="true">
+                          @foreach(User::$filters as $userFilter)
+                            <option value="{{ $userFilter }}" @if($filter['key'] == $userFilter) selected @endif>{{ $userFilter }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="form-group col-4">
+                        <label>{{ __('admin.operator') }}</label>
+                        <select class="form-control select2 select2-hidden-accessible" required="" name="filter[{{$key}}][operator]" tabindex="-1" aria-hidden="true">
+                            <option value="=" @if($filter['operator'] == '=') selected @endif>Equals</option>
+                            <option value="!=" @if($filter['operator'] == '!=') selected @endif>Does not Equal</option>
+                            <option value="LIKE" @if($filter['operator'] == 'LIKE') selected @endif>Contains</option>
+                            <option value="NOT LIKE" @if($filter['operator'] == 'NOT LIKE') selected @endif>Does not contain</option>
+                            <option value=">" @if($filter['operator'] == '>') selected @endif>Greater Than</option>
+                            <option value="<" @if($filter['operator'] == '<') selected @endif>Less Than</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-4">
+                        <label>{{ __('admin.value') }}</label>
+                        <input type="text" placeholder="Value" required="" value="{{ $filter['value'] }}" name="filter[{{$key}}][value]" class="form-control">
+                        <small>{{ __('admin.separate_multiple_values_with_comma') }}</small>
+                      </div>
                       @endforeach
-                    </select>
-                  </div>
-                  <div class="form-group col-4">
-                    <label>{{ __('admin.operator') }}</label>
-                    <select class="form-control select2 select2-hidden-accessible" required="" name="filter[][operator]" tabindex="-1" aria-hidden="true">
-                        <option value="=">Equals</option>
-                        <option value="!=">Does not Equal</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-4">
-                    <label>{{ __('admin.value') }}</label>
-                    <input type="text" placeholder="Value" required="" name="filter[][value]" class="form-control">
-                    <small>{{ __('admin.separate_multiple_values_with_comma') }}</small>
+                    @else
+                    <div class="form-group col-4">
+                      <label>{{ __('admin.key') }}</label>
+                      <select class="form-control select2 select2-hidden-accessible" required="" name="filter[0][key]" tabindex="-1" aria-hidden="true">
+                        @foreach(User::$filters as $filter)
+                          <option value="{{ $filter }}">{{ $filter }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group col-4">
+                      <label>{{ __('admin.operator') }}</label>
+                      <select class="form-control select2 select2-hidden-accessible" required="" name="filter[0][operator]" tabindex="-1" aria-hidden="true">
+                          <option value="=">Equals</option>
+                          <option value="!=">Does not Equal</option>
+                          <option value="LIKE">Contains</option>
+                          <option value="NOT LIKE">Does not contain</option>
+                          <option value=">">Greater Than</option>
+                          <option value="<">Less Than</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-4">
+                      <label>{{ __('admin.value') }}</label>
+                      <input type="text" placeholder="Value" required="" name="filter[0][value]" class="form-control">
+                      <small>{{ __('admin.separate_multiple_values_with_comma') }}</small>
+                    </div>
+                    @endif
                   </div>
                 </div>
+                <button type="button" id="add-filter" class="btn btn-info">Add Filter</button>
+
             </div>
             <div class="modal-footer bg-whitesmoke br">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">{!! __('admin.close') !!}</button>
-              <button type="submit" class="btn btn-primary" data-dismiss="modal">{!! __('admin.filter') !!}</button>
+              <button type="submit" class="btn btn-primary">{!! __('admin.filter') !!}</button>
             </div>
             </form>
           </div>
         </div>
       </div>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#add-filter').click(function() {
+        // Clone the first filter div
+        var newFilter = $('.filter:first').clone();
+        
+        // Find the highest existing index to ensure uniqueness
+        var highestIndex = -1;
+        $('[name^="filter["]').each(function() {
+            var name = $(this).attr('name');
+            var result = name.match(/\[(\d+)\]/);
+            if (result && parseInt(result[1]) > highestIndex) {
+                highestIndex = parseInt(result[1]);
+            }
+        });
+        var newIndex = highestIndex + 1;
+        
+        // Update the 'name' attributes with the new index
+        newFilter.find('[name]').each(function() {
+            var name = $(this).attr('name').replace(/\[\d+\]/, '[' + newIndex + ']');
+            $(this).attr('name', name);
+        });
+        
+        // Append the new filter div to the container
+        $('#filters-container').append(newFilter);
+    });
+});
+</script>
 
 <script>
 $(document).ready(function() {

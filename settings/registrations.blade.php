@@ -57,7 +57,7 @@
                                 </small>
                             </div>
 
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <div class="control-label">
                                     {!! __('admin.require_address_information', ['default' => 'Require Address Information']) !!}
                                 </div>
@@ -67,7 +67,22 @@
                                            @if(settings('require_address', false)) checked @endif>
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">
-                          {!! __('admin.require_address_information_desc', ['default' => 'After login in, users will be forced to complete their address information.']) !!}
+                                    {!! __('admin.require_address_information_desc', ['default' => 'After login in, users will be forced to complete their address information.']) !!}
+                         </span>
+                                </label>
+                            </div>
+
+                            <div class="form-group col-12">
+                                <div class="control-label">
+                                    {!! __('admin.force_staff_2fa') !!}
+                                </div>
+                                <label class="custom-switch mt-2"
+                                       onclick="location.href = '@if(settings('force_staff_2fa', false)) /admin/settings/store?force_staff_2fa=0 @else /admin/settings/store?force_staff_2fa=1 @endif';">
+                                    <input type="checkbox" name="force_staff_2fa" value="1" class="custom-switch-input"
+                                           @if(settings('force_staff_2fa', false)) checked @endif>
+                                    <span class="custom-switch-indicator"></span>
+                                    <span class="custom-switch-description">
+                                    {!! __('admin.force_staff_2fa_description') !!}
                          </span>
                                 </label>
                             </div>

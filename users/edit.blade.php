@@ -112,6 +112,20 @@
                     </div>
                 </div>
 
+                @if($user->has2FA())
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>{!! __('client.two_factor_authentication', ['default' => 'Two Factor Authentication']) !!}</h4>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ route('admin.user.2fa.disable', $user->id) }}"
+                                class="btn btn-icon icon-left btn-danger"><i class="fas fa-qrcode"></i>
+                                {!! __('client.disable_2fa', ['default' => 'Disable 2FA']) !!}
+                             </a>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-body">
                         <form action="{{ route('users.update-balance', ['user' => $user->id]) }}" method="POST">
