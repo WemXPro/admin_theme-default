@@ -153,6 +153,11 @@
                     <label>{{ __('admin.expires_at_optional') }}</label>
                     <input type="date" class="form-control" name="expires_at" value=""/>
                 </div>
+
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="terminate_orders" id="terminateOrdersCheck">
+                    <label class="custom-control-label" for="terminateOrdersCheck">{{ __('admin.terminate_user_orders') }}</label>
+                </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin.close') }}</button>
