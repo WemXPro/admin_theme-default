@@ -509,6 +509,12 @@
                 </div>
             @endif
 
+            @if(!config('laravelcloudflare.enabled') AND request()->header('cf-ipcountry'))
+            <div class="alert alert-danger" role="alert">
+                {!! __('admin.enable_cloudflare_proxy_integration') !!}
+            </div>
+            @endif
+
             @if(!Cache::has('cron_active'))
                 <div class="alert alert-danger" role="alert">
                     {!! __('admin.cronjobs_are_not_running_add_php_artisan_scheduler', ['base_path' => base_path()]) !!}
