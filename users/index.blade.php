@@ -24,6 +24,7 @@
                             <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'latest']) }}">{{ __('admin.latest') }}</a>
                             <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'oldest']) }}">{{ __('admin.oldest') }}</a>
                             <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'online']) }}">{!! __('admin.online_users') !!}</a>
+                            <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'balance']) }}">{!! __('admin.balance') !!}</a>
                             <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'subscribed']) }}">{!! __('admin.subscribed') !!}</a>
                             <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'random']) }}">{{ __('admin.random') }}</a>
                           </div>
