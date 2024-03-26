@@ -1,5 +1,14 @@
 @extends(AdminTheme::wrapper(), ['title' => __('admin.payments'), 'keywords' => 'WemX Dashboard, WemX Panel'])
 
+@section('css_libraries')
+    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/select2/dist/css/select2.min.css')) }}">
+
+@endsection
+
+@section('js_libraries')
+    <script src="{{ asset(AdminTheme::assets('modules/select2/dist/js/select2.full.min.js')) }}"></script>
+@endsection
+
 @section('container')
     <section class="section">
         <div class="section-body">
