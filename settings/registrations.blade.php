@@ -87,6 +87,33 @@
                                 </label>
                             </div>
 
+                            <div class="form-group col-12">
+                                <div class="control-label">
+                                    {!! __('admin.allow_custom_avatars') !!}
+                                </div>
+                                <label class="custom-switch mt-2"
+                                       onclick="location.href = '@if(settings('allow_custom_avatars', true)) /admin/settings/store?allow_custom_avatars=0 @else /admin/settings/store?allow_custom_avatars=1 @endif';">
+                                    <input type="checkbox" name="allow_custom_avatars" value="1" class="custom-switch-input"
+                                           @if(settings('allow_custom_avatars', true)) checked @endif>
+                                    <span class="custom-switch-indicator"></span>
+                                    <span class="custom-switch-description">
+                                    {!! __('admin.allow_custom_avatars_description') !!}
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="form-group col-10">
+                                <label>{{ __('admin.default_avatar') }}</label>
+                                <input type="text" name="default_avatar" value="https://imgur.com/oJDxg2r.png" class="form-control">
+                                <div class="gallery gallary mt-3">
+                                    <div class="gallery-item" data-image="https://imgur.com/oJDxg2r.png" data-title="Image 1" href="https://imgur.com/oJDxg2r.png" title="Image 1" style="background-image: url('https://imgur.com/oJDxg2r.png');"></div>
+                                  </div>
+                            </div>
+
+                            <div class="col-2">
+                                <button class="btn btn-primary">Upload</button>
+                            </div>
+
                             <div class="form-group col-md-12 col-12">
                                 <label for="registration_activation_message">
                                     {!! __('admin.registration_activation_message', ['default' => 'Registration Activation Message']) !!}
