@@ -112,6 +112,7 @@
                                         <td>{{ $payment->created_at->translatedFormat(settings('date_format', 'd M Y')) }}</td>
 
                                         <td class="text-right">
+                                            <button type="button" onclick="deletePayment('{{ $payment->id }}')" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
                                             <a href="{{ route('payments.edit', ['payment' => $payment->id]) }}"
                                                class="btn btn-primary">{!! __('admin.manage') !!}
                                             </a>
@@ -213,6 +214,16 @@
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function deletePayment(payment) {
+        if (window.confirm('Are you sure you want to delete this payment?')) {
+            window.location.href = "/admin/payments/" + payment +"/delete";
+        } else {
+            event.preventDefault();
+        }
+    }
+</script>
 
 <script>
     $(document).ready(function() {
