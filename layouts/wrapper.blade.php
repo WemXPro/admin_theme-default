@@ -225,7 +225,7 @@
 
                     <li class="dropdown {{ nav_active(['admin.bans.index', 'admin.warnings.index']) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                class="fas fa-gavel"></i> <span>{!! __('admin.punishments') !!}</span></a>
+                                class="fas fa-gavel"></i> <span>{!! __('admin.moderation') !!}</span></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a class="nav-link {{ nav_active('admin.bans.index') }}"
