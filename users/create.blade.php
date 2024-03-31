@@ -64,9 +64,9 @@
                                 </div>
                                 <div class="form-group mb-0 col-12">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="activate" checked class="custom-control-input" id="activate">
+                                        <input type="checkbox" name="verify_email" checked class="custom-control-input" id="verify_email">
                                         <label class="custom-control-label" for="newsletter">
-                                            Activate Account
+                                            Verify Email
                                         </label>
                                         <div class="text-muted form-text">
                                             If checked, the email address will be verfied and the user will be able to login
@@ -89,12 +89,12 @@
                                     class="form-control" value="{{ old('company_name') }}" placeholder="{!! __('admin.company_name') !!}">
                             </div>
                             <div class="form-group col-12">
-                                <label for="street">{!! __('admin.street') !!}</label>
+                                <label for="address">{!! __('admin.street') !!}</label>
                                 <input type="text" name="street" id="street"
                                     class="form-control" value="{{ old('street') }}" placeholder="{!! __('admin.street') !!}">
                             </div>
                             <div class="form-group col-12">
-                                <label for="street_2">{!! __('admin.street_2') !!}</label>
+                                <label for="address_2">{!! __('admin.street_2') !!}</label>
                                 <input type="text" name="street_2" id="street_2"
                                     class="form-control" value="{{ old('street_2') }}" placeholder="{!! __('admin.street_2') !!}">
                             </div>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="form-group col-md-3 col-6">
                                 <label for="province_state">{!! __('admin.province_state') !!}</label>
-                                <input type="text" name="province_state" id="province_state"
+                                <input type="text" name="region" id="region"
                                     class="form-control" value="{{ old('province_state') }}" placeholder="{!! __('admin.province_state') !!}">
                             </div>
                             <div class="form-group col-md-3 col-6">
