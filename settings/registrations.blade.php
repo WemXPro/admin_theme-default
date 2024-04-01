@@ -119,9 +119,9 @@
 
                             <div class="form-group col-12">
                                 <label>{{ __('admin.default_avatar') }}</label>
-                                <input type="text" name="default_avatar" value="https://imgur.com/oJDxg2r.png" class="form-control">
+                                <input type="url" name="default_avatar" value="@settings('default_avatar', 'https://imgur.com/oJDxg2r.png')" class="form-control">
                                 <div class="gallery gallary mt-3">
-                                    <div class="gallery-item" data-image="https://imgur.com/oJDxg2r.png" data-title="Image 1" href="https://imgur.com/oJDxg2r.png" title="Image 1" style="background-image: url('https://imgur.com/oJDxg2r.png');"></div>
+                                    <div class="gallery-item" data-image="@settings('default_avatar', 'https://imgur.com/oJDxg2r.png')" data-title="Image 1" href="@settings('default_avatar', 'https://imgur.com/oJDxg2r.png')" title="Image 1" style="background-image: url('@settings('default_avatar', 'https://imgur.com/oJDxg2r.png')');"></div>
                                   </div>
                             </div>
 
