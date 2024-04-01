@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-group col-md-12 col-12">
                                     <label for="name">{!! __('admin.name') !!}</label>
-                                    <input type="text" name="name" id="name"
+                                    <input type="text" name="name" id="name" oninput="updatePath()"
                                         class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                         required>
                                     @error('name')
@@ -69,7 +69,7 @@
                                     <div class="input-group-prepend">
                                         <div>
                                             <div class="input-group-text">
-                                                {{ route('store.service', '') }}
+                                                {{ route('store.service', '') }}/
                                             </div>
                                         </div>
                                         <input type="text" name="link" id="link" placeholder="web-hosting" class="form-control @error('link') is-invalid @enderror" value="{{ old('link') }}" required />
@@ -99,4 +99,17 @@
             </form>
             </div>
         </div>
+
+        <script>
+            function updatePath() {
+                var path = document.getElementById('link');
+                var title = document.getElementById('name').value;
+                path.value = title
+                            .toLowerCase() // convert to lowercase
+                            .trim() // remove leading and trailing whitespace
+                            .replace(/[^\w\s-]/g, '') // remove non-word characters
+                            .replace(/[\s_-]+/g, '-') // replace spaces, underscores, and hyphens with a single hyphen
+                            .replace(/^-+|-+$/g, ''); // remove leading and trailing hyphens
+            }
+        </script>
 @endsection

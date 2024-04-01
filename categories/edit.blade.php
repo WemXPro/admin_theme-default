@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="form-group col-md-12 col-12">
                                     <label for="name">{!! __('admin.name') !!}</label>
-                                    <input type="text" name="name" id="name"
+                                    <input type="text" name="name" id="name" oninput="updatePath()"
                                         class="form-control @error('name') is-invalid @enderror" value="{{ $category->name }}"
                                         required>
                                     @error('name')
@@ -102,4 +102,17 @@
             </form>
             </div>
         </div>
+
+        <script>
+            function updatePath() {
+                var path = document.getElementById('link');
+                var title = document.getElementById('name').value;
+                path.value = title
+                            .toLowerCase() // convert to lowercase
+                            .trim() // remove leading and trailing whitespace
+                            .replace(/[^\w\s-]/g, '') // remove non-word characters
+                            .replace(/[\s_-]+/g, '-') // replace spaces, underscores, and hyphens with a single hyphen
+                            .replace(/^-+|-+$/g, ''); // remove leading and trailing hyphens
+            }
+        </script>
 @endsection
