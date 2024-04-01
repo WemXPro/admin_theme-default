@@ -20,7 +20,7 @@
                             </thead>
                             <tbody>
                             @foreach (Module::all() as $module)
-                                @if(strpos(Module::getModulePath($module), '/Modules'))
+                                @if(strpos($module->getPath(), '/Modules'))
                                     <tr>
                                         <td>{{ $module->getName() }}</td>
                                         <td>{{ config($module->getLowerName() . '.version', 'N/A') ?? 'N/A'}}</td>
