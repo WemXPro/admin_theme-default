@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label for="first_name">{!! __('admin.first_name') !!}</label>
-                                    <input type="text" name="first_name" id="first_name"
+                                    <input type="text" name="first_name" id="first_name" onchange="generateUsername()"
                                         class="form-control" value="{{ old('first_name') }}" placeholder="{!! __('admin.first_name') !!}"
                                         required>
                                 </div>
@@ -48,8 +48,8 @@
                                 <div class="form-group col-12">
                                     <label for="password">{!! __('admin.password') !!}</label>
                                     <input type="password" name="password" id="password"
-                                        class="form-control" value="{{ old('password') }}" placeholder="{!! __('admin.password') !!}">
-                                    <small>Leave empty to generate a random password that will be emailed to the user</small>
+                                        class="form-control mb-2" value="{{ old('password') }}" placeholder="{!! __('admin.password') !!}" required="">
+                                    <a onclick="generateRandomPassword()" href="#">{{ __('admin.generate_password') }}</a>
                                 </div>
                                 <div class="form-group col-md-12 col-12">
                                     <label>{!! __('admin.groups') !!}</label>
@@ -65,11 +65,11 @@
                                 <div class="form-group mb-0 col-12">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" name="verify_email" checked class="custom-control-input" id="verify_email">
-                                        <label class="custom-control-label" for="newsletter">
-                                            Verify Email
+                                        <label class="custom-control-label" for="verify_email">
+                                            {{ __('admin.verify_email') }}
                                         </label>
                                         <div class="text-muted form-text">
-                                            If checked, the email address will be verfied and the user will be able to login
+                                            {{ __('admin.verify_email_help') }}
                                         </div>
                                     </div>
                                 </div>
@@ -134,4 +134,25 @@
             </form>
             </div>
         </div>
+
+        <script>
+            function generateUsername() {
+                var first_name = document.getElementById('first_name').value;
+                var random_number = Math.floor(Math.random() * 1000);
+                var username = first_name + random_number;
+                document.getElementById('username').value = username.toLowerCase().replace(/\s/g, '');
+            }
+
+            function generateRandomPassword() {
+                    // make the length random between 12 to 16
+                    var length = Math.floor(Math.random() * 5) + 12,
+                    charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+                    password = "";
+                for (var i = 0, n = charset.length; i < length; ++i) {
+                    password += charset.charAt(Math.floor(Math.random() * n));
+                }
+                document.getElementById('password').value = password;
+                document.getElementById('password').type = 'text';
+            }
+        </script>
 @endsection

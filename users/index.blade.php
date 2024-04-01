@@ -38,6 +38,9 @@
                             <a class="dropdown-item" href="{{ route('users.index', ['sort' => 'random']) }}">{{ __('admin.random') }}</a>
                           </div>
                         </div>
+                        <a class="btn btn-icon icon-left btn-primary" href="{{ route('users.create') }}">
+                          <i class="fas fa-plus"></i> {!! __('admin.create', ['default' => 'Create']) !!}
+                        </a>
                       </div>
                    </div>
                     <div class="table-responsive">
