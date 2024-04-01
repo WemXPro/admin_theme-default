@@ -83,7 +83,22 @@
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">
                                     {!! __('admin.force_staff_2fa_description') !!}
-                         </span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="form-group col-12">
+                                <div class="control-label">
+                                    {!! __('admin.allow_staff_sso_logins') !!}
+                                </div>
+                                <label class="custom-switch mt-2"
+                                       onclick="location.href = '@if(settings('staff_sso_login', false)) /admin/settings/store?staff_sso_login=0 @else /admin/settings/store?staff_sso_login=1 @endif';">
+                                    <input type="checkbox" name="staff_sso_login" value="1" class="custom-switch-input"
+                                           @if(settings('staff_sso_login', false)) checked @endif>
+                                    <span class="custom-switch-indicator"></span>
+                                    <span class="custom-switch-description">
+                                    {!! __('admin.allow_staff_sso_logins_description') !!}
+                                    </span>
                                 </label>
                             </div>
 
@@ -102,16 +117,12 @@
                                 </label>
                             </div>
 
-                            <div class="form-group col-10">
+                            <div class="form-group col-12">
                                 <label>{{ __('admin.default_avatar') }}</label>
                                 <input type="text" name="default_avatar" value="https://imgur.com/oJDxg2r.png" class="form-control">
                                 <div class="gallery gallary mt-3">
                                     <div class="gallery-item" data-image="https://imgur.com/oJDxg2r.png" data-title="Image 1" href="https://imgur.com/oJDxg2r.png" title="Image 1" style="background-image: url('https://imgur.com/oJDxg2r.png');"></div>
                                   </div>
-                            </div>
-
-                            <div class="col-2">
-                                <button class="btn btn-primary">Upload</button>
                             </div>
 
                             <div class="form-group col-md-12 col-12">
