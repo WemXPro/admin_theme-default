@@ -41,9 +41,13 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="email">{!! __('admin.email') !!}</label>
-                                    <input type="email" name="email" id="email"
-                                        class="form-control" value="{{ old('email') }}" placeholder="{!! __('admin.email') !!}"
-                                        required>
+                                    <input type="email" name="email" id="email" oninput="suggestProvider()" class="form-control mb-2" value="{{ old('email') }}" placeholder="{!! __('admin.email') !!}" required>
+                                    
+                                    <div id="email_providers" style="display: none;">
+                                        @foreach(config('mail.extensions') as $extension)
+                                            <a onclick="appendProvider('{{ $extension }}')" href="#" class="mr-1">{{ $extension }}</a>
+                                        @endforeach
+                                    </div>
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="password">{!! __('admin.password') !!}</label>
@@ -90,12 +94,12 @@
                             </div>
                             <div class="form-group col-12">
                                 <label for="address">{!! __('admin.street') !!}</label>
-                                <input type="text" name="street" id="street"
+                                <input type="text" name="address" id="street"
                                     class="form-control" value="{{ old('street') }}" placeholder="{!! __('admin.street') !!}">
                             </div>
                             <div class="form-group col-12">
                                 <label for="address_2">{!! __('admin.street_2') !!}</label>
-                                <input type="text" name="street_2" id="street_2"
+                                <input type="text" name="address_2" id="street_2"
                                     class="form-control" value="{{ old('street_2') }}" placeholder="{!! __('admin.street_2') !!}">
                             </div>
                             <div class="form-group col-md-3 col-6">
@@ -136,6 +140,33 @@
         </div>
 
         <script>
+            function suggestProvider() {
+                // check if the email field contains @
+                var email = document.getElementById('email').value;
+                if (email.includes('@')) {
+                    // if contains . after @ then hide the email providers
+                    if (email.split('@')[1].includes('.')) {
+                        document.getElementById('email_providers').style.display = 'none';
+                        return;
+                    }
+
+                    // set display to block
+                    document.getElementById('email_providers').style.display = 'block';
+                } else {
+                    // set display to none
+                    document.getElementById('email_providers').style.display = 'none';
+                }
+            }
+
+            function appendProvider(provider) {
+                var email = document.getElementById('email').value;
+
+                // append extension after @
+                var new_email = email.split('@')[0] + '@' + provider;
+                document.getElementById('email').value = new_email;
+                document.getElementById('email_providers').style.display = 'none';
+            }
+
             function generateUsername() {
                 var first_name = document.getElementById('first_name').value;
                 var random_number = Math.floor(Math.random() * 1000);
