@@ -68,7 +68,22 @@
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">
                                     {!! __('admin.require_address_information_desc', ['default' => 'After login in, users will be forced to complete their address information.']) !!}
-                         </span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="form-group col-12">
+                                <div class="control-label">
+                                    {!! __('admin.require_phone_number', ['default' => 'Require user to setup a phone number']) !!}
+                                </div>
+                                <label class="custom-switch mt-2"
+                                       onclick="location.href = '@if(settings('require_phone_number', false)) /admin/settings/store?require_phone_number=0 @else /admin/settings/store?require_phone_number=1 @endif';">
+                                    <input type="checkbox" name="require_phone_number" value="1" class="custom-switch-input"
+                                           @if(settings('require_phone_number', false)) checked @endif>
+                                    <span class="custom-switch-indicator"></span>
+                                    <span class="custom-switch-description">
+                                    {!! __('admin.require_phone_number_desc') !!}
+                                    </span>
                                 </label>
                             </div>
 
