@@ -22,7 +22,7 @@
                             @foreach (Service::all() as $service)
                                 <tr>
                                     <td>{{ $service->about()->display_name }}</td>
-                                    <td>{{ config($service->module()->getLowerName() . '.version', 'N/A') ?? 'N/A' }}</td>
+                                    <td>{{ $service->about()->version ?? 'N/A' }}</td>
                                     <td>
                                         @if ($service->module()->isEnabled())
                                             <span class="badge badge-success">{!! __('admin.enabled') !!}</span>
