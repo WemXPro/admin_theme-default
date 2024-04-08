@@ -21,13 +21,13 @@
           <td>{{ $option->is_onetime ? 'True' : 'False' }}</td>
           <td>{{ number_format($option->price_per_30_days, 2) }}</td>
           <td>    
-            <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target=".bd-update-option-modal-lg-{{ $option->id }}">Update</button>
+            <a href="{{ route('packages.config-options.edit-option', ['package' => $package->id, 'option' => $option->id]) }}" class="btn btn-primary mb-2">Edit</a>
           </td>
         </tr>
         <div class="modal fade bd-update-option-modal-lg-{{ $option->id }}" tabindex="-1" role="dialog" aria-labelledby="UpdateOptionModalLabel{{ $option->id }}" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
-                <form action="{{ route('packages.config-options.update-option', ['package' => $package->id, 'option' => $option->id]) }}" method="POST">
+                <form action="#" method="POST">
                     @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Update Configurable Option</h5>
