@@ -147,7 +147,7 @@
                     <div class="card-body">
                         <div class="summary">
                             <div class="summary-info">
-                                <h4>{{ currency('symbol') }}{{ number_format($order->payments()->whereStatus('paid')->getAmountSum(), 2) }}</h4>
+                                <h4>{{ price($order->payments()->whereStatus('paid')->getAmountSum()) }}</h4>
                                 <div class="text-muted">{{ $order->payments()->whereStatus('paid')->count() }}
                                     {!! __('admin.paid_payments', ['default' => 'Paid Payments']) !!}
                                 </div>
@@ -162,7 +162,7 @@
                                         <li class="media">
                                             <div class="media-body">
                                                 <div
-                                                    class="media-right">{{ currency('symbol') }}{{ number_format($payment->amount, 2) }}</span></div>
+                                                    class="media-right">{{ price($payment->amount) }}</span></div>
                                                 <div class="media-title"><a href="{{ route('payments.edit', $payment->id) }}">{{ $payment->description }}</a>
                                                 </div>
                                                 <div
@@ -414,7 +414,7 @@
                     <div class="modal-body">
                         @if($order->price['cancellation_fee'] > 0)
                             <div class="alert alert-warning" role="alert">
-                                {!! __('admin.cancel_service_modal_body', ['currency'=> currency('symbol'), 'price'=> number_format($order->price['cancellation_fee'], 2),
+                                {!! __('admin.cancel_service_modal_body', ['currency'=> currency('symbol'), 'price'=> price($order->price['cancellation_fee']),
                                 'default' => '
                                 This service has a cancellation fee of <a class="alert-link">:currency :price</a>
                                 - The cancellation fee will be waved when you proceed with the cancellation below.

@@ -31,7 +31,7 @@
                             <strong>{!! __('admin.status') !!}: </strong>{!! __('admin.' . $payment->status) !!}<br>
                             <strong>{!! __('admin.description') !!}: </strong> {{ $payment->description }} <br>
                             <strong>{!! __('admin.amount') !!}
-                                : </strong> {{ currency('symbol') }}{{ number_format($payment->amount, 2) }} <br>
+                                : </strong> {{ price($payment->amount) }} <br>
                             @isset($payment->due_date)
                                 <strong>{!! __('admin.due_date') !!}
                                     : </strong> {{ $payment->due_date->translatedFormat(settings('date_format', 'd M Y')) }}

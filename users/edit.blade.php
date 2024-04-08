@@ -150,7 +150,7 @@
                                 <div class="col-12" style="display: flex;justify-content: space-between;">
                                     <div class="profile-widget-name">
                                         {!! __('admin.current_balance', ['default' => 'Current Balance']) !!}:
-                                        <strong>{{ currency('symbol') }}{{ number_format( $user->balance ,2)}}</strong>
+                                        <strong>{{ price($user->balance) }}</strong>
                                     </div>
                                     <button class="btn btn-success" type="submit">
                                         {!! __('admin.update_balance', ['default' => 'Update Balance']) !!}
@@ -177,14 +177,14 @@
                                                 <div class="text-muted text-medium">
                                                     {!! __('admin.before_transaction', ['default' => 'Before transaction']) !!}
                                                     :
-                                                    {{ currency('symbol') }}{{ number_format($transaction->balance_before_transaction, 2) }}
+                                                    {{ price($transaction->balance_before_transaction) }}
                                                     <div class="bullet"></div>
                                                     {{ $transaction->created_at->diffForHumans() }}
                                                     <div class="bullet"></div>
                                                     <span class="@if($transaction->result == '+' ) text-success
                                                         @elseif($transaction->result == '-') text-danger
                                                         @else text-secondary @endif">
-                                                        {{ $transaction->result }} {{ currency('symbol') }}{{ number_format($transaction->amount, 2) }}
+                                                        {{ $transaction->result }} {{ price($transaction->amount) }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -273,7 +273,7 @@
                     <div class="card-body">
                         <div class="summary">
                             <div class="summary-info">
-                                <h4>{{ currency('symbol') }}{{ number_format($user->payments()->whereStatus('paid')->getAmountSum(), 2) }}</h4>
+                                <h4>{{ price($user->payments()->whereStatus('paid')->getAmountSum()) }}</h4>
                                 <div class="text-muted">{{ $user->payments()->whereStatus('paid')->count() }}
                                     {!! __('admin.payments', ['default' => 'payments']) !!} {!! __('admin.on', ['default' => 'on']) !!} {{ $user->orders()->count() }} {{ mb_strtolower(__('admin.orders')) }}
                                 </div>
@@ -296,7 +296,7 @@
                                             </a>
                                             <div class="media-body">
                                                 <div class="media-right">
-                                                    {{ currency('symbol') }}{{ number_format($order->price['renewal_price'], 2) }}
+                                                    {{ price($order->price['renewal_price']) }}
                                                     /
                                                     {{ $order->periodToHuman() }}
                                                 </div>

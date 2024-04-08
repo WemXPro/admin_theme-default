@@ -41,7 +41,7 @@
                         </a>
                       </td>
                       <td>{{ $payment->description }}</td>
-                      <td>{{ currency('symbol') }}{{ number_format($payment->amount, 2) }} {{ $payment->currency }}</td>
+                      <td>{{ price($payment->amount) }}</td>
                       <td>{{ $payment->type }}</td>
                       <td>
                           <div class="@if($payment->status == 'paid') badge badge-success
