@@ -14,7 +14,7 @@
                     <div class="card-header">
                         <h4>{!! __('admin.orders') !!}</h4>
                         <div class="card-header-action">
-                            <a href="{{ route('orders.create') }}" class="btn btn-icon icon-left btn-primary"><i
+                            <a href="{{ route('orders.create', ['user' => $user->id]) }}" class="btn btn-icon icon-left btn-primary"><i
                                     class="fas fa-solid fa-plus"></i> {!! __('admin.create') !!}</a>
                         </div>
                     </div>

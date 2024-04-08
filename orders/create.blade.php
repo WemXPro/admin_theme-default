@@ -72,7 +72,7 @@
                                     <select class="form-control select2 select2-hidden-accessible" name="user_id"
                                             tabindex="-1" aria-hidden="true">
                                         @foreach (User::get() as $user)
-                                            <option value="{{ $user->id }}">{{ $user->username }} ({{ $user->email }})
+                                            <option value="{{ $user->id }}" @if(request()->get('user') == $user->id) selected @endif >{{ $user->username }} ({{ $user->email }})
                                             </option>
                                         @endforeach
                                     </select>
