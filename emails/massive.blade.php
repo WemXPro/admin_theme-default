@@ -36,12 +36,27 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ __('admin.button') }}</label>
+                            <div class="col-3">
+                                <span class="text-muted">{{ __('admin.button_name') }}</span>
+                                <input type="text" class="form-control" name="button[name]">
+                            </div>
+                            <div class="col-6">
+                                <span class="text-muted ml-2">{{ __('admin.button_url') }}</span>
+                                <input type="text" class="form-control" name="button[url]">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{ __('admin.users') }}</label>
                             <div class="col-md-9">
                                 <select class="form-control select2" name="users" required>
                                     <option value="all_users">{{ __('admin.all_users') }}</option>
                                     <option value="active_orders">{{ __('admin.active_orders_users') }}</option>
                                     <option value="no_orders">{{ __('admin.no_orders_users') }}</option>
+                                    <option value="subscribed">{{ __('admin.subscribed_users') }}</option>
+                                    @foreach(Service::all() as $service)
+                                        <option value="service_{{ $service->module()->getLowerName() }}">{{ $service->about()->display_name }} {{ __('admin.users') }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
