@@ -328,6 +328,10 @@
                                 <a class="nav-link {{ nav_active('emails.templates') }}"
                                    href="{{ route('emails.templates') }}">{!!  __('admin.templates', ['default' => 'Templates']) !!}</a>
                             </li>
+                            <li>
+                                <a class="nav-link {{ nav_active('emails.massive') }}"
+                                   href="{{ route('emails.massive') }}">{!!  __('admin.massive_email_send') !!}</a>
+                            </li>
                         </ul>
                     </li>
 
