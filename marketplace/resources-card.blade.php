@@ -45,13 +45,13 @@
                             <td>
                                 <img src="{{ $resource['icon'] ?? 'https://imgur.com/koz9j8a.png' }}"
                                      alt="{{ $resource['name'] }}" style="width:32px; height:32px;">
-                                {{ $resource['name'] }}
+                                {{ Str::limit($resource['name'], 30) }}
                             </td>
-                            <td>{{ Str::limit($resource['short_desc'] ?? $resource['name'], 50) }}</td>
+                            <td>{{ Str::limit($resource['short_desc'] ?? $resource['name'], 30) }}</td>
                             <td>
                                 <img src="{{ $resource['owner']['avatar'] ?? 'https://imgur.com/koz9j8a.png' }}"
-                                     alt="{{ $resource['name'] }}" style="width:32px; height:32px;">
-                                {{ $resource['owner']['username'] }}
+                                     alt="" style="width:32px; height:32px;">
+                                {{ Str::limit($resource['owner']['username'], 30) }}
                             </td>
                             <td>{{ $resource['version'] }}</td>
                             <td>
@@ -61,14 +61,16 @@
                                 </td>
                             <td>{{ $resource['is_free'] ? __('admin.free') : $resource['price'] }}</td>
                             <td class="text-right">
-                                @if($resource['purchased'])
-                                    <a href="{{ route('admin.resource.install', ['resource_id' => $resource['id'], 'version_id' => $resource['version_id']]) }}"
-                                       class="btn btn-primary">
-                                        {!! __('admin.'.$install_key) !!}
-                                    </a>
-                                @endif
-                                <a href="{{ $resource['view_url'] }}"
-                                   class="btn btn-success">{!! __('admin.view') !!}</a>
+                                <div class="d-flex justify-content-end">
+                                    @if($resource['purchased'])
+                                        <a href="{{ route('admin.resource.install', ['resource_id' => $resource['id'], 'version_id' => $resource['version_id']]) }}"
+                                           class="btn btn-sm btn-primary mr-2">
+                                            {!! __('admin.'.$install_key) !!}
+                                        </a>
+                                    @endif
+                                    <a href="{{ $resource['view_url'] }}"
+                                       class="btn btn-sm btn-success">{!! __('admin.view') !!}</a>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

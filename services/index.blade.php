@@ -33,16 +33,16 @@
                                     <td class="text-right">
                                         @if($service->hasConfig())
                                             <a href="{{ route('services.config', ['service' => $service->module()->getLowerName()]) }}"
-                                               class="btn btn-primary mr-2">
+                                               class="btn btn-sm btn-primary mr-2">
                                                 <i class="fas fa-cog"></i> {!! __('admin.configuration') !!}
                                             </a>
                                         @endif
                                         @if ($service->module()->isEnabled())
                                             <a href="{{ route('modules.toggle', ['module' => $service->module()->getName()]) }}"
-                                               class="btn btn-warning">{!! __('admin.disable') !!}</a>
+                                               class="btn btn-sm btn-warning">{!! __('admin.disable') !!}</a>
                                         @else
                                             <a href="{{ route('modules.toggle', ['module' => $service->module()->getName()]) }}"
-                                               class="btn btn-success">{!! __('admin.enable') !!}</a>
+                                               class="btn btn-sm btn-success">{!! __('admin.enable') !!}</a>
                                         @endif
                                         <button
                                             onclick="if (confirm('{{__('client.sure_you_want_delete')}}')) {window.location.href = '{{ route('modules.delete', ['module' => $service->module()->getName()]) }}'}"
