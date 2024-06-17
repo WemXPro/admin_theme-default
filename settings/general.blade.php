@@ -102,13 +102,6 @@
                                 </select>
                             </div>
                             <div class="form-group col-12">
-                                <label for="tinymce::key">TinyMCE API Key</label>
-                                <input type="text" id="tinymce::key" name="tinymce::key"
-                                       value="@settings('tinymce::key', '')" class="form-control"
-                                       placeholder="gtpqk4bhodntkjtjhc1iggqd0om3gkf8l1opje9m2uhjk0k8">
-                                <small class="mt-1">Is required to use the TinyMCE editor.</small>
-                            </div>
-                            <div class="form-group col-12">
                                 <label>Google Analytics Code</label>
                                 <input type="text" name="google::analytics_code"
                                        value="@settings('google::analytics_code')" class="form-control">
