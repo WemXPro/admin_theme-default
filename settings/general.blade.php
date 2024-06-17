@@ -166,27 +166,27 @@
                             <div class="form-group col-6">
                                 <label>{!! __('admin.application_logo', ['default' => 'Application Logo']) !!}</label>
                                 <input type="text" name="logo"
-                                       value="@settings('logo', 'https://imgur.com/oJDxg2r.png')" class="form-control">
+                                       value="@settings('logo', '/assets/core/img/logo.png')" class="form-control">
                                 <div class="gallery gallary mt-3">
                                     <div class="gallery-item"
-                                         data-image="@settings('logo', 'https://imgur.com/oJDxg2r.png')"
-                                         data-title="Image 1" href="@settings('logo', 'https://imgur.com/oJDxg2r.png')"
+                                         data-image="@settings('logo', '/assets/core/img/logo.png')"
+                                         data-title="Image 1" href="@settings('logo', '/assets/core/img/logo.png')"
                                          title="Image 1"
-                                         style="background-image: url('@settings('logo', 'https://imgur.com/oJDxg2r.png')');"></div>
+                                         style="background-image: url('@settings('logo', '/assets/core/img/logo.png')');"></div>
                                 </div>
                             </div>
 
                             <div class="form-group col-6">
                                 <label>{!! __('admin.favicon') !!}</label>
                                 <input type="text" name="favicon"
-                                       value="@settings('favicon', 'https://imgur.com/oJDxg2r.png')"
+                                       value="@settings('favicon', '/assets/core/img/logo.png')"
                                        class="form-control">
                                 <div class="gallery mt-3">
                                     <div class="gallery-item"
-                                         data-image="@settings('favicon', 'https://imgur.com/oJDxg2r.png')"
+                                         data-image="@settings('favicon', '/assets/core/img/logo.png')"
                                          data-title="Image 1"
-                                         href="@settings('favicon', 'https://imgur.com/oJDxg2r.png')" title="Image 1"
-                                         style="background-image: url('@settings('favicon', 'https://imgur.com/oJDxg2r.png')');"></div>
+                                         href="@settings('favicon', '/assets/core/img/logo.png')" title="Image 1"
+                                         style="background-image: url('@settings('favicon', '/assets/core/img/logo.png')');"></div>
                                 </div>
                             </div>
 

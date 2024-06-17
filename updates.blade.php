@@ -85,7 +85,7 @@
     <div class="card-body">
         @foreach($versions as $version)
         <div class="media mb-4">
-            <img class="mr-3" src="https://imgur.com/oJDxg2r.png" alt="wemx logo" style="width: 46px; height: 46px; border-radius: 10px">
+            <img class="mr-3" src="/assets/core/img/logo.png" alt="wemx logo" style="width: 46px; height: 46px; border-radius: 10px">
             <div class="media-body">
               <h5 class="mt-0">{{ __('admin.version') }} {{ $version->version }} ({{ $version->type }})</h5>
               <p class="mb-0">

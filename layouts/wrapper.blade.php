@@ -12,7 +12,7 @@
     <title>{!! __('admin.admin') !!} | @isset($title)
             {{ $title }}
         @endisset - {{ config('app.name') }}</title>
-    <link rel="icon" type="image/png" href="@settings('favicon', 'https://imgur.com/oJDxg2r.png')">
+    <link rel="icon" type="image/png" href="@settings('favicon', '/assets/core/img/logo.png')">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/bootstrap/css/bootstrap.min.css')) }}"/>
