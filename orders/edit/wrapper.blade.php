@@ -364,4 +364,10 @@
             }
         }
     </script>
+
+    <style>
+        li.list-group-item {
+            background: transparent !important;
+        }
+    </style>
 @endsection
