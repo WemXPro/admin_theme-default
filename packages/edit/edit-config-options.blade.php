@@ -16,6 +16,12 @@
         <input type="text" name="data[description]" placeholder="Write a description..." value="{{ $option->data['description'] ?? '' }}" class="form-control" required="" />
         <small class="form-text text-muted">Write a description for the input form</small>
     </div>
+    <div class="form-group col-md-12">
+        <label for="rules{{ $option->id }}">Validation Rules</label>
+        <input type="text" name="rules" id="rules{{ $option->id }}" value="{{ $option->rules }}" class="form-control" required=""/>
+        <small class="form-text text-muted">Input validation rules based on laravels <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
+    </div>
     <hr />
 </div>
 <div id="select_options_{{ $option->id }}">
@@ -59,7 +65,47 @@
 </div>
 <a onclick="duplicateAndIncrementOptions('select_options_{{ $option->id }}')" class="text-success mr-2" style="cursor: pointer;">Add Option</a>
 <a onclick="deleteLastChildOfDiv('select_options_{{ $option->id }}')" class="text-danger" style="cursor: pointer;">Remove Option</a>
-
+@elseif($option->type == 'text')
+<div class="row">
+    <div class="form-group col-md-12">
+        <label for="data[label]">Input Label</label>
+        <input type="text" name="data[label]" placeholder="Select Option" value="{{ $option->data['label'] ?? '' }}" class="form-control" required="" />
+        <small class="form-text text-muted">Label of the input form</small>
+    </div>
+    <div class="form-group col-md-12">
+        <label for="data[description]">Input Description</label>
+        <input type="text" name="data[description]" placeholder="Write a description..." value="{{ $option->data['description'] ?? '' }}" class="form-control" required="" />
+        <small class="form-text text-muted">Write a description for the input form</small>
+    </div>
+    <div class="form-group col-md-12">
+        <label for="rules{{ $option->id }}">Validation Rules</label>
+        <input type="text" name="rules" id="rules{{ $option->id }}" value="{{ $option->rules }}" class="form-control" required=""/>
+        <small class="form-text text-muted">Input validation rules based on laravels <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
+    </div>
+    <div class="form-group col-md-12">
+        <label name="data[type]">Field Type</label>
+        <div class="input-group mb-2">
+            <select class="form-control select2 select2-hidden-accessible" name="data[type]" tabindex="-1" aria-hidden="true" required>
+                <option value="text" @if($option->data['type'] ?? 'text' == 'text') selected @endif>Text</option>
+                <option value="email" @if($option->data['type'] ?? 'text' == 'email') selected @endif>Email</option>
+                <option value="number" @if($option->data['type'] ?? 'text' == 'number') selected @endif>Number</option>
+                <option value="date" @if($option->data['type'] ?? 'text' == 'date') selected @endif>Date</option>
+                <option value="url" @if($option->data['type'] ?? 'text' == 'url') selected @endif>Url</option>
+                <option value="password" @if($option->data['type'] ?? 'text' == 'password') selected @endif>Password</option>
+            </select>
+            <small class="form-text text-muted">Select field type</small>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label for="data[default_value]">Default Value</label>
+        <input type="number" name="data[default_value]" value="{{ $option->data['default_value'] ?? '' }}" class="form-control" />
+    </div>
+    <div class="form-group col-md-12">
+        <label for="data[placeholder]">Placeholder Text</label>
+        <input type="number" name="data[placeholder]" value="{{ $option->data['placeholder'] ?? '' }}" class="form-control" />
+    </div>
+</div>
 @elseif($option->type == 'radio') @elseif($option->type == 'checkbox') @elseif($option->type == 'range')
 <div class="row">
     <div class="form-group col-md-12">
@@ -71,6 +117,12 @@
         <label for="data[description]">Input Description</label>
         <input type="text" name="data[description]" placeholder="Write a description..." value="{{ $option->data['description'] ?? '' }}" class="form-control" required="" />
         <small class="form-text text-muted">Write a description for the input form</small>
+    </div>
+    <div class="form-group col-md-12">
+        <label for="rules{{ $option->id }}">Validation Rules</label>
+        <input type="text" name="rules" id="rules{{ $option->id }}" value="{{ $option->rules }}" class="form-control" required=""/>
+        <small class="form-text text-muted">Input validation rules based on laravels <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
     </div>
     <div class="form-group col-md-3">
         <label for="data[default_value]">Default Value</label>
@@ -113,6 +165,12 @@
         <label for="data[description]">Input Description</label>
         <input type="text" name="data[description]" placeholder="Write a description..." value="{{ $option->data['description'] ?? '' }}" class="form-control" required="" />
         <small class="form-text text-muted">Write a description for the input form</small>
+    </div>
+    <div class="form-group col-md-12">
+        <label for="rules{{ $option->id }}">Validation Rules</label>
+        <input type="text" name="rules" id="rules{{ $option->id }}" value="{{ $option->rules }}" class="form-control" required=""/>
+        <small class="form-text text-muted">Input validation rules based on laravels <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
     </div>
     <div class="form-group col-md-4">
         <label for="data[default_value]">Default Value</label>
