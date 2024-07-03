@@ -61,7 +61,7 @@
                                                 @if(!$price->is_active)
                                                     @continue;
                                                 @endif
-                                                <option value="{{ $price->id }}">{{ currency('symbol') . number_format($price->renewal_price, 2) }} @ {{ $price->periodToHuman() }}</option>
+                                                <option value="{{ $price->id }}">{{ price($price->renewal_price) }} @ {{ $price->periodToHuman() }}</option>
                                             @endforeach
                                     </select>
                                 </div>

@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group col-6">
                                 <label
-                                    for="language">{!! __('admin.default_language', ['default' => 'Default Language']) !!}</label>
+                                        for="language">{!! __('admin.default_language', ['default' => 'Default Language']) !!}</label>
                                 <select class="form-control select2 select2-hidden-accessible" name="language"
                                         tabindex="-1" aria-hidden="true">
                                     @if(Module::isEnabled('locales'))
@@ -70,22 +70,36 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-4">
                                 <label>{!! __('admin.terminate_order_after_days') !!}</label>
                                 <input type="number" name="orders::terminate_suspended_after"
                                        value="@settings('orders::terminate_suspended_after', 7)" class="form-control">
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-4">
+                                <label>{!! __('admin.delete_terminated_orders') !!}</label>
+                                <select class="form-control select2 select2-hidden-accessible" name="orders::delete_terminated" tabindex="-1" aria-hidden="true">
+                                    <option value="1" @if(settings('orders::delete_terminated', false) == 1) selected @endif>{!! __('admin.yes') !!}</option>
+                                    <option value="0" @if(settings('orders::delete_terminated', false) == 0) selected @endif>{!! __('admin.no') !!}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-4">
                                 <label>{!! __('admin.maxmimum_members_per_order') !!}</label>
                                 <input type="number" name="orders::maxmimum_members"
                                        value="@settings('orders::maxmimum_members', 5)" class="form-control">
                             </div>
-                            <div class="form-group col-12">
-                                <label for="tinymce::key">TinyMCE API Key</label>
-                                <input type="text" id="tinymce::key" name="tinymce::key"
-                                       value="@settings('tinymce::key', '')" class="form-control"
-                                       placeholder="gtpqk4bhodntkjtjhc1iggqd0om3gkf8l1opje9m2uhjk0k8">
-                                <small class="mt-1">Is required to use the TinyMCE editor.</small>
+                            <div class="form-group col-6">
+                                <label for="allow_toggle_mode">Allow toggle theme mode</label>
+                                <select class="form-control select2 select2-hidden-accessible" name="theme::allow_toggle_mode" tabindex="-1" aria-hidden="true">
+                                    <option value="1" @if(settings('theme::allow_toggle_mode', 1) == 1) selected @endif>{!! __('admin.yes') !!}</option>
+                                    <option value="0" @if(settings('theme::allow_toggle_mode', 1) == 0) selected @endif>{!! __('admin.no') !!}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="allow_toggle_mode">Default theme mode</label>
+                                <select class="form-control select2 select2-hidden-accessible" name="theme::default_mode" tabindex="-1" aria-hidden="true">
+                                    <option value="dark" @if(settings('theme::default_mode', 'dark') == 'dark') selected @endif>Dark</option>
+                                    <option value="light" @if(settings('theme::default_mode', 'dark') == 'light') selected @endif>Light</option>
+                                </select>
                             </div>
                             <div class="form-group col-12">
                                 <label>Google Analytics Code</label>
@@ -145,27 +159,27 @@
                             <div class="form-group col-6">
                                 <label>{!! __('admin.application_logo', ['default' => 'Application Logo']) !!}</label>
                                 <input type="text" name="logo"
-                                       value="@settings('logo', 'https://imgur.com/oJDxg2r.png')" class="form-control">
+                                       value="@settings('logo', '/assets/core/img/logo.png')" class="form-control">
                                 <div class="gallery gallary mt-3">
                                     <div class="gallery-item"
-                                         data-image="@settings('logo', 'https://imgur.com/oJDxg2r.png')"
-                                         data-title="Image 1" href="@settings('logo', 'https://imgur.com/oJDxg2r.png')"
+                                         data-image="@settings('logo', '/assets/core/img/logo.png')"
+                                         data-title="Image 1" href="@settings('logo', '/assets/core/img/logo.png')"
                                          title="Image 1"
-                                         style="background-image: url('@settings('logo', 'https://imgur.com/oJDxg2r.png')');"></div>
+                                         style="background-image: url('@settings('logo', '/assets/core/img/logo.png')');"></div>
                                 </div>
                             </div>
 
                             <div class="form-group col-6">
                                 <label>{!! __('admin.favicon') !!}</label>
                                 <input type="text" name="favicon"
-                                       value="@settings('favicon', 'https://imgur.com/oJDxg2r.png')"
+                                       value="@settings('favicon', '/assets/core/img/logo.png')"
                                        class="form-control">
                                 <div class="gallery mt-3">
                                     <div class="gallery-item"
-                                         data-image="@settings('favicon', 'https://imgur.com/oJDxg2r.png')"
+                                         data-image="@settings('favicon', '/assets/core/img/logo.png')"
                                          data-title="Image 1"
-                                         href="@settings('favicon', 'https://imgur.com/oJDxg2r.png')" title="Image 1"
-                                         style="background-image: url('@settings('favicon', 'https://imgur.com/oJDxg2r.png')');"></div>
+                                         href="@settings('favicon', '/assets/core/img/logo.png')" title="Image 1"
+                                         style="background-image: url('@settings('favicon', '/assets/core/img/logo.png')');"></div>
                                 </div>
                             </div>
 
@@ -174,8 +188,9 @@
                     <div class="card-footer text-right">
                         <button type="submit" class="btn btn-primary">{!! __('admin.submit') !!}</button>
                     </div>
+                </form>
             </div>
-            </form>
+
         </div>
     </div>
     <style>

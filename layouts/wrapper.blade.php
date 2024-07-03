@@ -12,12 +12,12 @@
     <title>{!! __('admin.admin') !!} | @isset($title)
             {{ $title }}
         @endisset - {{ config('app.name') }}</title>
-    <link rel="icon" type="image/png" href="@settings('favicon', 'https://imgur.com/oJDxg2r.png')">
+    <link rel="icon" type="image/png" href="@settings('favicon', '/assets/core/img/logo.png')">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/bootstrap/css/bootstrap.min.css')) }}"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+
 
     <!-- CSS Libraries -->
     @yield('css_libraries')
@@ -327,6 +327,10 @@
                             <li>
                                 <a class="nav-link {{ nav_active('emails.templates') }}"
                                    href="{{ route('emails.templates') }}">{!!  __('admin.templates', ['default' => 'Templates']) !!}</a>
+                            </li>
+                            <li>
+                                <a class="nav-link {{ nav_active('emails.massive') }}"
+                                   href="{{ route('emails.massive') }}">{!!  __('admin.massive_email_send') !!}</a>
                             </li>
                         </ul>
                     </li>

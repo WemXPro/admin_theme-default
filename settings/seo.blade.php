@@ -53,9 +53,9 @@
                 </div>
                 <div class="form-group col-12">
                     <label>Logo / Image</label>
-                    <input type="text" name="seo::image" value="@settings('seo::image', settings('logo', 'https://imgur.com/oJDxg2r.png'))" class="form-control">
+                    <input type="text" name="seo::image" value="@settings('seo::image', settings('logo', '/assets/core/img/logo.png'))" class="form-control">
                     <div class="gallery gallary mt-3">
-                        <div class="gallery-item" data-image="@settings('seo::image', settings('logo', 'https://imgur.com/oJDxg2r.png'))" data-title="Image 1" href="@settings('seo::image', settings('logo', 'https://imgur.com/oJDxg2r.png'))" title="Image 1" style="background-image: url('@settings('seo::image', settings('logo', 'https://imgur.com/oJDxg2r.png'))')');"></div>
+                        <div class="gallery-item" data-image="@settings('seo::image', settings('logo', '/assets/core/img/logo.png'))" data-title="Image 1" href="@settings('seo::image', settings('logo', '/assets/core/img/logo.png'))" title="Image 1" style="background-image: url('@settings('seo::image', settings('logo', '/assets/core/img/logo.png'))')');"></div>
                       </div>
                 </div>
               </div>

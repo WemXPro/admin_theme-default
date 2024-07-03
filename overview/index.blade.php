@@ -329,7 +329,7 @@
                             <h4>{!! __('admin.revenue') !!}</h4>
                         </div>
                         <div class="card-body">
-                            {{ currency('symbol') }}{{ number_format(collect($paid_amounts)->sum(), 2) }}
+                            {{ price(collect($paid_amounts)->sum()) }}
                         </div>
                     </div>
                 </div>

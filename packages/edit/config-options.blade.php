@@ -225,6 +225,7 @@
                     <option value="number">Quantity / Number</option>
                     {{-- <option value="radio">Radio</option> --}}
                     <option value="select">Select Dropdown</option>
+                    <option value="text">Text</option>
                     {{-- <option value="checkbox">Checkbox</option> --}}
                 </select>
             </div>

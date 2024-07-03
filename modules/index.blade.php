@@ -34,14 +34,14 @@
                                         <td class="text-right">
                                             @if ($module->isEnabled())
                                                 <a href="{{ route('modules.toggle', ['module' => $module->getName()]) }}"
-                                                   class="btn btn-warning">{!! __('admin.disable') !!}</a>
+                                                   class="btn btn-sm btn-warning">{!! __('admin.disable') !!}</a>
                                             @else
                                                 <a href="{{ route('modules.toggle', ['module' => $module->getName()]) }}"
-                                                   class="btn btn-success">{!! __('admin.enable') !!}</a>
+                                                   class="btn btn-sm btn-success">{!! __('admin.enable') !!}</a>
                                             @endif
                                             <button
                                                 onclick="if (confirm('{{__('client.sure_you_want_delete')}}')) {window.location.href = '{{ route('modules.delete', ['module' => $module->getName()]) }}'}"
-                                                class="btn btn-danger m-2">{!! __('admin.delete') !!}</button>
+                                                class="btn btn-sm btn-danger m-2">{!! __('admin.delete') !!}</button>
                                         </td>
                                     </tr>
                                 @endif
