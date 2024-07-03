@@ -32,15 +32,10 @@
                                 <input type="email" name="contact_email"
                                        value="@settings('contact_email', 'contact@example.com')" class="form-control">
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label>{!! __('admin.company_address', ['default' => 'Company Address']) !!}</label>
                                 <input type="text" name="company_address"
                                        value="@settings('company_address', '291 N 4th St, San Jose, CA 95112, USA')"
-                                       class="form-control">
-                            </div>
-                            <div class="form-group col-6">
-                                <label>{!! __('admin.date_format', ['default' => 'Date Format']) !!}</label>
-                                <input type="text" name="date_format" value="@settings('date_format', 'd M Y')"
                                        class="form-control">
                             </div>
                             <div class="form-group col-6">
@@ -69,23 +64,6 @@
                                         <option value="en">English</option>
                                     @endif
                                 </select>
-                            </div>
-                            <div class="form-group col-4">
-                                <label>{!! __('admin.terminate_order_after_days') !!}</label>
-                                <input type="number" name="orders::terminate_suspended_after"
-                                       value="@settings('orders::terminate_suspended_after', 7)" class="form-control">
-                            </div>
-                            <div class="form-group col-4">
-                                <label>{!! __('admin.delete_terminated_orders') !!}</label>
-                                <select class="form-control select2 select2-hidden-accessible" name="orders::delete_terminated" tabindex="-1" aria-hidden="true">
-                                    <option value="1" @if(settings('orders::delete_terminated', false) == 1) selected @endif>{!! __('admin.yes') !!}</option>
-                                    <option value="0" @if(settings('orders::delete_terminated', false) == 0) selected @endif>{!! __('admin.no') !!}</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-4">
-                                <label>{!! __('admin.maxmimum_members_per_order') !!}</label>
-                                <input type="number" name="orders::maxmimum_members"
-                                       value="@settings('orders::maxmimum_members', 5)" class="form-control">
                             </div>
                             <div class="form-group col-6">
                                 <label for="allow_toggle_mode">Allow toggle theme mode</label>
