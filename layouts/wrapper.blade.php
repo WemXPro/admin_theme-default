@@ -270,6 +270,10 @@
                                    href="{{ route('admin.settings') }}">{!!  __('admin.settings', ['default' => 'Settings']) !!}</a>
                             </li>
                             <li>
+                                <a class="nav-link {{ nav_active('admin.config') }}"
+                                   href="{{ route('admin.config') }}">{!!  __('admin.config', ['default' => 'Config']) !!}</a>
+                            </li>
+                            <li>
                                 <a class="nav-link {{ nav_active('admin.seo') }}"
                                    href="{{ route('admin.seo') }}">{!!  __('admin.seo', ['default' => 'SEO']) !!}</a>
                             </li>
