@@ -103,6 +103,10 @@
                                                     @if ($price->period == 90) selected @endif>
                                                 {{ __('admin.quaterly') }}
                                             </option>
+                                            <option value="180"
+                                            @if ($price->period == 180) selected @endif>
+                                                {{ __('admin.semi_yearly') }}
+                                            </option>
                                             <option value="365"
                                                     @if ($price->period == 365) selected @endif>
                                                 {{ __('admin.yearly') }}
@@ -279,6 +283,7 @@
                                     <option value="7">{{ __('admin.weekly') }}</option>
                                     <option value="30" selected>{{ __('admin.monthly') }}</option>
                                     <option value="90">{{ __('admin.quaterly') }}</option>
+                                    <option value="180">{{ __('admin.semi_yearly') }}</option>
                                     <option value="365">{{ __('admin.yearly') }}</option>
                                     <option value="730">{!! __('admin.per_years', ['years' => 2]) !!}</option>
                                     <option value="1825">{!! __('admin.per_years', ['years' => 5]) !!}</option>
