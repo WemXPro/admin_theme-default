@@ -152,6 +152,29 @@
                 <small class="form-text text-muted">{!! __('admin.allow_cancellation_desc') !!}</small>
             </div>
 
+            <div class="form-group col-md-6 col-6">
+                <label for="settings[allow_custom_renewal_date]">{{ __('admin.allow_custom_renewal_date') }}</label>
+                <select class="form-control select2 select2-hidden-accessible" required="" name="settings[allow_custom_renewal_date]" id="settings[allow_custom_renewal_date]"
+                        tabindex="-1" aria-hidden="true">
+                    <option value="1" @if($package->settings('allow_custom_renewal_date', true)) selected @endif>
+                        {!! __('admin.yes') !!}
+                    </option>
+                    <option value="0" @if(!$package->settings('allow_custom_renewal_date', true)) selected @endif>
+                        {!! __('admin.no') !!}
+                    </option>
+                </select>
+                <small class="form-text text-muted">{!! __('admin.allow_custom_renewal_date_desc') !!}</small>
+            </div>
+
+            <div class="form-group col-md-6 col-6">
+                <label for="settings[min_custom_renewal_days]">{{ __('admin.minimum_advance_days_custom_date') }}</label>
+                <input type="number" name="settings[min_custom_renewal_days]" id="settings[min_custom_renewal_days]" min="7"
+                       value="{{ $package->settings('min_custom_renewal_days', 14) }}" class="form-control"
+                       required=""/>
+                <small
+                    class="form-text text-muted">{!! __('admin.minimum_advance_days_custom_date_desc') !!}</small>
+            </div>
+
         </div>
         <div class="text-right">
             <button class="btn btn-success" type="submit">{{ __('admin.update') }}</button>
