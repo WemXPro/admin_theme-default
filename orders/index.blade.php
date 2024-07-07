@@ -124,7 +124,7 @@
                                                 </div>
                                             </a>
                                         </td>
-                                        <td>{{ currency('symbol') }}{{ $order->price['renewal_price'] }}</span>
+                                        <td>{{ price($order->price['renewal_price']) }}</span>
                                             / {!! $order->periodToHuman() !!}</td>
                                         <td>{{ $order->service }}</td>
                                         <td>

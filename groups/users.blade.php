@@ -34,8 +34,8 @@
                                     </div>
                                   </td>
                                   <td>{{ $user->email }}</td>
-                                  <td>{{currency('symbol')}}{{ number_format($user->balance, 2) }}</td>
-                                  <td>{{currency('symbol')}}{{ number_format($user->payments->where('status', 'paid')->sum('amount'), 2) }}</td>
+                                  <td>{{ price($user->balance) }}</td>
+                                  <td>{{ price(number_format($user->payments->where('status', 'paid')->sum('amount')) }}</td>
                                   <td>
                                     <div>
                                       {{ ucfirst($user->visibility)  }}

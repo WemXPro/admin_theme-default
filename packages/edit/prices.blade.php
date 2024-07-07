@@ -35,15 +35,15 @@
                         </div>
                     @endif
                 </td>
-                <td>{{ currency('symbol') }}{{ $price->price }}</td>
-                <td>{{ currency('symbol') }} @isset($price->renewal_price)
-                        {{ $price->renewal_price }}
+                <td>{{ price($price->price) }}</td>
+                <td>@isset($price->renewal_price)
+                        {{ price($price->renewal_price) }}
                     @else
-                        {{ $price->price }}
+                        {{ price($price->price) }}
                     @endif
                 </td>
-                <td>{{ currency('symbol') }}{{ $price->setup_fee }}</td>
-                <td>{{ currency('symbol') }}{{ $price->cancellation_fee }}</td>
+                <td>{{ price($price->setup_fee) }}</td>
+                <td>{{ price($price->cancellation_fee) }}</td>
                 <td>
                     <button class="btn btn-primary mt-4 mb-4" data-toggle="modal"
                             data-target="#editPriceModal-{{ $price->id }}">{{ __('admin.edit') }}
