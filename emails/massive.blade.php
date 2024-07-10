@@ -50,12 +50,12 @@
                             <label class="col-md-3 col-form-label">{{ __('admin.users') }}</label>
                             <div class="col-md-9">
                                 <select class="form-control select2" name="users" required>
-                                    <option value="all_users">{{ __('admin.all_users') }}</option>
-                                    <option value="active_orders">{{ __('admin.active_orders_users') }}</option>
-                                    <option value="no_orders">{{ __('admin.no_orders_users') }}</option>
-                                    <option value="subscribed">{{ __('admin.subscribed_users') }}</option>
+                                    <option value="all_users">{{ __('admin.all_users') }} ({{ $totalUserCount = User::count() }} {{ __('admin.users') }})</option>
+                                    <option value="active_orders">{{ __('admin.active_orders_users') }} ({{ $totalActiveUserCount = Order::distinct('user_id')->count('user_id') }} {{ __('admin.users') }})</option>
+                                    <option value="no_orders">{{ __('admin.no_orders_users') }} ({{ $totalUserCount - $totalActiveUserCount }})</option>
+                                    <option value="subscribed">{{ __('admin.subscribed_users') }} ({{ User::where('is_subscribed', true)->count() }} {{ __('admin.users') }})</option>
                                     @foreach(Service::all() as $service)
-                                        <option value="service_{{ $service->module()->getLowerName() }}">{{ $service->about()->display_name }} {{ __('admin.users') }}</option>
+                                        <option value="service_{{ $service->module()->getLowerName() }}">{{ $service->about()->display_name }} {{ __('admin.service') }} ({{  Order::distinct('user_id')->where('service', $service->module()->getLowerName())->count('user_id') }} {{ __('admin.users') }})</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -69,8 +69,4 @@
         </div>
     </div>
 </div>
-
-
-
-
 @endsection
