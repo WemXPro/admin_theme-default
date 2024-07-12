@@ -60,7 +60,7 @@
                                         <td>{{ $email->created_at->translatedFormat(settings('date_format', 'd M Y')) }} {{ $email->created_at->diffForHumans() }}</td>
                                         <td  class="text-right">
                                             <a href="{{ route('emails.mass-mailer.destroy', $email->id) }}" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></a>
-                                            <a href="{{ route('emails.mass-mailer.edit', $email->id) }}" class="btn btn-primary">{{ __('admin.edit') }}</a>
+                                            <a href="{{ route('emails.mass-mailer.edit', $email->id) }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
 
                                         </td>
                                     </tr>
