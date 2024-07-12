@@ -333,8 +333,8 @@
                                    href="{{ route('emails.templates') }}">{!!  __('admin.templates', ['default' => 'Templates']) !!}</a>
                             </li>
                             <li>
-                                <a class="nav-link {{ nav_active('emails.massive') }}"
-                                   href="{{ route('emails.massive') }}">{!!  __('admin.massive_email_send') !!}</a>
+                                <a class="nav-link {{ nav_active('emails.mass-mailer') }}"
+                                   href="{{ route('emails.mass-mailer') }}">Mass Mailer</a>
                             </li>
                         </ul>
                     </li>
