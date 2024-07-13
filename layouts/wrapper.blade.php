@@ -416,6 +416,11 @@
                     </li>
 
                     <li>
+                        <a class="nav-link {{ nav_active('widgets.index') }}" href="{{ route('widgets.index') }}"><i class="fa-solid fa-square-poll-horizontal"></i>
+                            <span>{!!  __('admin.widgets', ['default' => 'Widgets']) !!}</span></a>
+                    </li>
+
+                    <li>
                         <a class="nav-link {{ nav_active('api-v1.index') }}" href="{{ route('api-v1.index') }}"><i
                                 class="fas fa-solid fa-code"></i>
                             <span>{!!  __('admin.api_tokens', ['default' => 'API Tokens']) !!}</span></a>
