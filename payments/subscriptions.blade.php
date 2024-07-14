@@ -50,6 +50,7 @@
                                     <th>{!! __('admin.amount') !!}</th>
                                     <th>{!! __('admin.type') !!}</th>
                                     <th>{!! __('admin.status') !!}</th>
+                                    <th>{!! __('admin.last_updated') !!}</th>
                                     <th>{!! __('admin.create_at') !!}</th>
                                     <th class="text-right">{!! __('admin.actions') !!}</th>
                                 </tr>
@@ -83,7 +84,7 @@
                                                 {!! __('admin.' . $payment->status) !!}
                                             </div>
                                         </td>
-
+                                        <td>{{ $payment->updated_at->translatedFormat(settings('date_format', 'd M Y')) }}</td>
                                         <td>{{ $payment->created_at->translatedFormat(settings('date_format', 'd M Y')) }}</td>
 
                                         <td class="text-right">
