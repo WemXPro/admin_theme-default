@@ -13,15 +13,22 @@
           <th>Price per 30 days</th>
           <th>Action</th>
         </tr>
-        @foreach($package->configOptions as $option)
+        @foreach($package->configOptions()->orderBy('order', 'desc')->get() as $option)
         <tr>
-          <td>1</td>
+          <td>{{ $option->id }}</td>
           <td>{{ $option->key }}</td>
           <td>{{ $option->type }}</td>
           <td>{{ $option->is_onetime ? 'True' : 'False' }}</td>
           <td>{{ number_format($option->price_per_30_days, 2) }}</td>
           <td>
-            <a href="{{ route('packages.config-options.edit-option', ['package' => $package->id, 'option' => $option->id]) }}" class="btn btn-primary mb-2">Edit</a>
+            <a href="{{ route('packages.config-options.move-option', ['package' => $package->id, 'option' => $option->id, 'direction' => 'up']) }}"
+              class="btn btn-primary"><i class="fas fa-solid fa-caret-up"></i></a>
+           <a href="{{ route('packages.config-options.move-option', ['package' => $package->id, 'option' => $option->id, 'direction' => 'down']) }}"
+              class="btn btn-primary"><i
+                   class="fas fa-solid fa-caret-down"></i></a>
+            <a href="{{ route('packages.config-options.edit-option', ['package' => $package->id, 'option' => $option->id]) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ route('packages.config-options.delete-option', ['package' => $package->id, 'option' => $option->id]) }}"
+              class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></a>
           </td>
         </tr>
         <div class="modal fade bd-update-option-modal-lg-{{ $option->id }}" tabindex="-1" role="dialog" aria-labelledby="UpdateOptionModalLabel{{ $option->id }}" aria-hidden="true">
