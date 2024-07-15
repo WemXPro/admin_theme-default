@@ -19,7 +19,21 @@
     <div class="form-group col-md-12">
         <label for="rules{{ $option->id }}">Validation Rules</label>
         <input type="text" name="rules" id="rules{{ $option->id }}" value="{{ $option->rules }}" class="form-control" required=""/>
-        <small class="form-text text-muted">Input validation rules based on laravels <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <small class="form-text text-muted">View all <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <div>
+            <button type="button" onclick="appendRule('required')" class="btn btn-sm btn-primary">required</button>
+            <button type="button" onclick="appendRule('numeric')" class="btn btn-sm btn-primary">numeric</button>
+            <button type="button" onclick="appendRule('email')" class="btn btn-sm btn-primary">email</button>
+            <button type="button" onclick="appendRule('active_url')" class="btn btn-sm btn-primary">active url</button>
+            <button type="button" onclick="appendRule('url')" class="btn btn-sm btn-primary">url</button>
+            <button type="button" onclick="appendRule('date')" class="btn btn-sm btn-primary">date</button>
+            <button type="button" onclick="appendRule('min:3')" class="btn btn-sm btn-primary">min chars</button>
+            <button type="button" onclick="appendRule('max:255')" class="btn btn-sm btn-primary">max chars</button>
+            <button type="button" onclick="appendRule('in:audi,bmw,mercedes')" class="btn btn-sm btn-primary">in list</button>
+            <button type="button" onclick="appendRule('starts_with:test')" class="btn btn-sm btn-primary">stars with</button>
+            <button type="button" onclick="appendRule('ends_with:test')" class="btn btn-sm btn-primary">ends with</button>
+            <button type="button" onclick="appendRule('date')" class="btn btn-sm btn-primary">date</button>
+        </div>
         <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
     </div>
     <hr />
@@ -80,7 +94,21 @@
     <div class="form-group col-md-12">
         <label for="rules{{ $option->id }}">Validation Rules</label>
         <input type="text" name="rules" id="rules{{ $option->id }}" value="{{ $option->rules }}" class="form-control" required=""/>
-        <small class="form-text text-muted">Input validation rules based on laravels <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <small class="form-text text-muted">View all <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <div>
+            <button type="button" onclick="appendRule('required')" class="btn btn-sm btn-primary">required</button>
+            <button type="button" onclick="appendRule('numeric')" class="btn btn-sm btn-primary">numeric</button>
+            <button type="button" onclick="appendRule('email')" class="btn btn-sm btn-primary">email</button>
+            <button type="button" onclick="appendRule('active_url')" class="btn btn-sm btn-primary">active url</button>
+            <button type="button" onclick="appendRule('url')" class="btn btn-sm btn-primary">url</button>
+            <button type="button" onclick="appendRule('date')" class="btn btn-sm btn-primary">date</button>
+            <button type="button" onclick="appendRule('min:3')" class="btn btn-sm btn-primary">min chars</button>
+            <button type="button" onclick="appendRule('max:255')" class="btn btn-sm btn-primary">max chars</button>
+            <button type="button" onclick="appendRule('in:audi,bmw,mercedes')" class="btn btn-sm btn-primary">in list</button>
+            <button type="button" onclick="appendRule('starts_with:test')" class="btn btn-sm btn-primary">stars with</button>
+            <button type="button" onclick="appendRule('ends_with:test')" class="btn btn-sm btn-primary">ends with</button>
+            <button type="button" onclick="appendRule('date')" class="btn btn-sm btn-primary">date</button>
+        </div>
         <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
     </div>
     <div class="form-group col-md-12">
@@ -121,7 +149,21 @@
     <div class="form-group col-md-12">
         <label for="rules{{ $option->id }}">Validation Rules</label>
         <input type="text" name="rules" id="rules{{ $option->id }}" value="{{ $option->rules }}" class="form-control" required=""/>
-        <small class="form-text text-muted">Input validation rules based on laravels <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <small class="form-text text-muted">View all <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <div>
+            <button type="button" onclick="appendRule('required')" class="btn btn-sm btn-primary">required</button>
+            <button type="button" onclick="appendRule('numeric')" class="btn btn-sm btn-primary">numeric</button>
+            <button type="button" onclick="appendRule('email')" class="btn btn-sm btn-primary">email</button>
+            <button type="button" onclick="appendRule('active_url')" class="btn btn-sm btn-primary">active url</button>
+            <button type="button" onclick="appendRule('url')" class="btn btn-sm btn-primary">url</button>
+            <button type="button" onclick="appendRule('date')" class="btn btn-sm btn-primary">date</button>
+            <button type="button" onclick="appendRule('min:3')" class="btn btn-sm btn-primary">min chars</button>
+            <button type="button" onclick="appendRule('max:255')" class="btn btn-sm btn-primary">max chars</button>
+            <button type="button" onclick="appendRule('in:audi,bmw,mercedes')" class="btn btn-sm btn-primary">in list</button>
+            <button type="button" onclick="appendRule('starts_with:test')" class="btn btn-sm btn-primary">stars with</button>
+            <button type="button" onclick="appendRule('ends_with:test')" class="btn btn-sm btn-primary">ends with</button>
+            <button type="button" onclick="appendRule('date')" class="btn btn-sm btn-primary">date</button>
+        </div>        
         <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
     </div>
     <div class="form-group col-md-3">
@@ -138,7 +180,7 @@
     </div>
     <div class="form-group col-md-3">
         <label for="data[step]">Step</label>
-        <input type="number" name="data[step]" value="{{ $option->data['step'] ?? '1' }}" min="0.1" class="form-control" required="" />
+        <input type="number" name="data[step]" value="{{ $option->data['step'] ?? '1' }}" class="form-control" required="" />
     </div>
     <div class="form-group col-md-6">
         <div class="control-label">Is one time?</div>
@@ -169,7 +211,21 @@
     <div class="form-group col-md-12">
         <label for="rules{{ $option->id }}">Validation Rules</label>
         <input type="text" name="rules" id="rules{{ $option->id }}" value="{{ $option->rules }}" class="form-control" required=""/>
-        <small class="form-text text-muted">Input validation rules based on laravels <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <small class="form-text text-muted">View all <a href="https://laravel.com/docs/11.x/validation#available-validation-rules" target="_blank">validation rules</a></small>
+        <div>
+            <button type="button" onclick="appendRule('required')" class="btn btn-sm btn-primary">required</button>
+            <button type="button" onclick="appendRule('numeric')" class="btn btn-sm btn-primary">numeric</button>
+            <button type="button" onclick="appendRule('email')" class="btn btn-sm btn-primary">email</button>
+            <button type="button" onclick="appendRule('active_url')" class="btn btn-sm btn-primary">active url</button>
+            <button type="button" onclick="appendRule('url')" class="btn btn-sm btn-primary">url</button>
+            <button type="button" onclick="appendRule('date')" class="btn btn-sm btn-primary">date</button>
+            <button type="button" onclick="appendRule('min:3')" class="btn btn-sm btn-primary">min chars</button>
+            <button type="button" onclick="appendRule('max:255')" class="btn btn-sm btn-primary">max chars</button>
+            <button type="button" onclick="appendRule('in:audi,bmw,mercedes')" class="btn btn-sm btn-primary">in list</button>
+            <button type="button" onclick="appendRule('starts_with:test')" class="btn btn-sm btn-primary">stars with</button>
+            <button type="button" onclick="appendRule('ends_with:test')" class="btn btn-sm btn-primary">ends with</button>
+            <button type="button" onclick="appendRule('date')" class="btn btn-sm btn-primary">date</button>
+        </div>
         <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
     </div>
     <div class="form-group col-md-4">
@@ -272,6 +328,28 @@
       // Append the cloned row to the container
       container.appendChild(clonedRow);
   }
+
+  function appendRule(rule)
+        {
+            var rules = document.getElementById('rules{{ $option->id }}');
+
+            // check if rule already exists
+            if (rules.value.includes(rule)) {
+                return;
+            }
+
+            if (rules.value.length > 0) {
+                // make sure string does not end with | 
+                if (rules.value.endsWith('|')) {
+                    rules.value += rule;
+                } else {
+                    rules.value += '|' + rule;
+                }
+            } else {
+                rules.value = rule;
+            }
+
+        }
 
 </script>
 
