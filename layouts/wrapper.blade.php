@@ -270,6 +270,10 @@
                                    href="{{ route('admin.settings') }}">{!!  __('admin.settings', ['default' => 'Settings']) !!}</a>
                             </li>
                             <li>
+                                <a class="nav-link {{ nav_active('admin.config') }}"
+                                   href="{{ route('admin.config') }}">{!!  __('admin.config', ['default' => 'Config']) !!}</a>
+                            </li>
+                            <li>
                                 <a class="nav-link {{ nav_active('admin.seo') }}"
                                    href="{{ route('admin.seo') }}">{!!  __('admin.seo', ['default' => 'SEO']) !!}</a>
                             </li>
@@ -329,8 +333,8 @@
                                    href="{{ route('emails.templates') }}">{!!  __('admin.templates', ['default' => 'Templates']) !!}</a>
                             </li>
                             <li>
-                                <a class="nav-link {{ nav_active('emails.massive') }}"
-                                   href="{{ route('emails.massive') }}">{!!  __('admin.massive_email_send') !!}</a>
+                                <a class="nav-link {{ nav_active('emails.mass-mailer') }}"
+                                   href="{{ route('emails.mass-mailer') }}">Mass Mailer</a>
                             </li>
                         </ul>
                     </li>
@@ -409,6 +413,11 @@
                         <a class="nav-link {{ nav_active('services.view') }}" href="{{ route('services.view') }}"><i
                                 class="fas fa-solid fa-robot"></i>
                             <span>{!!  __('admin.services', ['default' => 'Services']) !!}</span></a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link {{ nav_active('widgets.index') }}" href="{{ route('widgets.index') }}"><i class="fa-solid fa-square-poll-horizontal"></i>
+                            <span>{!!  __('admin.widgets', ['default' => 'Widgets']) !!}</span></a>
                     </li>
 
                     <li>

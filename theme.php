@@ -8,6 +8,6 @@ return [
     'author' => 'Mubeen',
     'folder' => 'default',
     'wrapper' => 'layouts/wrapper',
-    'assets' => '/assets/themes/default/'
+    'assets' => '/assets/themes/default/',
 
 ];

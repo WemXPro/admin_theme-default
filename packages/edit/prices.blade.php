@@ -35,15 +35,15 @@
                         </div>
                     @endif
                 </td>
-                <td>{{ currency('symbol') }}{{ $price->price }}</td>
-                <td>{{ currency('symbol') }} @isset($price->renewal_price)
-                        {{ $price->renewal_price }}
+                <td>{{ price($price->price) }}</td>
+                <td>@isset($price->renewal_price)
+                        {{ price($price->renewal_price) }}
                     @else
-                        {{ $price->price }}
+                        {{ price($price->price) }}
                     @endif
                 </td>
-                <td>{{ currency('symbol') }}{{ $price->setup_fee }}</td>
-                <td>{{ currency('symbol') }}{{ $price->cancellation_fee }}</td>
+                <td>{{ price($price->setup_fee) }}</td>
+                <td>{{ price($price->cancellation_fee) }}</td>
                 <td>
                     <button class="btn btn-primary mt-4 mb-4" data-toggle="modal"
                             data-target="#editPriceModal-{{ $price->id }}">{{ __('admin.edit') }}
@@ -102,6 +102,10 @@
                                             <option value="90"
                                                     @if ($price->period == 90) selected @endif>
                                                 {{ __('admin.quaterly') }}
+                                            </option>
+                                            <option value="180"
+                                            @if ($price->period == 180) selected @endif>
+                                                {{ __('admin.semi_yearly') }}
                                             </option>
                                             <option value="365"
                                                     @if ($price->period == 365) selected @endif>
@@ -279,6 +283,7 @@
                                     <option value="7">{{ __('admin.weekly') }}</option>
                                     <option value="30" selected>{{ __('admin.monthly') }}</option>
                                     <option value="90">{{ __('admin.quaterly') }}</option>
+                                    <option value="180">{{ __('admin.semi_yearly') }}</option>
                                     <option value="365">{{ __('admin.yearly') }}</option>
                                     <option value="730">{!! __('admin.per_years', ['years' => 2]) !!}</option>
                                     <option value="1825">{!! __('admin.per_years', ['years' => 5]) !!}</option>

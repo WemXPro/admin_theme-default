@@ -10,6 +10,28 @@
             <li class="list-group-item">
                 <span class="text-dark text-bold"><strong>User</strong></span> <span class="float-right"><a href="{{ route('users.edit', $order->user->id) }}" target="_blank">{{ $order->user->username }} ({{ $order->user->email }})</a></span>
             </li>
+            @if($order->external_id)
+            <li class="list-group-item">
+                <span class="text-dark text-bold"><strong>External ID</strong></span> <span class="float-right">{{ $order->external_id }}</span>
+            </li>
+            @endif
+            @if($externalUser = $order->getExternalUser())
+            @if($externalUser->external_id)
+            <li class="list-group-item">
+                <span class="text-dark text-bold"><strong>External User Id</strong></span> <span class="float-right">{{ $externalUser->external_id }}</span>
+            </li>
+            @endif
+            @if($externalUser->username)
+            <li class="list-group-item">
+                <span class="text-dark text-bold"><strong>External Username</strong></span> <span class="float-right">{{ $externalUser->username }}</span>
+            </li>
+            @endif 
+            @if($externalUser->password)
+            <li class="list-group-item">
+                <span class="text-dark text-bold"><strong>External Password</strong></span> <span class="float-right" style="cursor: pointer" onclick="this.innerHTML = '{{ decrypt($externalUser->password) }}'">******************** <span><i class="fa-solid fa-eye"></i></span></span>
+            </li>
+            @endif
+            @endif
             <li class="list-group-item">
                 <span class="text-dark text-bold"><strong>Status</strong></span> <span class="float-right">
                     <a href="#" class="badge
@@ -100,6 +122,16 @@
                     </select>
                 </div>
 
+                @if($order->external_id)
+                <div class="form-group col-md-12 col-12">
+                    <label
+                        for="external_id">External ID</label>
+                    <input type="text" class="form-control" name="external_id"
+                           value="{{ $order->external_id }}" required/>
+                    <small class="form-text text-muted">The external id attached to this order</small>
+                </div>
+                @endif
+
                 <div class="form-group col-md-12 col-12">
                     <label>{!! __('admin.notes', ['default' => 'Notes']) !!} {!! __('admin.optional', ['default' => '(optional)']) !!}</label>
                     <textarea type="text" class="form-control" rows="4"
@@ -126,9 +158,7 @@
                         for="last_renewed_at">{!! __('admin.last_renewed_at', ['default' => 'Last Renewed at']) !!}</label>
                     <input type="date" class="form-control" name="last_renewed_at"
                            value="{{ $order->last_renewed_at->translatedFormat('Y-m-d') }}" required/>
-                    <small
-                        class="form-text text-muted">{!! __('admin.last_renewed_at_service_desc', ['default' => 'The date service was last renewed a']) !!}
-                        t</small>
+                    <small class="form-text text-muted">{!! __('admin.last_renewed_at_service_desc', ['default' => 'The date service was last renewed at']) !!}</small>
                 </div>
 
                 <div class="form-group col-md-6 col-6">

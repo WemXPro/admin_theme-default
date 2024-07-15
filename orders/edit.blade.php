@@ -66,7 +66,7 @@
                                 <div
                                     class="profile-widget-item-label">{!!  __('admin.price', ['default' => 'Price']) !!}</div>
                                 <div
-                                    class="profile-widget-item-value">{{ currency('symbol') }}{{ $order->price['renewal_price'] }}</span>
+                                    class="profile-widget-item-value">{{ price($order->price['renewal_price']) }}</span>
                                     / {!!  $order->periodToHuman() !!}</div>
                             </div>
                         </div>
@@ -577,9 +577,9 @@
                     <div class="modal-body">
                         @if($order->price['cancellation_fee'] > 0)
                             <div class="alert alert-warning" role="alert">
-                                {!! __('admin.cancel_service_modal_body', ['currency'=> currency('symbol'), 'price'=> price($order->price['cancellation_fee']),
+                                {!! __('admin.cancel_service_modal_body', ['price'=> price($order->price['cancellation_fee']),
                                 'default' => '
-                                This service has a cancellation fee of <a class="alert-link">:currency :price</a>
+                                This service has a cancellation fee of <a class="alert-link">:price</a>
                                 - The cancellation fee will be waved when you proceed with the cancellation below.
                                 ']) !!}
 

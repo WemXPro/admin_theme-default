@@ -16,7 +16,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>{!! __('admin.emails') !!}</h4>
+                    <h4>{!!  __('admin.email_history', ['default' => 'Email History']) !!}</h4>
                     <div class="card-header-action">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" class="btn btn-icon icon-left btn-primary"><i class="fas fa-solid fa-plus"></i>
                             {!! __('admin.create') !!}
@@ -24,9 +24,6 @@
                     </div>
                 </div>
                 <form action="#" method="POST">
-                    <div class="card-header">
-                        <h4>{!!  __('admin.email_history', ['default' => 'Email History']) !!}</h4>
-                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped">
