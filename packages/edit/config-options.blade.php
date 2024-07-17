@@ -218,7 +218,7 @@
                 <label for="key">{{ __('admin.key') }}</label>
                 <select class="form-control select2 select2-hidden-accessible hide" name="key" tabindex="-1" aria-hidden="true">
                     @foreach($package->service()->getPackageConfig($package)->all() as $config)
-                        @if(isset($config['is_configurable']) AND !$config['is_configurable'])
+                        @if(!isset($config['is_configurable']) OR !$config['is_configurable'])
                             @continue
                         @endif
                         <option value="{{ $config['key'] }}">{{ $config['name'] }} ({{ $config['type'] }})</option>
