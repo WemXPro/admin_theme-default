@@ -43,7 +43,7 @@
     <div class="row" id="options-row">
         <div class="form-group col-md-4">
             <label for="data[options][{{ $key }}][value]">value</label>
-            <input type="text" name="data[options][{{ $key }}][value]" placeholder="Value" value="{{ $optionData['value'] }}" class="form-control" required="" />
+            <input type="text" name="data[options][{{ $key }}][value]" onchange="selectOptionsUpdated()" placeholder="Value" value="{{ $optionData['value'] }}" class="form-control" required="" />
             <small class="form-text text-muted"></small>
         </div>
         <div class="form-group col-md-4">
@@ -61,7 +61,7 @@
     <div class="row">
         <div class="form-group col-md-4">
             <label>value</label>
-            <input type="text" name="data[options][0][value]" placeholder="Value" class="form-control" required="" />
+            <input type="text" name="data[options][0][value]" onchange="selectOptionsUpdated()" placeholder="Value" class="form-control" required="" />
             <small class="form-text text-muted"></small>
         </div>
         <div class="form-group col-md-4">
@@ -172,11 +172,11 @@
     </div>
     <div class="form-group col-md-3">
         <label for="data[min]">Minimum</label>
-        <input type="number" name="data[min]" value="{{ $option->data['min'] ?? '0' }}" class="form-control" required="" />
+        <input type="number" name="data[min]" value="{{ $option->data['min'] ?? '0' }}" class="form-control" onchange="minUpdated(this.value)" required="" />
     </div>
     <div class="form-group col-md-3">
         <label for="data[max]">Max</label>
-        <input type="number" name="data[max]" value="{{ $option->data['max'] ?? '10' }}" class="form-control" required="" />
+        <input type="number" name="data[max]" value="{{ $option->data['max'] ?? '10' }}" class="form-control" onchange="maxUpdated(this.value)" required="" />
     </div>
     <div class="form-group col-md-3">
         <label for="data[step]">Step</label>
@@ -234,11 +234,11 @@
     </div>
     <div class="form-group col-md-4">
         <label for="data[min]">Minimum</label>
-        <input type="number" name="data[min]" value="{{ $option->data['min'] ?? '0' }}" class="form-control" required="" />
+        <input type="number" name="data[min]" value="{{ $option->data['min'] ?? '0' }}" class="form-control" onchange="minUpdated(this.value)" required="" />
     </div>
     <div class="form-group col-md-4">
         <label for="data[max]">Max</label>
-        <input type="number" name="data[max]" value="{{ $option->data['max'] ?? '10' }}" class="form-control" required="" />
+        <input type="number" name="data[max]" value="{{ $option->data['max'] ?? '10' }}" class="form-control" onchange="maxUpdated(this.value)" required="" />
     </div>
     <div class="form-group col-md-6">
         <div class="control-label">Is one time?</div>
@@ -329,27 +329,68 @@
       container.appendChild(clonedRow);
   }
 
-  function appendRule(rule)
-        {
-            var rules = document.getElementById('rules{{ $option->id }}');
+    function appendRule(rule)
+    {
+        var rules = document.getElementById('rules{{ $option->id }}');
 
-            // check if rule already exists
-            if (rules.value.includes(rule)) {
-                return;
-            }
-
-            if (rules.value.length > 0) {
-                // make sure string does not end with | 
-                if (rules.value.endsWith('|')) {
-                    rules.value += rule;
-                } else {
-                    rules.value += '|' + rule;
-                }
-            } else {
-                rules.value = rule;
-            }
-
+        // if rule exists but is a different value, then replace it
+        // example: min:3 exists, but min:5 is being added
+        // this should also work for other rules like max: and in:
+        if (rules.value.includes('min:') && rule.includes('min:')) {
+            rules.value = rules.value.replace(/min:\d+/, rule);
+            return;
         }
+
+        if (rules.value.includes('max:') && rule.includes('max:')) {
+            rules.value = rules.value.replace(/max:\d+/, rule);
+            return;
+        }
+
+        if (rules.value.includes('in:') && rule.includes('in:')) {
+            rules.value = rules.value.replace(/in:[^|]+/, rule);
+            return;
+        }
+
+        // check if rule already exists
+        if (rules.value.includes(rule)) {
+            return;
+        }
+
+        if (rules.value.length > 0) {
+            // make sure string does not end with | 
+            if (rules.value.endsWith('|')) {
+                rules.value += rule;
+            } else {
+                rules.value += '|' + rule;
+            }
+        } else {
+            rules.value = rule;
+        }
+
+    }
+
+    function minUpdated(value)
+    {
+        appendRule('min:' + value);
+    }
+
+    function maxUpdated(value)
+    {
+        appendRule('max:' + value);
+    }
+
+    function selectOptionsUpdated()
+    {
+        var options = document.querySelectorAll('input[name^="data[options]"]');
+        var filteredOptions = Array.prototype.filter.call(options, function(option) {
+            return /\bdata\[options\]\[[^\]]+\]\[value\]/.test(option.name);
+        });
+        var optionsArray = Array.from(filteredOptions);
+        var optionsValues = optionsArray.map(option => option.value);
+        var optionsString = optionsValues.join(',');
+
+        appendRule('in:' + optionsString);
+    }
 
 </script>
 
