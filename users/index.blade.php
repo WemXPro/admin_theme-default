@@ -49,6 +49,7 @@
                               <tr>
                                   <th>{{ __('admin.username') }}</th>
                                   <th>{{ __('admin.email') }}</th>
+                                  <th>{{ __('admin.country') }}</th>
                                   <th>{{ __('admin.balance') }}</th>
                                   <th>{{ __('admin.total_spent') }}</th>
                                   <th>{{ __('admin.vissibility') }}</th>
@@ -70,6 +71,16 @@
                                     </a>
                                   </td>
                                   <td>{{ $user->email }}</td>
+                                  <td>
+                                    @if($user->address->country)
+                                    <div class="d-flex align-items-center">
+                                      <img src="/assets/core/img/flags/{{ strtolower($user->address->country) }}.svg" class="mr-2" style="border-radius: 1px; height: 15px;" alt="">
+                                      {{ $user->address->country }}
+                                    </div>
+                                    @else 
+                                      Unknown
+                                    @endif
+                                  </td>
                                   <td>{{ price($user->balance) }}</td>
                                   <td>{{ price($user->payments->where('status', 'paid')->sum('amount')) }}</td>
                                   <td>
