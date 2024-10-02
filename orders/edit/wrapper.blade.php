@@ -15,6 +15,8 @@
 @endsection
 
 @section('container')
+
+    @yield('outside-order-section')
     <section class="section">
         <div class="section-body">
 
