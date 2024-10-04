@@ -207,7 +207,7 @@
                                 <a class="nav-link @if($active == 'price') active @endif" href="{{ route('orders.edit-price', $order->id) }}"><i class="fa-solid fa-tag"></i> Price</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @if($active == 'service') active @endif" href="{{ route('orders.edit-service', $order->id) }}"><i class="fa-solid fa-server"></i> Pterodactyl</a>
+                                <a class="nav-link @if($active == 'service') active @endif" href="{{ route('orders.edit-service', $order->id) }}"><i class="fa-solid fa-server"></i> {{ ucfirst($order->service ?? '') }}</a>
                             </li>
                         </ul>
                     </div>
