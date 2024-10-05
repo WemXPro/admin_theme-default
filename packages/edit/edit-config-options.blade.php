@@ -53,7 +53,7 @@
         </div>
         <div class="form-group col-md-4">
             <label for="data[options][{{ $key }}][name]">Price per 30 days</label>
-            <input type="number" min="0" name="data[options][{{ $key }}][monthly_price]" value="{{ $optionData['monthly_price'] }}" placeholder="10.00" class="form-control" required="" />
+            <input type="text" min="0" name="data[options][{{ $key }}][monthly_price]" value="{{ $optionData['monthly_price'] }}" placeholder="10.00" class="form-control" required="" />
             <small class="form-text text-muted"></small>
         </div>
     </div>
@@ -71,7 +71,7 @@
         </div>
         <div class="form-group col-md-4">
             <label>Price per 30 days</label>
-            <input type="number" min="0" name="data[options][0][monthly_price]" placeholder="10.00" class="form-control" required="" />
+            <input type="text" min="0" name="data[options][0][monthly_price]" placeholder="10.00" class="form-control" required="" />
             <small class="form-text text-muted"></small>
         </div>
     </div>
@@ -192,7 +192,7 @@
     </div>
     <div class="form-group col-md-6">
         <label for="data[monthly_price_unit]">Unit Price / 30 days</label>
-        <input type="number" name="data[monthly_price_unit]" value="{{ $option->data['monthly_price_unit'] ?? '0' }}" class="form-control" required="" />
+        <input type="text" name="data[monthly_price_unit]" value="{{ $option->data['monthly_price_unit'] ?? '0' }}" class="form-control" required="" />
         <small class="form-text text-muted">Price of 1 ({{ $option->key }}) unit per 30 days</small>
     </div>
 </div>
@@ -250,7 +250,7 @@
     </div>
     <div class="form-group col-md-6">
         <label for="data[monthly_price_unit]">Unit Price / 30 days</label>
-        <input type="number" name="data[monthly_price_unit]" value="{{ $option->data['monthly_price_unit'] ?? '0' }}" class="form-control" required="" />
+        <input type="text" name="data[monthly_price_unit]" value="{{ $option->data['monthly_price_unit'] ?? '0' }}" class="form-control" required="" />
         <small class="form-text text-muted">Price of 1 ({{ $option->key }}) unit per 30 days</small>
     </div>
 </div>
