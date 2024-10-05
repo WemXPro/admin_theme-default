@@ -522,6 +522,13 @@
                 </div>
             @endif
 
+            @if(version_compare(PHP_VERSION, '8.2', '<'))
+            <div class="alert alert-danger" role="alert">
+                You are running an unsupported version of PHP: <code>{{ PHP_VERSION }}</code>. Please upgrade to PHP <code>8.2</code> or higher as soon as possible. <br><br>
+                <a href="https://docs.wemx.net/en/project/upgrade-php-83" target="_blank" class="btn btn-primary btn-sm">Upgrade PHP Docs</a>
+            </div>
+            @endif
+
             @if(!config('laravelcloudflare.enabled') AND request()->header('cf-ipcountry'))
             <div class="alert alert-danger" role="alert">
                 {!! __('admin.enable_cloudflare_proxy_integration') !!}
