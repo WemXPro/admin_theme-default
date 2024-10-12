@@ -35,7 +35,7 @@
                                   </td>
                                   <td>{{ $user->email }}</td>
                                   <td>{{ price($user->balance) }}</td>
-                                  <td>{{ price(number_format($user->payments->where('status', 'paid')->sum('amount')) }}</td>
+                                  <td>{{ price(number_format($user->payments->where('status', 'paid')->sum('amount'))) }}</td>
                                   <td>
                                     <div>
                                       {{ ucfirst($user->visibility)  }}

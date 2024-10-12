@@ -152,6 +152,21 @@
                 <small class="form-text text-muted">{!! __('admin.allow_cancellation_desc') !!}</small>
             </div>
 
+
+            <div class="form-group col-md-6 col-6">
+                <label for="settings[allow_auto_balance_renewal]">{{ __('admin.allow_auto_balance_renewal') }}</label>
+                <select class="form-control select2 select2-hidden-accessible" required="" name="settings[allow_auto_balance_renewal]" id="settings[allow_auto_balance_renewal]"
+                        tabindex="-1" aria-hidden="true">
+                    <option value="1" @if($package->settings('allow_auto_balance_renewal', true)) selected @endif>
+                        {!! __('admin.yes') !!}
+                    </option>
+                    <option value="0" @if(!$package->settings('allow_auto_balance_renewal', true)) selected @endif>
+                        {!! __('admin.no') !!}
+                    </option>
+                </select>
+                <small class="form-text text-muted">{!! __('admin.allow_auto_balance_renewal_desc') !!}</small>
+            </div>
+
             <div class="form-group col-md-6 col-6">
                 <label for="settings[allow_custom_renewal_date]">{{ __('admin.allow_custom_renewal_date') }}</label>
                 <select class="form-control select2 select2-hidden-accessible" required="" name="settings[allow_custom_renewal_date]" id="settings[allow_custom_renewal_date]"
