@@ -118,7 +118,7 @@
                                 <div class="input-group-prepend">
                                     <div>
                                         <div class="input-group-text">
-                                            {{ route('page', '') }}/
+                                            {{ route('news.article', '') }}/
                                         </div>
                                     </div>
                                     <input type="text" name="path" id="path" value="{{ $article->path }}" id="path" placeholder=""
