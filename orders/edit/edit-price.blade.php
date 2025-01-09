@@ -1,7 +1,7 @@
 @extends(AdminTheme::path('orders.edit.wrapper'), ['active' => 'price'])
 
 @section('outside-order-section')
-{{-- Create Price Modifier Modal --}}  
+{{-- Create Price Modifier Modal --}}
 <div class="modal fade" id="createPriceModifierModal" tabindex="-1" aria-labelledby="createPriceModifierModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -54,7 +54,7 @@
 {{-- Create Price Modifier Modal End --}}
 
 @foreach($order->priceModifiers()->withoutActiveModifierScope()->get() as $modifier)
-{{-- Edit Price Modifier Modal --}}  
+{{-- Edit Price Modifier Modal --}}
 <div class="modal fade" id="editPriceModifierModal{{ $modifier->id }}" tabindex="-1" aria-labelledby="editPriceModifierModal{{ $modifier->id }}Label" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -158,6 +158,10 @@
                                 @if ($order->price['period'] == 90) selected @endif>
                             {{ __('admin.quaterly') }}
                         </option>
+                        <option value="180"
+                                @if ($order->price['period'] == 180) selected @endif>
+                            {{ __('admin.semi_yearly') }}
+                        </option>
                         <option value="365"
                                 @if ($order->price['period'] == 365) selected @endif>
                             {{ __('admin.yearly') }}
@@ -208,7 +212,7 @@
                     <small class="form-text text-muted">The initial setup fee the user paid</small>
                 </div>
             </div>
-        </div>              
+        </div>
     </div>
     <div class="card-footer text-right">
         <button type="submit" class="btn btn-primary">Update</button>
@@ -257,7 +261,7 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>  
+        </div>
     </div>
 </div>
 
