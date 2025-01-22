@@ -384,12 +384,6 @@
                     <li class="menu-header">
                         {!!  __('admin.design_and_compatibility', ['default' => 'Design & Compatibility']) !!}</li>
 
-{{--                    <li>--}}
-{{--                        <a class="nav-link {{ nav_active('admin.marketplace') }}"--}}
-{{--                           href="{{ route('admin.marketplace') }}"><i class="fas fa-store"></i>--}}
-{{--                            <span>{!! __('admin.marketplace') !!}</span></a>--}}
-{{--                    </li>--}}
-
                     <li class="dropdown {{ nav_active('themes', dropdown: true) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                 class="fas fa-sharp fa-solid fa-palette"></i>
@@ -426,43 +420,10 @@
                             <span>{!!  __('admin.api_tokens', ['default' => 'API Tokens']) !!}</span></a>
                     </li>
 
-                    <li class="menu-header">{!! __('admin.modules') !!}</li>
-
-                    @foreach (Module::allEnabled() as $module)
-                        @if(config($module->getLowerName() . '.elements.admin_menu'))
-                            @foreach (config($module->getLowerName() . '.elements.admin_menu') as $key => $menu)
-
-                                @if(isset($menu['type']) AND $menu['type'] == 'dropdown')
-                                    <li class="dropdown  {{ nav_active($module->getLowerName(), dropdown: true) }}">
-                                        <a href="#" class="nav-link has-dropdown"
-                                           data-toggle="dropdown">{!! $menu['icon'] !!}
-                                            <span>{{__($menu['name']) }}</span></a>
-                                        <ul class="dropdown-menu">
-
-                                            @foreach($menu['items'] as $item)
-                                                <li>
-                                                    <a class="nav-link {{ nav_active($item['href'], href: true) }}"
-                                                       href="{{ $item['href'] }}">
-                                                        {{ __($item['name']) }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                    @continue
-                                @endif
 
 
-                                <li>
-                                    <a class="nav-link {{ nav_active($module->getLowerName(), true) }}"
-                                       style="{{ $menu['style'] }}"
-                                       href="{{ $menu['href'] }}">{!! $menu['icon'] !!}
-                                        <span>{!! __($menu['name']) !!}</span>
-                                    </a>
-                                </li>
-                            @endforeach
-                        @endif
-                    @endforeach
+                        @include(AdminTheme::path('layouts.menu-items'), ['modules' => services()::allEnabled(), 'name' => __('admin.services')])
+                        @include(AdminTheme::path('layouts.menu-items'), ['modules' => modules()::allEnabled(), 'name' => __('admin.modules')])
                 </ul>
                 <div id="nav-footer" style="min-height: 20px;"></div>
                 <hr>
