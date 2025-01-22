@@ -43,14 +43,18 @@
 
                         <tr>
                             <td>
-                                <img src="{{ $resource['icon'] ?? 'https://imgur.com/koz9j8a.png' }}"
-                                     alt="{{ $resource['name'] }}" style="width:32px; height:32px;">
+                                <img src="{{ $resource['icon'] ?? 'https://i.imgur.com/OQ4agls.png' }}"
+                                     alt=" "
+                                     style="width:32px; height:32px;"
+                                     onerror="this.src='https://i.imgur.com/OQ4agls.png';">
                                 {{ Str::limit($resource['name'], 30) }}
                             </td>
                             <td>{{ Str::limit($resource['short_desc'] ?? $resource['name'], 30) }}</td>
                             <td>
-                                <img src="{{ $resource['owner']['avatar'] ?? 'https://imgur.com/koz9j8a.png' }}"
-                                     alt="" style="width:32px; height:32px;">
+                                <img src="{{ $resource['owner']['avatar'] ?? 'https://i.imgur.com/ryNtBfI.jpeg' }}"
+                                     alt=" "
+                                     style="width:32px; height:32px;"
+                                     onerror="this.src='https://i.imgur.com/ryNtBfI.jpeg'">
                                 {{ Str::limit($resource['owner']['username'], 30) }}
                             </td>
                             <td>{{ $resource['version'] }}</td>
@@ -58,7 +62,7 @@
                                 <span class="badge p-1 @if($versionSupport) badge-success @else badge-danger @endif ">
                                     {{ implode(', ', $resource['wemx_version']) }}
                                 </span>
-                                </td>
+                            </td>
                             <td>{{ $resource['is_free'] ? __('admin.free') : $resource['price'] }}</td>
                             <td class="text-right">
                                 <div class="d-flex justify-content-end">
