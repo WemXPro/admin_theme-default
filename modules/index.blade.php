@@ -19,11 +19,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach (Module::all() as $module)
-                                @if(strpos($module->getPath(), '/Modules'))
+                            @foreach (modules()::all() as $module)
                                     <tr>
                                         <td>{{ $module->getName() }}</td>
-                                        <td>{{ config($module->getLowerName() . '.version', 'N/A') ?? 'N/A'}}</td>
+                                        <td>{{ $module->get('version', 'N/A') }}</td>
                                         <td>
                                             @if ($module->isEnabled())
                                                 <span class="badge badge-success">{!! __('admin.enabled') !!}</span>
@@ -44,7 +43,6 @@
                                                 class="btn btn-sm btn-danger m-2">{!! __('admin.delete') !!}</button>
                                         </td>
                                     </tr>
-                                @endif
                             @endforeach
                             </tbody>
                         </table>

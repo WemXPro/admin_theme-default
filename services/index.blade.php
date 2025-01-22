@@ -19,10 +19,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach (Service::all() as $service)
+                            @foreach (services()::all() as $service)
                                 <tr>
                                     <td>{{ $service->about()->display_name }}</td>
-                                    <td>{{ $service->about()->version ?? 'N/A' }}</td>
+                                    <td>{{ $service->about()->version ?? $service->module()->get('version', 'N/A') }}</td>
                                     <td>
                                         @if ($service->module()->isEnabled())
                                             <span class="badge badge-success">{!! __('admin.enabled') !!}</span>
