@@ -1,7 +1,6 @@
 <li class="menu-header">{{ $name }}</li>
 @foreach ($modules as $module)
-    @if(config($module->getLowerName() . '.elements.admin_menu'))
-        @foreach (config($module->getLowerName() . '.elements.admin_menu') as $menu)
+        @foreach ($module->config('elements.admin_menu', []) as $menu)
             @if(isset($menu['type']) && $menu['type'] === 'dropdown')
                 <li class="dropdown {{ nav_active($module->getLowerName(), dropdown: true) }}">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
@@ -29,5 +28,4 @@
                 </li>
             @endif
         @endforeach
-    @endif
 @endforeach
