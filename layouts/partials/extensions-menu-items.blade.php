@@ -1,4 +1,4 @@
-@if($extensions)
+@if($extensions and count($extensions) > 0)
     <li class="menu-header">{{ $name }}</li>
     @foreach ($extensions as $extension)
         @foreach ($extension->config('elements.admin_menu', []) as $menu)
