@@ -273,17 +273,15 @@
 
 
             @include(AdminTheme::path('layouts.partials.extensions-menu-items'), [
-                'modules' => services()::allEnabled(),
+                'extensions' => services()::allEnabled(),
                 'name' => __('admin.services')
             ])
             @include(AdminTheme::path('layouts.partials.extensions-menu-items'), [
-                'modules' => modules()::allEnabled(),
+                'extensions' => modules()::allEnabled(),
                 'name' => __('admin.modules')
             ])
-
-            <hr>
             <li class="menu-header">
-                Other
+                {!! __('admin.other') !!}
             </li>
             <li>
                 <a class="nav-link {{ nav_active('updates.index') }}" href="{{ route('updates.index') }}">

@@ -1,8 +1,9 @@
-<li class="menu-header">{{ $name }}</li>
-@foreach ($modules as $module)
-        @foreach ($module->config('elements.admin_menu', []) as $menu)
+@if($extensions)
+    <li class="menu-header">{{ $name }}</li>
+    @foreach ($extensions as $extension)
+        @foreach ($extension->config('elements.admin_menu', []) as $menu)
             @if(isset($menu['type']) && $menu['type'] === 'dropdown')
-                <li class="dropdown {{ nav_active($module->getLowerName(), dropdown: true) }}">
+                <li class="dropdown {{ nav_active($extension->getLowerName(), dropdown: true) }}">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                         {!! $menu['icon'] !!}
                         <span>{{ __($menu['name']) }}</span>
@@ -10,7 +11,8 @@
                     <ul class="dropdown-menu">
                         @foreach($menu['items'] as $item)
                             <li>
-                                <a class="nav-link {{ nav_active($item['href'], href: true) }}" href="{{ $item['href'] }}">
+                                <a class="nav-link {{ nav_active($item['href'], href: true) }}"
+                                   href="{{ $item['href'] }}">
                                     {{ __($item['name']) }}
                                 </a>
                             </li>
@@ -19,7 +21,7 @@
                 </li>
             @else
                 <li>
-                    <a class="nav-link {{ nav_active($module->getLowerName(), true) }}"
+                    <a class="nav-link {{ nav_active($extension->getLowerName(), true) }}"
                        style="{{ $menu['style'] ?? '' }}"
                        href="{{ $menu['href'] }}">
                         {!! $menu['icon'] !!}
@@ -28,4 +30,6 @@
                 </li>
             @endif
         @endforeach
-@endforeach
+    @endforeach
+@endif
+
