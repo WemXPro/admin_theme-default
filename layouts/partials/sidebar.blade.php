@@ -186,31 +186,30 @@
                 </a>
             </li>
 
+
             <li class="menu-header">
-                {!! __('admin.store', ['default' => 'Store']) !!}
+                {!! __('admin.products_and_services') !!}
             </li>
-            <li class="dropdown {{ nav_active(['categories.*', 'packages.*', 'coupons.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-solid fa-box"></i>
-                    <span>{!!  __('admin.products_and_services', ['default' => 'Products & Services']) !!}</span>
+
+            <li>
+                <a class="nav-link {{ nav_active('categories.*') }}" href="{{ route('categories.index') }}">
+                    <i class="fas fa-folder-open"></i>
+                    <span>{!! __('admin.categories') !!}</span>
                 </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="nav-link {{ nav_active('categories.*') }}" href="{{ route('categories.index') }}">
-                            {!! __('admin.categories') !!}
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link {{ nav_active('packages.*') }}" href="{{ route('packages.index') }}">
-                            {!! __('admin.packages') !!}
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link {{ nav_active('coupons.*') }}" href="{{ route('coupons.index') }}">
-                            {!! __('admin.coupons') !!}
-                        </a>
-                    </li>
-                </ul>
+            </li>
+
+            <li>
+                <a class="nav-link {{ nav_active('packages.*') }}" href="{{ route('packages.index') }}">
+                    <i class="fas fa-box-open"></i>
+                    <span>{!! __('admin.packages') !!}</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link {{ nav_active('coupons.*') }}" href="{{ route('coupons.index') }}">
+                    <i class="fas fa-tag"></i>
+                    <span>{!! __('admin.coupons') !!}</span>
+                </a>
             </li>
 
             <li>
