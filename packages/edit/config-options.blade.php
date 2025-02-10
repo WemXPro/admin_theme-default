@@ -19,7 +19,7 @@
           <td>{{ $option->key }}</td>
           <td>{{ $option->type }}</td>
           <td>{{ $option->is_onetime ? 'True' : 'False' }}</td>
-          <td>{{ number_format($option->price_per_30_days, 2) }}</td>
+          <td>{{ number_format($option->data['monthly_price_unit'] ?? 0, 2) }}</td>
           <td>
             <a href="{{ route('packages.config-options.move-option', ['package' => $package->id, 'option' => $option->id, 'direction' => 'up']) }}"
               class="btn btn-primary"><i class="fas fa-solid fa-caret-up"></i></a>
