@@ -298,10 +298,6 @@
                                    href="{{ route('admin.maintenance') }}">{!!  __('admin.maintenance', ['default' => 'Maintenance']) !!}</a>
                             </li>
                             <li>
-                                <a class="nav-link {{ nav_active('admin.settings.theme') }}"
-                                   href="{{ route('admin.settings.theme') }}">{!!  __('admin.theme_settings', ['default' => 'Theme Settings']) !!}</a>
-                            </li>
-                            <li>
                                 <a class="nav-link {{ nav_active('admin.settings.portal') }}"
                                    href="{{ route('admin.settings.portal') }}">{!!  __('admin.portals', ['default' => 'Portals']) !!}</a>
                             </li>
@@ -384,23 +380,11 @@
                     <li class="menu-header">
                         {!!  __('admin.design_and_compatibility', ['default' => 'Design & Compatibility']) !!}</li>
 
-{{--                    <li>--}}
-{{--                        <a class="nav-link {{ nav_active('admin.marketplace') }}"--}}
-{{--                           href="{{ route('admin.marketplace') }}"><i class="fas fa-store"></i>--}}
-{{--                            <span>{!! __('admin.marketplace') !!}</span></a>--}}
-{{--                    </li>--}}
-
-                    <li class="dropdown {{ nav_active('themes', dropdown: true) }}">
-                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                class="fas fa-sharp fa-solid fa-palette"></i>
-                            <span>{!! __('admin.themes') !!}</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="nav-link {{ nav_active('admin.themes') }}"
-                                   href="{{ route('admin.themes') }}">{!! __('admin.client_themes') !!}</a></li>
-                            <li><a class="nav-link {{ nav_active('admin.admin_themes') }}"
-                                   href="{{ route('admin.admin_themes') }}">{!! __('admin.admin_themes') !!}</a>
-                            </li>
-                        </ul>
+                    <li>
+                        <a class="nav-link {{ nav_active('admin.themes') }}"  href="{{ route('admin.themes') }}">
+                            <i class="fas fa-solid fa-palette"></i>
+                            <span>{!! __('admin.themes') !!}</span>
+                        </a>
                     </li>
 
                     <li>

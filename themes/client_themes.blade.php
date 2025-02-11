@@ -60,6 +60,8 @@
                                         <td class="text-right">
                                             <a href="{{ route('admin.theme.activate', ['theme' => $theme->name]) }}"
                                                class="btn @if($theme->name == Theme::active()->name) btn-primary disabled @else  btn-primary  @endif">{!! __('admin.activate') !!}</a>
+                                            <a href="{{ route('admin.theme.settings', ['theme' => $theme->name]) }}"
+                                               class="btn btn-info">{!! __('admin.settings') !!}</a>
                                         </td>
                                     </tr>
                                 @endforeach

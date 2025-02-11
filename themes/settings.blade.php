@@ -1,16 +1,5 @@
 @extends(AdminTheme::wrapper(), ['title' => __('admin.themes'), 'keywords' => 'WemX Dashboard, WemX Panel'])
 
-@section('css_libraries')
-    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/summernote/summernote-bs4.css')) }}" />
-    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/select2/dist/css/select2.min.css')) }}">
-
-@endsection
-
-@section('js_libraries')
-    <script src="{{ asset(AdminTheme::assets('modules/summernote/summernote-bs4.js')) }}"></script>
-    <script src="{{ asset(AdminTheme::assets('modules/select2/dist/js/select2.full.min.js')) }}"></script>
-@endsection
-
 @section('container')
     <div class="row">
         <div class="col-12">
@@ -20,7 +9,7 @@
                 @else
                     <div class="alert alert-warning mt-3">
                         <div class="alert-title">{!! __('admin.warning') !!}</div>
-                        {{ Theme::active()->name }} {!! __('admin.theme_warning') !!}
+                        {{ $theme->name }} {!! __('admin.theme_warning') !!}
                     </div>
                 @endif
             </div>
