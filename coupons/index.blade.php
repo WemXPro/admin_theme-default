@@ -32,7 +32,6 @@
                                             {{ currency("symbol") }}
                                         @endif</td>
                                     <td>{{ $coupon->allowed_uses }}</td>
-                                    {{--                                    <td>@if($coupon->recurring) {!!  __('admin.yes', ['default' => 'Yes']) !!} @else {!!  __('admin.no', ['default' => 'No']) !!} @endif</td>--}}
                                     <td>@if($coupon->expires_at)
                                             {{ $coupon->expires_at }}
                                         @else
