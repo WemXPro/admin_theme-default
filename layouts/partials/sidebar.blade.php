@@ -50,7 +50,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link {{ nav_active('admin.warnings.*') }}" href="{{ route('admin.warnings.index') }}">
+                        <a class="nav-link {{ nav_active('admin.warnings.*') }}"
+                           href="{{ route('admin.warnings.index') }}">
                             {{ __('admin.warnings') }}
                         </a>
                     </li>
@@ -58,21 +59,24 @@
             </li>
 
             <li>
-                <a class="nav-link {{ nav_active('payments.index') }}" href="{{ route('payments.index', ['status' => 'paid']) }}">
+                <a class="nav-link {{ nav_active('payments.index') }}"
+                   href="{{ route('payments.index', ['status' => 'paid']) }}">
                     <i class="fas fa-solid fa-coins"></i>
                     <span>{!! __('admin.payments', ['default' => 'Payments']) !!}</span>
                 </a>
             </li>
 
             <li>
-                <a class="nav-link {{ nav_active('payments.subscriptions') }}" href="{{ route('payments.subscriptions', ['status' => 'paid']) }}">
+                <a class="nav-link {{ nav_active('payments.subscriptions') }}"
+                   href="{{ route('payments.subscriptions', ['status' => 'paid']) }}">
                     <i class="fas fa-hand-holding-usd"></i>
                     <span>{!! __('client.subscription') !!}</span>
                 </a>
             </li>
 
             <li>
-                <a class="nav-link {{ nav_active('orders.*') }}" href="{{ route('orders.index', ['status' => 'active']) }}">
+                <a class="nav-link {{ nav_active('orders.*') }}"
+                   href="{{ route('orders.index', ['status' => 'active']) }}">
                     <i class="fas fa-solid fa-server"></i>
                     <span>{!!  __('admin.orders', ['default' => 'Orders']) !!}</span>
                 </a>
@@ -106,7 +110,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link {{ nav_active('admin.registrations') }}" href="{{ route('admin.registrations') }}">
+                        <a class="nav-link {{ nav_active('admin.registrations') }}"
+                           href="{{ route('admin.registrations') }}">
                             {!! __('admin.registrations') !!}
                         </a>
                     </li>
@@ -121,12 +126,14 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link {{ nav_active('admin.maintenance') }}" href="{{ route('admin.maintenance') }}">
+                        <a class="nav-link {{ nav_active('admin.maintenance') }}"
+                           href="{{ route('admin.maintenance') }}">
                             {!! __('admin.maintenance') !!}
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link {{ nav_active('admin.settings.portal') }}" href="{{ route('admin.settings.portal') }}">
+                        <a class="nav-link {{ nav_active('admin.settings.portal') }}"
+                           href="{{ route('admin.settings.portal') }}">
                             {!! __('admin.portals') !!}
                         </a>
                     </li>
@@ -160,7 +167,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link {{ nav_active('emails.mass-mailer') }}" href="{{ route('emails.mass-mailer') }}">
+                        <a class="nav-link {{ nav_active('emails.mass-mailer') }}"
+                           href="{{ route('emails.mass-mailer') }}">
                             Mass Mailer
                         </a>
                     </li>
@@ -219,7 +227,8 @@
             </li>
 
             <li>
-                <a class="nav-link {{ nav_active(['admin.themes', 'admin.theme.*']) }}" href="{{ route('admin.themes') }}">
+                <a class="nav-link {{ nav_active(['admin.themes', 'admin.theme.*']) }}"
+                   href="{{ route('admin.themes') }}">
                     <i class="fas fa-sharp fa-solid fa-palette"></i>
                     <span>{!! __('admin.themes') !!}</span>
                 </a>
@@ -247,8 +256,12 @@
             </li>
 
             @include('admin::layouts.partials.extensions-menu-items', [
-                'extensions' => enabledModules(),
+                'extensions' => enabledExtensions(),
                 'name' => __('admin.modules')
+            ])
+            @include('admin::layouts.partials.extensions-menu-items', [
+                'extensions' => enabledExtensions('Services'),
+                'name' => __('admin.services')
             ])
 
             <li class="menu-header">
