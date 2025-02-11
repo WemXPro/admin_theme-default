@@ -256,7 +256,7 @@
             </li>
 
             @include('admin::layouts.partials.extensions-menu-items', [
-                'extensions' => enabledExtensions(),
+                'extensions' => enabledExtensions('Modules'),
                 'name' => __('admin.modules')
             ])
             @include('admin::layouts.partials.extensions-menu-items', [
