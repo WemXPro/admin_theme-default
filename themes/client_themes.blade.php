@@ -27,7 +27,7 @@
                                         <i class="fas fa-th"></i>
                                     </th>
                                     <th>{!! __('admin.theme') !!}</th>
-                                    <th>{!! __('admin.authors', ['default' => 'Author(s)']) !!}</th>
+                                    <th>{!! __('admin.authors') !!}</th>
                                     <th>{!! __('admin.version') !!}</th>
                                     <th>{!! __('admin.status') !!}</th>
                                     <th class="text-right">{!! __('admin.actions') !!}</th>
@@ -58,8 +58,6 @@
                                                 @endif</div>
                                         </td>
                                         <td class="text-right">
-                                            <a href="{{ route('admin.theme.files', ['folder' => 'client/'. $theme->folder]) }}"
-                                               class="btn btn-primary">{!! __('admin.files') !!}</a>
                                             <a href="{{ route('admin.theme.activate', ['theme' => $theme->name]) }}"
                                                class="btn @if($theme->name == Theme::active()->name) btn-primary disabled @else  btn-primary  @endif">{!! __('admin.activate') !!}</a>
                                         </td>
