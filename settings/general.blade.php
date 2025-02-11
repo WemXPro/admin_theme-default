@@ -65,20 +65,6 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="form-group col-6">
-                                <label for="allow_toggle_mode">Allow toggle theme mode</label>
-                                <select class="form-control select2 select2-hidden-accessible" name="theme::allow_toggle_mode" tabindex="-1" aria-hidden="true">
-                                    <option value="1" @if(settings('theme::allow_toggle_mode', 1) == 1) selected @endif>{!! __('admin.yes') !!}</option>
-                                    <option value="0" @if(settings('theme::allow_toggle_mode', 1) == 0) selected @endif>{!! __('admin.no') !!}</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="allow_toggle_mode">Default theme mode</label>
-                                <select class="form-control select2 select2-hidden-accessible" name="theme::default_mode" tabindex="-1" aria-hidden="true">
-                                    <option value="dark" @if(settings('theme::default_mode', 'dark') == 'dark') selected @endif>Dark</option>
-                                    <option value="light" @if(settings('theme::default_mode', 'dark') == 'light') selected @endif>Light</option>
-                                </select>
-                            </div>
                             <div class="form-group col-12">
                                 <label>Google Analytics Code</label>
                                 <input type="text" name="google::analytics_code"
