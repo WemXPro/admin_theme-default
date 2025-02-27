@@ -1,14 +1,14 @@
 @extends(AdminTheme::wrapper(), ['title' => __('admin.logs'), 'keywords' => 'WemX Dashboard, WemX Panel'])
 
 @section('css_libraries')
-    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/summernote/summernote-bs4.css')) }}"/>
-    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/select2/dist/css/select2.min.css')) }}">
+    <link rel="stylesheet" href="{{ AdminTheme::assets('modules/summernote/summernote-bs4.css') }}"/>
+    <link rel="stylesheet" href="{{ AdminTheme::assets('modules/select2/dist/css/select2.min.css') }}">
 
 @endsection
 
 @section('js_libraries')
-    <script src="{{ asset(AdminTheme::assets('modules/summernote/summernote-bs4.js')) }}"></script>
-    <script src="{{ asset(AdminTheme::assets('modules/select2/dist/js/select2.full.min.js')) }}"></script>
+    <script src="{{ AdminTheme::assets('modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ AdminTheme::assets('modules/select2/dist/js/select2.full.min.js') }}"></script>
 @endsection
 
 @section('container')
@@ -16,47 +16,65 @@
         <div class="col-md-12">
             <div class="card mb-6">
                 <div class="card-body">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <a class="nav-link @if(request()->input('severity', 'CRITICAL') == 'CRITICAL') active @endif"
-                               href="{{ route('logs.index', ['severity' => 'CRITICAL']) }}">{!! __('admin.critical') !!}
-                                <span
-                                    class="badge @if(request()->input('severity', 'CRITICAL') == 'CRITICAL') badge-white @else badge-primary @endif ">
-                                    {{ ErrorLog::where('severity', 'CRITICAL')->count() }}</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(request()->input('severity') == 'ERROR') active @endif"
-                               href="{{ route('logs.index', ['severity' => 'ERROR']) }}">{!! __('admin.error') !!} <span
-                                    class="badge  badge-primary @if(request()->input('severity') == 'ERROR') badge-white @else badge-primary @endif ">
-                                    {{ ErrorLog::where('severity', 'ERROR')->count() }}</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(request()->input('severity') == 'WARNING') active @endif"
-                               href="{{ route('logs.index', ['severity' => 'WARNING']) }}">{!! __('admin.warning') !!}
-                                <span
-                                    class="badge  @if(request()->input('severity') == 'WARNING') badge-white @else badge-primary @endif">
-                                    {{ ErrorLog::where('severity', 'WARNING')->count() }}</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(request()->input('severity') == 'INFO') active @endif"
-                               href="{{ route('logs.index', ['severity' => 'INFO']) }}">{!! __('admin.info') !!} <span
-                                    class="badge  @if(request()->input('severity') == 'INFO') badge-white @else badge-primary @endif ">
-                                    {{ ErrorLog::where('severity', 'INFO')->count() }}</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(request()->input('severity') == 'RESOLVED') active @endif"
-                               href="{{ route('logs.index', ['severity' => 'RESOLVED']) }}">{!! __('admin.resolved') !!}
-                                <span
-                                    class="badge  @if(request()->input('severity') == 'RESOLVED') badge-white @else badge-primary @endif ">
-                                    {{ ErrorLog::where('severity', 'RESOLVED')->count() }}</span></a>
-                        </li>
-                    </ul>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Navigation Pills -->
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link @if(request()->input('severity', 'CRITICAL') == 'CRITICAL') active @endif"
+                                   href="{{ route('logs.index', ['severity' => 'CRITICAL']) }}">{!! __('admin.critical') !!}
+                                    <span
+                                        class="badge @if(request()->input('severity', 'CRITICAL') == 'CRITICAL') badge-white @else badge-primary @endif">
+                        {{ ErrorLog::where('severity', 'CRITICAL')->count() }}</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if(request()->input('severity') == 'ERROR') active @endif"
+                                   href="{{ route('logs.index', ['severity' => 'ERROR']) }}">{!! __('admin.error') !!}
+                                    <span
+                                        class="badge @if(request()->input('severity') == 'ERROR') badge-white @else badge-primary @endif">
+                        {{ ErrorLog::where('severity', 'ERROR')->count() }}</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if(request()->input('severity') == 'WARNING') active @endif"
+                                   href="{{ route('logs.index', ['severity' => 'WARNING']) }}">{!! __('admin.warning') !!}
+                                    <span
+                                        class="badge @if(request()->input('severity') == 'WARNING') badge-white @else badge-primary @endif">
+                        {{ ErrorLog::where('severity', 'WARNING')->count() }}</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if(request()->input('severity') == 'INFO') active @endif"
+                                   href="{{ route('logs.index', ['severity' => 'INFO']) }}">{!! __('admin.info') !!}
+                                    <span
+                                        class="badge @if(request()->input('severity') == 'INFO') badge-white @else badge-primary @endif">
+                        {{ ErrorLog::where('severity', 'INFO')->count() }}</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if(request()->input('severity') == 'RESOLVED') active @endif"
+                                   href="{{ route('logs.index', ['severity' => 'RESOLVED']) }}">{!! __('admin.resolved') !!}
+                                    <span
+                                        class="badge @if(request()->input('severity') == 'RESOLVED') badge-white @else badge-primary @endif">
+                        {{ ErrorLog::where('severity', 'RESOLVED')->count() }}</span></a>
+                            </li>
+                        </ul>
+
+                        <div class="row justify-content-center">
+                            @foreach($logsFiles as $path =>  $name)
+                                <x-file-reader filePath="{{ $path }}" class="btn btn-primary mr-1" name="{{ $name }}"/>
+                            @endforeach
+
+                            <a href="{{ route('logs.clear') }}" class="btn btn-danger"
+                               onclick="return confirmAction(event, '{!! __('admin.are_you_sure') !!}')">
+                                {!! __('admin.clear_all') !!}
+                            </a>
+
+                        </div>
+                    </div>
                 </div>
+
             </div>
             <div class="card">
                 <div class="card-body">
                     @if(ErrorLog::count() == 0)
-                        @include(AdminTheme::path('empty-state'), ['title' => 'We couldn\'t find any logs', 'description' => 'New logs will appear here'])
+                        @include('admin::empty-state', ['title' => 'We couldn\'t find any logs', 'description' => 'New logs will appear here'])
                     @else
                         <div class="table-responsive">
                             <table class="table">
