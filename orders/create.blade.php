@@ -24,9 +24,9 @@
         <div class="row mt-sm-4">
             <div class="col-12 col-md-12 col-lg-12">
 
-            <form method="post" action="{{ route('orders.store') }}" class="needs-validation" novalidate="">
-                @csrf
-                <div class="card">
+                <form method="post" action="{{ route('orders.store') }}" class="needs-validation" novalidate="">
+                    @csrf
+                    <div class="card">
                         <div class="card-header">
                             <h4>{!!  __('admin.create', ['default' => 'Create']) !!}</h4>
                         </div>
@@ -37,15 +37,16 @@
                                     <label
                                         for="package_id">{!!  __('admin.package', ['default' => 'Package']) !!}</label>
                                     <select class="form-control select2 select2-hidden-accessible"
-                                        onchange="setPackage(this.value)"
-                                        name="package_id" id="package_id"
+                                            onchange="setPackage(this.value)"
+                                            name="package_id" id="package_id"
                                             tabindex="-1" aria-hidden="true">
                                         <option value="0"></option>
                                         @foreach (Package::get() as $packageList)
                                             @if($packageList->status == 'inactive')
                                                 @continue;
                                             @endif
-                                            <option value="{{ $packageList->id }}" @if(isset($package) AND $package->id == $packageList->id) selected @endif>{{ $packageList->name }}
+                                            <option value="{{ $packageList->id }}"
+                                                    @if(isset($package) AND $package->id == $packageList->id) selected @endif>{{ $packageList->name }}
                                                 ({{ $packageList->service }})
                                             </option>
                                         @endforeach
@@ -53,18 +54,19 @@
                                 </div>
 
                                 @if(isset($package))
-                                <div class="form-group col-md-12 col-12">
-                                    <label for="price">{!!  __('admin.price', ['default' => 'Price']) !!}</label>
-                                    <select class="form-control select2 select2-hidden-accessible" name="price"
-                                            id="price" tabindex="-1" aria-hidden="true">
+                                    <div class="form-group col-md-12 col-12">
+                                        <label for="price">{!!  __('admin.price', ['default' => 'Price']) !!}</label>
+                                        <select class="form-control select2 select2-hidden-accessible" name="price"
+                                                id="price" tabindex="-1" aria-hidden="true">
                                             @foreach ($package->prices as $price)
                                                 @if(!$price->is_active)
                                                     @continue;
                                                 @endif
-                                                <option value="{{ $price->id }}">{{ price($price->renewal_price) }} @ {{ $price->periodToHuman() }}</option>
+                                                <option value="{{ $price->id }}">{{ price($price->renewal_price) }}
+                                                    @ {{ $price->periodToHuman() }}</option>
                                             @endforeach
-                                    </select>
-                                </div>
+                                        </select>
+                                    </div>
                                 @endif
 
                                 <div class="form-group col-md-12 col-12">
@@ -72,7 +74,9 @@
                                     <select class="form-control select2 select2-hidden-accessible" name="user_id"
                                             tabindex="-1" aria-hidden="true">
                                         @foreach (User::get() as $user)
-                                            <option value="{{ $user->id }}" @if(request()->get('user') == $user->id) selected @endif >{{ $user->username }} ({{ $user->email }})
+                                            <option value="{{ $user->id }}"
+                                                    @if(request()->get('user') == $user->id) selected @endif >{{ $user->username }}
+                                                ({{ $user->email }})
                                             </option>
                                         @endforeach
                                     </select>
@@ -92,14 +96,14 @@
                                 </div>
 
                                 @if(isset($package) AND $package->require_domain)
-                                <div class="form-group col-md-12 col-12">
-                                    <label for="status">
-                                        {!!  __('admin.domain', ['default' => 'Domain']) !!}
-                                    </label>
-                                    <input type="text" class="form-control" name="domain" value="" required
-                                           placeholder="example.com"/>
-                                    <small class="form-text text-muted"></small>
-                                </div>
+                                    <div class="form-group col-md-12 col-12">
+                                        <label for="status">
+                                            {!!  __('admin.domain', ['default' => 'Domain']) !!}
+                                        </label>
+                                        <input type="text" class="form-control" name="domain" value="" required
+                                               placeholder="example.com"/>
+                                        <small class="form-text text-muted"></small>
+                                    </div>
                                 @endif
 
                                 <div class="form-group col-md-6 col-12">
@@ -154,60 +158,162 @@
 
                             </div>
                         </div>
-                </div>
+                    </div>
 
-                @if(isset($package) AND $package->service()->hasCheckoutConfig($package))
-                <div class="card">
-                    <div class="card-body row">
-                        @foreach($package->service()->getCheckoutConfig($package)->all() ?? [] as $name => $field)
-                        <div class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset" style="display: flex;flex-direction: column;">
-                            <label>{!! $field['name'] !!}</label>
-                            @if($field['type'] == 'select')
-                            <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"
-                            name="{{ $field['key'] }}"
-                            id="{{ $field['key'] }}"
-                            @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif
-                            @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
-                            >
-                                @foreach($field['options'] ?? [] as $key => $option)
-                                    <option value="{{ $key }}"
-                                            @if(in_array($key, (array) getValueByKey($field['key'], $package->data, $field['default_value'] ?? ''))) selected @endif
-                                    >{{ is_string($option) ? $option : $option['name'] }}</option>
+                    @if(isset($package) AND $package->service()->hasCheckoutConfig($package))
+                        @if($package->configOptions->count() > 0)
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h4>{{ __('client.configurable_options') }}</h4>
+                                    <p class="mb-0 text-muted">{{ __('client.configurable_options_desc') }}</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        @foreach($package->configOptions()->orderBy('order', 'desc')->get() as $option)
+                                            <div class="col-md-6 col-12 mb-3">
+                                                @if($option->type == 'number')
+                                                    <div class="form-group">
+                                                        <label
+                                                            for="option-{{ $option->id }}">{!! $option->data['label'] ?? $option->key !!}</label>
+                                                        <div class="input-group" style="max-width: 8rem;">
+                                                            <div class="input-group-prepend">
+                                                                <button type="button" class="btn btn-outline-secondary"
+                                                                        onclick="decrementInput('option-{{ $option->id }}')">
+                                                                    -
+                                                                </button>
+                                                            </div>
+                                                            <input type="text" class="form-control text-center"
+                                                                   id="option-{{ $option->id }}"
+                                                                   name="custom_option[{{ $option->key }}]"
+                                                                   min="{{ $option->data['min'] ?? '0' }}"
+                                                                   max="{{ $option->data['max'] ?? '0' }}"
+                                                                   value="{{ $option->data['default_value'] ?? '0' }}"
+                                                                   placeholder="999" required>
+                                                            <div class="input-group-append">
+                                                                <button type="button" class="btn btn-outline-secondary"
+                                                                        onclick="incrementInput('option-{{ $option->id }}')">
+                                                                    +
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <small
+                                                            class="form-text text-muted">{!! $option->data['description'] ?? '' !!}</small>
+                                                    </div>
+                                                @elseif($option->type == 'range')
+                                                    <div class="form-group">
+                                                        <label
+                                                            for="option-{{ $option->id }}">{!! $option->data['label'] ?? $option->key !!}</label>
+                                                        <input type="range" class="form-control-range"
+                                                               id="option-{{ $option->id }}"
+                                                               name="custom_option[{{ $option->key }}]"
+                                                               value="{{ $option->data['default_value'] ?? 0 }}"
+                                                               min="{{ $option->data['min'] ?? 0 }}"
+                                                               max="{{ $option->data['max'] ?? 10 }}"
+                                                               step="{{ $option->data['step'] ?? 1 }}">
+                                                        <div class="d-flex justify-content-between mt-2">
+                                                            <span>{{ $option->data['min'] ?? 0 }}</span>
+                                                            <span>{{ $option->data['max'] ?? 0 }}</span>
+                                                        </div>
+                                                        <small
+                                                            class="form-text text-muted">{!! $option->data['description'] ?? '' !!}</small>
+                                                    </div>
+                                                @elseif($option->type == 'select')
+                                                    <div class="form-group">
+                                                        <label
+                                                            for="option-{{ $option->id }}">{!! $option->data['label'] ?? $option->key !!}</label>
+                                                        <select class="form-control" id="option-{{ $option->id }}"
+                                                                name="custom_option[{{ $option->key }}]">
+                                                            @foreach($option->data['options'] as $key => $selectOption)
+                                                                <option value="{{ $selectOption['value'] }}"
+                                                                        data-select-option-value="{{ $selectOption['value'] }}"
+                                                                        data-select-option-unitprice="{{ $selectOption['monthly_price'] }}">
+                                                                    {{ $selectOption['name'] }}
+                                                                    @ {{ price($selectOption['monthly_price'] / 30 * $package->prices->first()->period) }} {{ $package->prices->first()->periodToHuman() }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        <small
+                                                            class="form-text text-muted">{!! $option->data['description'] ?? '' !!}</small>
+                                                    </div>
+                                                @elseif($option->type == 'text')
+                                                    <div class="form-group">
+                                                        <label
+                                                            for="option-{{ $option->id }}">{!! $option->data['label'] ?? $option->key !!}</label>
+                                                        <input type="{{ $option->data['type'] ?? 'text' }}"
+                                                               class="form-control" id="option-{{ $option->id }}"
+                                                               name="custom_option[{{ $option->key }}]"
+                                                               value="{{ $option->data['default_value'] ?? '' }}"
+                                                               placeholder="{{ $option->data['placeholder'] ?? '' }}">
+                                                        <small
+                                                            class="form-text text-muted">{!! $option->data['description'] ?? '' !!}</small>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="card">
+                            <div class="card-body row">
+                                @foreach($package->service()->getCheckoutConfig($package)->all() ?? [] as $name => $field)
+                                    <div
+                                        class="form-group @isset($field['col']) {{$field['col']}} @else col-6 @endisset"
+                                        style="display: flex;flex-direction: column;">
+                                        <label>{!! $field['name'] !!}</label>
+                                        @if($field['type'] == 'select')
+                                            <select class="form-control select2 select2-hidden-accessible" tabindex="-1"
+                                                    aria-hidden="true"
+                                                    name="{{ $field['key'] }}"
+                                                    id="{{ $field['key'] }}"
+                                                    @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()"
+                                                    @endif
+                                                    @if(isset($field['multiple']) AND $field['multiple']) multiple @endif
+                                            >
+                                                @foreach($field['options'] ?? [] as $key => $option)
+                                                    <option value="{{ $key }}"
+                                                            @if(in_array($key, (array) getValueByKey($field['key'], $package->data, $field['default_value'] ?? ''))) selected @endif
+                                                    >{{ is_string($option) ? $option : $option['name'] }}</option>
+                                                @endforeach
+                                            </select>
+                                        @elseif($field['type'] == 'bool')
+                                            <label class="custom-switch mt-2">
+                                                <input type="hidden" name="{{ $field['key'] }}" value="0">
+                                                <input type="checkbox" name="{{ $field['key'] }}"
+                                                       @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()"
+                                                       @endif value="1" class="custom-switch-input"
+                                                       @if($package->data($field['key'], $field['default_value'] ?? '')) checked @endif>
+                                                <span class="custom-switch-indicator"></span>
+                                            </label>
+                                        @else
+                                            <input class="form-control"
+                                                   type="{{ $field['type'] }}"
+                                                   name="{{ $field['key'] }}"
+                                                   id="{{ $field['key'] }}"
+                                                   @isset($field['min']) min="{{$field['min']}}" @endisset
+                                                   @isset($field['max']) max="{{$field['max']}}" @endisset
+                                                   @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()"
+                                                   @endif
+                                                   value="{{ $package->data($field['key'], $field['default_value'] ?? '') }}"
+                                                   placeholder="@isset($field['placeholder']){{$field['placeholder']}} @else{{ $field['name'] }} @endisset"
+                                                   @if(in_array('required', $field['rules'])) required="" @endif>
+                                        @endif
+                                        <small class="form-text text-muted">
+                                            {!! $field['description'] !!}
+                                        </small>
+                                    </div>
                                 @endforeach
-                            </select>
-                            @elseif($field['type'] == 'bool')
-                            <label class="custom-switch mt-2">
-                                <input type="hidden" name="{{ $field['key'] }}" value="0">
-                                <input type="checkbox" name="{{ $field['key'] }}" @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif value="1" class="custom-switch-input" @if($package->data($field['key'], $field['default_value'] ?? '')) checked @endif>
-                                <span class="custom-switch-indicator"></span>
-                              </label>
-                            @else
-                            <input class="form-control"
-                            type="{{ $field['type'] }}"
-                            name="{{ $field['key'] }}"
-                            id="{{ $field['key'] }}"
-                            @isset($field['min']) min="{{$field['min']}}" @endisset
-                            @isset($field['max']) max="{{$field['max']}}" @endisset
-                            @if(isset($field['save_on_change']) AND $field['save_on_change']) onchange="saveServiceSettings()" @endif
-                            value="{{ $package->data($field['key'], $field['default_value'] ?? '') }}"
-                            placeholder="@isset($field['placeholder']){{$field['placeholder']}} @else{{ $field['name'] }} @endisset"
-                            @if(in_array('required', $field['rules'])) required="" @endif>
-                            @endif
-                            <small class="form-text text-muted">
-                                {!! $field['description'] !!}
-                            </small>
+                            </div>
                         </div>
-                        @endforeach
-                    </div>
-                </div>
-                @endif
+                    @endif
 
-                <div class="card">
-                    <div class="card-footer text-right">
-                        <button class="btn btn-success" type="submit">{!!  __('admin.create', ['default' => 'Create']) !!}</button>
+                    <div class="card">
+                        <div class="card-footer text-right">
+                            <button class="btn btn-success"
+                                    type="submit">{!!  __('admin.create', ['default' => 'Create']) !!}</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
             </div>
         </div>
