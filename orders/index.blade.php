@@ -78,6 +78,14 @@
                             </div>
 
                             <div>
+                                @if($status == 'terminated')
+                                    {{-- CDelete all --}}
+                                    <button type="button"
+                                            onclick="if (window.confirm('Are you sure you want to delete all terminated orders? All payments and data stored related to the orders will be deleted.')) { window.location.href = '{{ route('orders.index', ['status' => 'terminated', 'delete_all' => true]) }}'; }"
+                                            class="btn btn-danger">
+                                        <i class="fas fa-solid fa-trash"></i> {!! __('admin.delete') !!} ({{ Order::whereStatus('terminated')->count() }})
+                                    </button>
+                                @endif
                                 <a href="{{ route('orders.create') }}" class="btn btn-icon icon-left btn-primary mr-4"><i
                                     class="fas fa-solid fa-plus"></i> {!! __('admin.create') !!}
                                 </a>
@@ -256,7 +264,7 @@
         $('#add-filter').click(function() {
             // Clone the first filter div
             var newFilter = $('.filter:first').clone();
-            
+
             // Find the highest existing index to ensure uniqueness
             var highestIndex = -1;
             $('[name^="filter["]').each(function() {
@@ -267,17 +275,17 @@
                 }
             });
             var newIndex = highestIndex + 1;
-            
+
             // Update the 'name' attributes with the new index
             newFilter.find('[name]').each(function() {
                 var name = $(this).attr('name').replace(/\[\d+\]/, '[' + newIndex + ']');
                 $(this).attr('name', name);
             });
-            
+
             // Append the new filter div to the container
             $('#filters-container').append(newFilter);
         });
-    
+
         $('#remove-filter').click(function() {
             // Only remove the filter if there is more than one
             if ($('.filter').length > 1) {
