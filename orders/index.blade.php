@@ -1,14 +1,5 @@
 @extends(AdminTheme::wrapper(), ['title' => __('admin.order'), 'keywords' => 'WemX Dashboard, WemX Panel'])
 
-@section('css_libraries')
-    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/select2/dist/css/select2.min.css')) }}">
-
-@endsection
-
-@section('js_libraries')
-    <script src="{{ asset(AdminTheme::assets('modules/select2/dist/js/select2.full.min.js')) }}"></script>
-@endsection
-
 @section('container')
     <section class="section">
         <div class="section-body">
@@ -16,42 +7,17 @@
                 <div class="card mb-0">
                     <div class="card-body">
                         <ul class="nav nav-pills">
-                            <li class="nav-item">
-                                <a class="nav-link @if($status == 'active') active @endif"
-                                   href="{{ route('orders.index', ['status' => 'active']) }}">
-                                    {!! __('admin.active') !!}
-                                    <span class="badge @if($status == 'active') badge-white @else badge-primary @endif">
-                                            {{ Order::whereStatus('active')->count() }}
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @if($status == 'suspended') active @endif"
-                                   href="{{ route('orders.index', ['status' => 'suspended']) }}">{!! __('admin.suspended') !!}
-                                    <span
-                                        class="badge @if($status == 'suspended') badge-white @else badge-primary @endif">
-                                        {{ Order::whereStatus('suspended')->count() }}
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @if($status == 'cancelled') active @endif"
-                                   href="{{ route('orders.index', ['status' => 'cancelled']) }}">{!! __('admin.cancelled') !!}
-                                    <span
-                                        class="badge @if($status == 'cancelled') badge-white @else badge-primary @endif">
-                                        {{ Order::whereStatus('cancelled')->count() }}
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @if($status == 'terminated') active @endif"
-                                   href="{{ route('orders.index', ['status' => 'terminated']) }}">{!! __('admin.terminated') !!}
-                                    <span
-                                        class="badge @if($status == 'terminated') badge-white @else badge-primary @endif">
-                                        {{ Order::whereStatus('terminated')->count() }}
-                                    </span>
-                                </a>
-                            </li>
+                            @foreach($all_statuses as $st)
+                                <li class="nav-item">
+                                    <a class="nav-link @if($status == $st) active @endif"
+                                       href="{{ route('orders.index', ['status' => $st]) }}">
+                                        {!! __('admin.' . $st) !!}
+                                        <span class="badge @if($status == $st) badge-white @else badge-primary @endif">
+                                            {{ Order::whereStatus($st)->count() }}
+                                        </span>
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
