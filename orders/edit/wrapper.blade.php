@@ -1,18 +1,5 @@
 @extends(AdminTheme::wrapper(), ['title' => __('admin.orders', ['default' => 'Orders']), 'keywords' => 'WemX Dashboard, WemX Panel'])
 
-@section('css_libraries')
-    <link rel="stylesheet" href="{{ Theme::get('Default')->assets }}assets/modules/summernote/summernote-bs4.css">
-    <link rel="stylesheet" href="{{ Theme::get('Default')->assets }}assets/modules/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="{{ Theme::get('Default')->assets }}assets/modules/codemirror/theme/duotone-dark.css">
-    <link rel="stylesheet" href="{{ Theme::get('Default')->assets }}assets/modules/jquery-selectric/selectric.css">
-    <link rel="stylesheet" href="{{ asset(AdminTheme::assets('modules/select2/dist/css/select2.min.css')) }}">
-@endsection
-
-@section('js_libraries')
-    <script src="{{ Theme::get('Default')->assets }}assets/modules/codemirror/lib/codemirror.js"></script>
-    <script src="{{ Theme::get('Default')->assets }}assets/modules/codemirror/mode/javascript/javascript.js"></script>
-    <script src="{{ asset(AdminTheme::assets('modules/select2/dist/js/select2.full.min.js')) }}"></script>
-@endsection
 
 @section('container')
 
@@ -115,26 +102,38 @@
                     <div class="card-body">
                         <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'unsuspend']) }}"
                             class="btn btn-icon icon-left btn-info mr-2"><i class="fas fa-solid fa-rotate-left"></i>
-                            {!! __('admin.unsuspend', ['default' => 'Unsuspend']) !!}
+                            {!! __('admin.unsuspend') !!}
                         </a>
                         <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'suspend']) }}"
                             class="btn btn-icon icon-left btn-warning  mr-2"><i class="fas fa-solid fa-ban"></i>
-                            {!! __('admin.suspend', ['default' => 'Suspend']) !!}
+                            {!! __('admin.suspend') !!}
                         </a>
                         <a onclick="terminate(event)"
                             href="{{ route('orders.action', ['order' => $order->id, 'action' => 'terminate']) }}"
                             class="btn btn-icon icon-left btn-danger mr-2"><i class="fas fa-solid fa-trash-can"></i>
-                            {!! __('admin.terminate', ['default' => 'Terminate']) !!}
+                            {!! __('admin.terminate') !!}
                         </a>
                         <br>
+                        @if($order->status == 'pause')
+                            <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'pause']) }}"
+                               class="btn btn-icon icon-left btn-primary mr-2  mt-4"><i class="fas fa-solid fa-play"></i>
+                                {{ __('admin.pause') }}
+                            </a>
+                        @else
+                            <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'pause']) }}"
+                               class="btn btn-icon icon-left btn-warning mr-2  mt-4"><i class="fas fa-solid fa-pause"></i>
+                                {{ __('admin.pause') }}
+                            </a>
+                        @endif
+
                         <a href="{{ route('orders.action', ['order' => $order->id, 'action' => 'force_suspend']) }}"
                             class="btn btn-icon icon-left btn-warning mr-2 mt-4 "><i class="fas fa-solid fa-ban"></i>
-                             {!! __('admin.force_suspend', ['default' => 'Force Suspend']) !!}
+                             {!! __('admin.force_suspend') !!}
                          </a>
                          <a onclick="terminate(event)"
                             href="{{ route('orders.action', ['order' => $order->id, 'action' => 'force_terminate']) }}"
                             class="btn btn-icon icon-left btn-danger mr-2  mt-4"><i class="fas fa-solid fa-trash-can"></i>
-                             {!! __('admin.force_terminate', ['default' => 'Force Terminate']) !!}
+                             {!! __('admin.force_terminate') !!}
                          </a>
                     </div>
                 </div>
@@ -212,12 +211,11 @@
                         </ul>
                     </div>
                 </div>
-                
+
 
                 @yield('order-section')
 
             </div>
-        </div>
         </div>
     </section>
 
