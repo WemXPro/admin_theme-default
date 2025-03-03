@@ -134,7 +134,7 @@
 
                             <div class="form-group col-12">
                                 <label>{{ __('admin.default_avatar') }}</label>
-                                <input type="url" name="default_avatar" value="@settings('default_avatar', '/assets/core/img/logo.png')" class="form-control">
+                                <input type="text" name="default_avatar" value="@settings('default_avatar', '/assets/core/img/logo.png')" class="form-control">
                                 <div class="gallery gallary mt-3">
                                     <div class="gallery-item" data-image="@settings('default_avatar', '/assets/core/img/logo.png')" data-title="Image 1" href="@settings('default_avatar', '/assets/core/img/logo.png')" title="Image 1" style="background-image: url('@settings('default_avatar', '/assets/core/img/logo.png')');"></div>
                                   </div>
