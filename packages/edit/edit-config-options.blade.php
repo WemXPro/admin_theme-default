@@ -112,26 +112,27 @@
         <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
     </div>
     <div class="form-group col-md-12">
-        <label name="data[type]">Field Type</label>
+        <label for="data_type">Field Type</label>
         <div class="input-group mb-2">
-            <select class="form-control select2 select2-hidden-accessible" name="data[type]" tabindex="-1" aria-hidden="true" required>
-                <option value="text" @if($option->data['type'] ?? 'text' == 'text') selected @endif>Text</option>
-                <option value="email" @if($option->data['type'] ?? 'text' == 'email') selected @endif>Email</option>
-                <option value="number" @if($option->data['type'] ?? 'text' == 'number') selected @endif>Number</option>
-                <option value="date" @if($option->data['type'] ?? 'text' == 'date') selected @endif>Date</option>
-                <option value="url" @if($option->data['type'] ?? 'text' == 'url') selected @endif>Url</option>
-                <option value="password" @if($option->data['type'] ?? 'text' == 'password') selected @endif>Password</option>
+            <select id="data_type" class="form-control select2 select2-hidden-accessible" name="data[type]" tabindex="-1" aria-hidden="true" required>
+                <option value="text" @if(($option->data['type'] ?? 'text') == 'text') selected @endif>Text</option>
+                <option value="email" @if(($option->data['type'] ?? 'text') == 'email') selected @endif>Email</option>
+                <option value="number" @if(($option->data['type'] ?? 'text') == 'number') selected @endif>Number</option>
+                <option value="date" @if(($option->data['type'] ?? 'text') == 'date') selected @endif>Date</option>
+                <option value="url" @if(($option->data['type'] ?? 'text') == 'url') selected @endif>Url</option>
+                <option value="password" @if(($option->data['type'] ?? 'text') == 'password') selected @endif>Password</option>
             </select>
-            <small class="form-text text-muted">Select field type</small>
+        </div>
+        <small class="form-text text-muted">Select field type</small>
         </div>
     </div>
     <div class="form-group col-md-12">
         <label for="data[default_value]">Default Value</label>
-        <input type="number" name="data[default_value]" value="{{ $option->data['default_value'] ?? '' }}" class="form-control" />
+        <input type="text" name="data[default_value]" value="{{ $option->data['default_value'] ?? '' }}" class="form-control" />
     </div>
     <div class="form-group col-md-12">
         <label for="data[placeholder]">Placeholder Text</label>
-        <input type="number" name="data[placeholder]" value="{{ $option->data['placeholder'] ?? '' }}" class="form-control" />
+        <input type="text" name="data[placeholder]" value="{{ $option->data['placeholder'] ?? '' }}" class="form-control" />
     </div>
 </div>
 @elseif($option->type == 'radio') @elseif($option->type == 'checkbox') @elseif($option->type == 'range')
@@ -163,7 +164,7 @@
             <button type="button" onclick="appendRule('starts_with:test')" class="btn btn-sm btn-primary">stars with</button>
             <button type="button" onclick="appendRule('ends_with:test')" class="btn btn-sm btn-primary">ends with</button>
             <button type="button" onclick="appendRule('date')" class="btn btn-sm btn-primary">date</button>
-        </div>        
+        </div>
         <small class="form-text text-muted"><a href="#" onclick="document.getElementById('rules{{ $option->id }}').value = '{{ $package->service()->getPackageRule($package, $option->key, 'string') }}'">reset to default</a></small>
     </div>
     <div class="form-group col-md-3">
@@ -357,7 +358,7 @@
         }
 
         if (rules.value.length > 0) {
-            // make sure string does not end with | 
+            // make sure string does not end with |
             if (rules.value.endsWith('|')) {
                 rules.value += rule;
             } else {
