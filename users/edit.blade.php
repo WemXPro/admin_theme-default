@@ -379,7 +379,8 @@
                                 <div class="form-group col-md-12 col-12">
                                     <label>{!! __('admin.groups') !!}</label>
                                     <select
-                                        class="form-control select2 select2-hidden-accessible  @error('groups') is-invalid @enderror"
+                                        class="form-control select2 select2-hidden-accessible @if(!auth()->user()->hasPerm('groups.update')) disabled @endif @error('groups') is-invalid @enderror"
+                                        @if(!auth()->user()->hasPerm('groups.update')) disabled="" @endif
                                         name="groups[]" multiple="" tabindex="-1" aria-hidden="true">
                                         @foreach ($groups as $group)
                                             <option value="{{ $group->id }}"

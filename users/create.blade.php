@@ -55,6 +55,7 @@
                                         class="form-control mb-2" value="{{ old('password') }}" placeholder="{!! __('admin.password') !!}" required="">
                                     <a onclick="generateRandomPassword()" href="#">{{ __('admin.generate_password') }}</a>
                                 </div>
+                                @if(!auth()->user()->hasPerm('groups.update'))
                                 <div class="form-group col-md-12 col-12">
                                     <label>{!! __('admin.groups') !!}</label>
                                     <select
@@ -66,6 +67,7 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                @endif
                                 <div class="form-group mb-0 col-12">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" name="verify_email" checked class="custom-control-input" id="verify_email">
